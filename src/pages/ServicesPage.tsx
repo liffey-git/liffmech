@@ -22,7 +22,7 @@ const ServicesPage: React.FC = () => {
         imageUrl="/images/IMG_Draft.jpg"
         height="40vh"
       />      {/* Services Title and Introduction */}
-      <Box sx={{ pt: 20, pb: 20, backgroundColor: '#fff' }}>        <Container maxWidth="lg">
+      <Box sx={{ pt: 14, pb: 14, backgroundColor: '#fff' }}>        <Container maxWidth="lg">
           <Typography variant="h1" component="h1" align="center" gutterBottom sx={{ mb: 6 }} color="primary" fontWeight={600}>
             Services
           </Typography>
@@ -69,7 +69,7 @@ const ServicesPage: React.FC = () => {
           </Box>
         </Container>
       </Box>      {/* Service Categories - Desktop Tabs View */}
-      <Box sx={{ display: { xs: 'none', md: 'block' }, pt: 20, pb: 14, backgroundColor: '#fafafa' }}>        <Container maxWidth="lg">          
+      <Box sx={{ display: { xs: 'none', md: 'block' }, pt: 14, pb: 10, backgroundColor: '#fafafa' }}>        <Container maxWidth="lg">          
           <Typography variant="h3" component="h2" gutterBottom align="center" sx={{ mb: 4, mt: 4 }} color="primary" fontWeight={600}>
             Our Service Categories
           </Typography>

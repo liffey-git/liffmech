@@ -14,7 +14,7 @@ const ContactPage: React.FC = () => {
         height="40vh"
       />
       
-      <Box sx={{ pt: 20, pb: 20 }}>
+      <Box sx={{ pt: 14, pb: 14 }}>
         <Container maxWidth="lg">
           {/* Page Header */}          <Box sx={{ mb: 6 }}>
             <Typography variant="h1" component="h1" align="center" gutterBottom color="primary" fontWeight={600}>
