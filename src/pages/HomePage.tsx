@@ -8,16 +8,15 @@ import { Project } from '../types';
 
 const HomePage: React.FC = () => {
   const [currentServiceIndex, setCurrentServiceIndex] = useState(0);
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-
-  // Handle scroll to change background image based on visible service
+  const scrollContainerRef = useRef<HTMLDivElement>(null);  // Handle scroll to change background image based on visible service
   useEffect(() => {
     const scrollContainer = scrollContainerRef.current;
     if (!scrollContainer) return;
 
-    const handleScroll = () => {
-      const containerHeight = scrollContainer.clientHeight;
-      const scrollTop = scrollContainer.scrollTop;
+    const handleScroll = (e: Event) => {
+      const container = e.target as HTMLElement;
+      const containerHeight = container.clientHeight;
+      const scrollTop = container.scrollTop;
       const serviceHeight = containerHeight; // Each service takes full height
 
       // Calculate which service is most visible
@@ -27,10 +26,77 @@ const HomePage: React.FC = () => {
       if (clampedIndex !== currentServiceIndex) {
         setCurrentServiceIndex(clampedIndex);
       }
+    };    // Handle wheel events for scroll pass-through
+    const handleWheel = (e: WheelEvent) => {
+      const container = e.currentTarget as HTMLElement;
+      const { scrollTop, scrollHeight, clientHeight } = container;
+      const isAtTop = scrollTop <= 1; // Small tolerance for floating point precision
+      const isAtBottom = scrollTop >= scrollHeight - clientHeight - 1; // Small tolerance
+
+      // If we're at boundaries and trying to scroll past them
+      if ((isAtTop && e.deltaY < 0) || (isAtBottom && e.deltaY > 0)) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        // For downward scrolling at bottom, scroll to next section
+        if (isAtBottom && e.deltaY > 0) {
+          const servicesSection = container.closest('div[data-section="services"]');
+          if (servicesSection) {
+            const nextSection = servicesSection.nextElementSibling as HTMLElement;
+            if (nextSection) {
+              nextSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              return;
+            }
+          }
+        }
+        
+        // Fallback: manual page scroll
+        window.scrollBy({
+          top: e.deltaY * 0.5, // Reduce scroll speed for better control
+          behavior: 'auto'
+        });
+      }
+      // If not at boundaries, allow normal container scrolling with snap
+    };
+
+    // Handle touch events for mobile scroll pass-through
+    let touchStartY = 0;
+    const handleTouchStart = (e: TouchEvent) => {
+      touchStartY = e.touches[0].clientY;
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      const container = e.currentTarget as HTMLElement;
+      const { scrollTop, scrollHeight, clientHeight } = container;
+      const isAtTop = scrollTop === 0;
+      const isAtBottom = Math.abs(scrollHeight - clientHeight - scrollTop) <= 1;
+      
+      const touchY = e.touches[0].clientY;
+      const deltaY = touchStartY - touchY;
+
+      // If we're at boundaries and trying to scroll past them
+      if ((isAtTop && deltaY < 0) || (isAtBottom && deltaY > 0)) {
+        e.preventDefault();
+        e.stopPropagation();
+        // Allow page scroll by not preventing the touch event
+        window.scrollBy({
+          top: deltaY,
+          behavior: 'auto'
+        });
+      }
     };
 
     scrollContainer.addEventListener('scroll', handleScroll);
-    return () => scrollContainer.removeEventListener('scroll', handleScroll);
+    scrollContainer.addEventListener('wheel', handleWheel, { passive: false });
+    scrollContainer.addEventListener('touchstart', handleTouchStart, { passive: false });
+    scrollContainer.addEventListener('touchmove', handleTouchMove, { passive: false });
+    
+    return () => {
+      scrollContainer.removeEventListener('scroll', handleScroll);
+      scrollContainer.removeEventListener('wheel', handleWheel);
+      scrollContainer.removeEventListener('touchstart', handleTouchStart);
+      scrollContainer.removeEventListener('touchmove', handleTouchMove);
+    };
   }, [currentServiceIndex]);
 
   // Example projects for the projects section
@@ -99,9 +165,9 @@ const HomePage: React.FC = () => {
             </Box>
           </Box>
         </Container>
-      </Box>
-      {/* Services Section with Dynamic Background */}
+      </Box>      {/* Services Section with Dynamic Background */}
       <Box
+        data-section="services"
         sx={{
           position: 'relative',
           height: {
@@ -228,28 +294,29 @@ const HomePage: React.FC = () => {
               justifyContent: { xs: 'center', md: 'flex-end' }, // Align to right on desktop
               pr: { md: 0 }, // Ensure no right padding on desktop
               pointerEvents: 'none' // Prevent blocking clicks on left column
-            }}>
-              <Box
-                ref={scrollContainerRef}
+            }}>              <Box                ref={scrollContainerRef}
                 sx={{
                   height: '100%',
                   width: '100%',
                   overflowY: 'auto',
-                  scrollSnapType: 'y mandatory',
+                  scrollSnapType: 'y mandatory', // Re-enable scroll snap for proper centering
                   scrollbarWidth: 'none', // Hide scrollbar for Firefox
                   msOverflowStyle: 'none', // Hide scrollbar for IE/Edge
                   '&::-webkit-scrollbar': {
                     display: 'none' // Hide scrollbar for Chrome/Safari/Opera
                   },
-                  pointerEvents: 'auto' // Re-enable pointer events for scrollable content
-                }}
-              >                {SERVICES.map((service) => (
+                  pointerEvents: 'auto', // Re-enable pointer events for scrollable content
+                  // Improve scroll performance
+                  willChange: 'scroll-position',
+                  // Ensure smooth scrolling on touch devices
+                  WebkitOverflowScrolling: 'touch'
+                }}              >{SERVICES.map((service) => (
                 <Box
                   key={service.id}
                   sx={{
                     width: '100%',
                     height: { xs: '100%', md: '100%' },
-                    scrollSnapAlign: 'start',
+                    scrollSnapAlign: 'center', // Center each service in the viewport
                     scrollSnapStop: 'always',
                     display: 'flex',
                     alignItems: 'center',
