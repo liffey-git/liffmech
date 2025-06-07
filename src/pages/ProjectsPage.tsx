@@ -54,7 +54,7 @@ const ProjectsPage: React.FC = () => {
     },
     {
       id: 5,
-      title: 'RBC Branch Network',
+      title: 'RBC Branch',
       description: 'Multi-location mechanical services project covering several RBC branch locations across Ontario. Each site received customized HVAC solutions, upgraded plumbing systems, and energy-efficient mechanical equipment. Our standardized approach ensured consistency across all locations while meeting each site\'s unique requirements.',
       imageUrl: '/images/IMG_Ref.jpg'
     },
@@ -66,19 +66,19 @@ const ProjectsPage: React.FC = () => {
     },
     {
       id: 7,
-      title: 'Walmart Distribution Center',
+      title: 'Walmart',
       description: 'Industrial-scale mechanical project for Walmart\'s regional distribution facility. The scope included massive HVAC systems for warehouse climate control, specialized refrigeration systems for cold storage areas, and comprehensive plumbing infrastructure. Our industrial expertise ensured optimal performance for this critical supply chain facility.',
       imageUrl: '/images/IMG_AC.jpg'
     },
     {
       id: 8,
-      title: 'A&W Restaurant Chain',
+      title: 'A&W Restaurant',
       description: 'Multi-site restaurant mechanical services covering several A&W locations. Each restaurant received commercial kitchen ventilation systems, grease management solutions, HVAC systems optimized for food service environments, and specialized plumbing for commercial kitchen operations. Our food service expertise ensured compliance with all health and safety regulations.',
       imageUrl: '/images/IMG_Draft.jpg'
     },
     {
       id: 9,
-      title: 'Pizza Hut Franchise',
+      title: 'Pizza Hut',
       description: 'Comprehensive mechanical systems for Pizza Hut restaurant locations including commercial kitchen exhaust systems, specialized oven ventilation, HVAC systems designed for food service environments, and complete plumbing installations. Our restaurant industry experience delivered systems that support efficient operations and food safety standards.',
       imageUrl: '/images/IMG_Pipes.jpg'
     },
@@ -90,7 +90,7 @@ const ProjectsPage: React.FC = () => {
     },
     {
       id: 11,
-      title: 'Ballroom Bowl Entertainment',
+      title: 'Ballroom Bowl',
       description: 'Complex mechanical project for this bowling and entertainment facility. The installation included specialized ventilation for the bowling lanes, restaurant-grade kitchen systems, HVAC solutions for various entertainment zones, and comprehensive plumbing for the full-service facility. Our versatile expertise handled the diverse mechanical needs of this multi-use entertainment venue.',
       imageUrl: '/images/IMG_SheetM.jpg'
     }
