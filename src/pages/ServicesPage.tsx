@@ -22,7 +22,8 @@ const ServicesPage: React.FC = () => {
         imageUrl="/images/IMG_Draft.jpg"
         height="40vh"
       />      {/* Services Title and Introduction */}
-      <Box sx={{ pt: 14, pb: 14, backgroundColor: '#fff' }}>        <Container maxWidth="lg">
+      <Box sx={{ pt: 14, pb: 14, backgroundColor: '#fff' }}>        
+        <Container maxWidth="lg">
           <Typography variant="h1" component="h1" align="center" gutterBottom sx={{ mb: 6 }} color="primary" fontWeight={600}>
             Services
           </Typography>
@@ -39,13 +40,13 @@ const ServicesPage: React.FC = () => {
                 md: 'calc(60% - 16px)' 
               }            }}>              
               <Typography variant="h3" component="h3" gutterBottom align="left" color="primary" fontWeight={600}>
-                Expertise Across the Full Mechanical Spectrum
+                Lorem ipsum dolor sit amet
               </Typography>
               <Typography variant="body1" paragraph>
-                Liffey Mechanical provides a complete range of mechanical services for commercial, institutional, and industrial projects across Ontario. Our team of skilled professionals brings decades of combined experience to deliver solutions that meet the highest standards of quality and efficiency.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc et tortor ex. Aliquam sed posuere leo. Nam bibendum at felis et consequat. Sed leo odio, egestas sed dignissim non, pretium sagittis leo. Vivamus gravida felis sit amet dui consequat, in lacinia felis elementum. Fusce enim magna, consequat ut purus ac, pharetra interdum nulla. 
               </Typography>
               <Typography variant="body1">
-                From initial design through installation and ongoing maintenance, we work closely with clients to ensure every project is completed on time, on budget, and to specification. Our comprehensive approach means you can rely on a single contractor for all your mechanical needs.
+                Donec eget lorem id lacus lobortis imperdiet. Morbi pretium convallis felis, ac finibus risus pellentesque ac. Nulla sapien tortor, eleifend pharetra felis ac, sagittis convallis eros. Quisque mollis condimentum rutrum. Praesent quam eros, maximus at libero nec, placerat sodales nibh. 
               </Typography>
             </Box>
             <Box sx={{ 
@@ -69,7 +70,8 @@ const ServicesPage: React.FC = () => {
           </Box>
         </Container>
       </Box>      {/* Service Categories - Desktop Tabs View */}
-      <Box sx={{ display: { xs: 'none', md: 'block' }, pt: 14, pb: 10, backgroundColor: '#fafafa' }}>        <Container maxWidth="lg">          
+      <Box sx={{ display: { xs: 'none', md: 'block' }, pt: 14, pb: 10, backgroundColor: '#fafafa' }}>        
+        <Container maxWidth="lg">          
           <Typography variant="h3" component="h2" gutterBottom align="center" sx={{ mb: 4, mt: 4 }} color="primary" fontWeight={600}>
             Our Service Categories
           </Typography>

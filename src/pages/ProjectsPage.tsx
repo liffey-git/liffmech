@@ -48,7 +48,7 @@ const ProjectsPage: React.FC = () => {
     },
     {
       id: 4,
-      title: 'CIBC Corporate Center',
+      title: 'CIBC Corporate Centre',
       description: 'Large-scale mechanical infrastructure project for CIBC\'s corporate headquarters. We provided comprehensive mechanical services including climate control systems, industrial-grade plumbing, and specialized air filtration systems. The project required precise coordination with other trades and strict adherence to corporate security protocols.',
       imageUrl: '/images/IMG_Pipes.jpg'
     },

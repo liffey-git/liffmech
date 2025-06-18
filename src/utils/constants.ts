@@ -42,16 +42,26 @@ export const SERVICES: Service[] = [
 export const SERVICE_CATEGORIES: ServiceCategory[] = [
   {
     id: 1,
-    title: 'HVAC & Refrigeration',
-    description: 'We offer comprehensive HVAC & refrigeration services for commercial, institutional, and industrial applications. Our team of skilled technicians provides expert installation, maintenance, and repair services to ensure optimal performance and energy efficiency.',
+    title: 'HVAC and Refrigeration',
+    description: 'Liffey offers comprehensive HVAC and refrigeration services, from conception and design to construction and installation. We test and calibrate our systems to ensure the highest level of quality control, and we also service systems that we install for their entire lifespans. We provide:',
     items: [
-      'Commercial HVAC systems',
-      'Industrial refrigeration',
-      'Heat pumps and chillers',
-      'Air handling units',
-      'Ventilation systems',
-      'Energy efficiency upgrades',
-      'Preventative maintenance programs'    ],
+      'VRF system installations ',
+      'boiler installs, repairs, and tear downs ',
+      'makeup air unit installs',
+      'air handling unit replacements and rebuilds',
+      'steam humidifiers',
+      'air compressor venting and piping',
+      'steam generators',
+      'unit heaters',
+      'radiant heaters',
+      'high-pressure gas pipes and PRVs',
+      'local control wiring',
+      'gas detection systems (including CO/CO2, flammable vapor, and refrigerant)',
+      'semi-hermetic compressors teardowns/rebuilds',
+      'grease ducting',
+      'flue venting',
+      'industrial ventilation and ductwork'
+    ],
     imageUrl: '/images/IMG_Ref.jpg'
   },
   {
@@ -101,17 +111,13 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
   {
     id: 5,
     title: 'Mechanical Wiring',
-    description: 'We are a registered electrical contractor with a strong team of licensed electricians, able to provide full electrical and wiring services for the most complex projects. We can design new systems and retrofit existing ones, develop lighting installations to suit specific requirements, and provide energy efficiency audits and green energy alternatives.',
+    description: 'From designing new systems to retrofitting existing ones, we are able to provide full electrical services for every type of wiring project. We are skilled in developing tailored lighting installations, conducting energy efficiency audits, and providing green energy alternatives. Our expertise covers:',
     items: [
-      'HVAC mechanical wiring',
-      'VRF system wiring and controls',
-      'Building automation systems',
-      'Boiler controls',
-      'Electrical service upgrades',
-      'Lighting retro fits and energy audits',
-      'Heat trace and snow melt systems',
-      'Data centre wiring',
-      'Equipment maintenance'
+      'wiring and controls for HVAC, VRF, boilers and building automation',
+      'retrofits and upgrades for lighting and other electrical service',
+      'heat tracing and snow melt systems',
+      'data centre wiring',
+      'system and equipment maintenance'
     ],
     imageUrl: '/images/IMG_Draft.jpg'
   }

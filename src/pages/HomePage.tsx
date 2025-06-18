@@ -156,7 +156,8 @@ const HomePage: React.FC = () => {
                 }}
               >
                 <span style={{ color: '#1e4388', fontWeight: 600 }}>Liffey Mechanical</span> was founded in 2017 with a clear goal: to provide outstanding mechanical services to the local construction industry. We do so with pride, professionalism, and an unwavering dedication to partnership.
-              </Typography>                <LearnMoreButton
+              </Typography>                
+              <LearnMoreButton
                 path="/about"
                 variant="light"
                 showPlayIcon
