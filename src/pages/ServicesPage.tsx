@@ -21,7 +21,8 @@ const ServicesPage: React.FC = () => {
       <HeroSection 
         imageUrl="/images/IMG_8883.jpg"
         height="50vh"
-      />      {/* Services Title and Introduction */}
+      />      
+      {/* Services Title and Introduction */}
       <Box sx={{ pt: 14, pb: 14, backgroundColor: '#fff' }}>        
         <Container maxWidth="lg">
           <Typography variant="h1" component="h1" align="center" gutterBottom sx={{ mb: 6 }} color="primary" fontWeight={600}>

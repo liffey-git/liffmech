@@ -270,7 +270,8 @@ const AboutPage: React.FC = () => {
         </Container>
       </Box>
         {/* Communication—the Liffey Difference */}
-      <Box sx={{ py: 14, backgroundColor: '#f5f5f5' }}>        <Container maxWidth="lg">
+      <Box sx={{ py: 14, backgroundColor: '#f5f5f5' }}>        
+        <Container maxWidth="lg">
           <Typography variant="h3" component="h2" gutterBottom align="center" sx={{ mb: 3 }} color="primary" fontWeight={600}>
             Communication—the Liffey Difference
           </Typography>
@@ -313,8 +314,10 @@ const AboutPage: React.FC = () => {
             </Box>
           </Box>
         </Container>
-      </Box>      {/* Executive Team */}
-      <Box sx={{ py: 14, backgroundColor: '#fff' }}>        <Container maxWidth="lg">
+      </Box>      
+      {/* Executive Team */}
+      <Box sx={{ py: 14, backgroundColor: '#fff' }}>        
+        <Container maxWidth="lg">
           <Typography variant="h3" component="h2" gutterBottom align="center" sx={{ mb: 5 }} color="primary" fontWeight={600}>
             Executive Team
           </Typography>
@@ -325,7 +328,8 @@ const AboutPage: React.FC = () => {
             justifyContent: 'center',
             mx: 'auto',
             gap: { xs: 4, md: 2 }
-          }}>            {/* Team Member 1 */}
+          }}>           
+          {/* Team Member 1 */}
             <Box sx={{ 
               width: { 
                 xs: '100%', 
@@ -524,7 +528,7 @@ const AboutPage: React.FC = () => {
             }}>
               <Box 
                 component="img"
-                src="/images/3b13d67a-c025-4152-8bae-94dd985cb341.jpeg"
+                src="/images/3b13d67a-c025-4152-8bae-94dd985cb341.jpg"
                 alt="Section Image"
                 sx={{ 
                   width: '100%', 
