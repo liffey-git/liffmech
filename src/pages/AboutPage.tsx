@@ -12,8 +12,8 @@ const AboutPage: React.FC = () => {
     <Box>
       {/* Hero Section */}
       <HeroSection 
-        imageUrl="/images/IMG_AC.jpg"
-        height="40vh"
+        imageUrl="/images/IMG_4013.JPG"
+        height="50vh"
       />
         {/* Introduction and Mission/Vision Section */}      
         <Box sx={{ pt: 14, pb: 14, backgroundColor: '#fff' }}>        
@@ -50,9 +50,11 @@ const AboutPage: React.FC = () => {
                   borderRadius: 2,
                   border: '1px solid #e0e0e0'
                 }}
-              >                <Typography variant="h3" component="h2" gutterBottom color="primary" fontWeight={600}>
+              >                
+              <Typography variant="h3" component="h2" gutterBottom color="primary" fontWeight={600}>
                   Pride
-                </Typography><Typography variant="body1">
+                </Typography>
+                <Typography variant="body1">
                   <span>Liffey Mechanical</span> takes its name from the River Liffey, one of Ireland&apos;s great waterways, which flows through Dublin, Kildare, and Wicklow counties. It symbolizes the pride that Barry Finnerty, founder and president of the company, feels for both his native Ireland and his new home of Canada. We embody the openness and plain talk that is the signature of Irish culture, while embracing the opportunity that Canada offers to newcomers from around the world. 
                 </Typography>
               </Paper>
@@ -72,7 +74,8 @@ const AboutPage: React.FC = () => {
                   borderRadius: 2,
                   border: '1px solid #e0e0e0'
                 }}
-              >                <Typography variant="h3" component="h2" gutterBottom color="primary" fontWeight={600}>
+              >                
+              <Typography variant="h3" component="h2" gutterBottom color="primary" fontWeight={600}>
                   Professionalism
                 </Typography>
                 <Typography variant="body1">
@@ -95,7 +98,8 @@ const AboutPage: React.FC = () => {
                   borderRadius: 2,
                   border: '1px solid #e0e0e0'
                 }}
-              >                <Typography variant="h3" component="h2" gutterBottom color="primary" fontWeight={600}>
+              >                
+              <Typography variant="h3" component="h2" gutterBottom color="primary" fontWeight={600}>
                   Partnership
                 </Typography>
                 <Typography variant="body1">
@@ -152,7 +156,8 @@ const AboutPage: React.FC = () => {
         </Container>
       </Box>
         {/* Our Approach */}
-      <Box sx={{ pt: 14, pb: 15, backgroundColor: '#fff' }}>        <Container maxWidth="lg">
+      <Box sx={{ pt: 14, pb: 15, backgroundColor: '#fff' }}>        
+        <Container maxWidth="lg">
           <Typography variant="h3" component="h2" gutterBottom align="center" sx={{ mb: 3 }} color="primary" fontWeight={600}>
             Our Approach
           </Typography>
@@ -296,7 +301,7 @@ const AboutPage: React.FC = () => {
             }}>
               <Box 
                 component="img"
-                src="/images/IMG_Pipes.jpg"
+                src="/images/IMG_9699.jpeg"
                 alt="Communication - The Liffey Difference"
                 sx={{ 
                   width: '100%', 
@@ -348,7 +353,7 @@ const AboutPage: React.FC = () => {
               >
                 <Box
                   component="img"
-                  src="/images/IMG_AC.jpg"
+                  src="/images/IMG_8905.jpg"
                   alt="Barry Finnerty"
                   sx={{
                     width: '100%',
@@ -392,7 +397,7 @@ const AboutPage: React.FC = () => {
               >
                 <Box
                   component="img"
-                  src="/images/IMG_Draft.jpg"
+                  src="/images/IMG_8897.jpg"
                   alt="Team Member Name"
                   sx={{
                     width: '100%',
@@ -436,7 +441,7 @@ const AboutPage: React.FC = () => {
               >
                 <Box
                   component="img"
-                  src="/images/IMG_Pipes.jpg"
+                  src="/images/IMG_8888.jpg"
                   alt="Team Member Name"
                   sx={{
                     width: '100%',
@@ -480,7 +485,7 @@ const AboutPage: React.FC = () => {
               >
                 <Box
                   component="img"
-                  src="/images/IMG_Ref.jpg"
+                  src="/images/IMG_8274.JPG"
                   alt="Team Member Name"
                   sx={{
                     width: '100%',
@@ -519,7 +524,7 @@ const AboutPage: React.FC = () => {
             }}>
               <Box 
                 component="img"
-                src="/images/IMG_Draft.jpg"
+                src="/images/3b13d67a-c025-4152-8bae-94dd985cb341.jpeg"
                 alt="Section Image"
                 sx={{ 
                   width: '100%', 

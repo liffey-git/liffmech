@@ -6,35 +6,35 @@ export const SERVICES: Service[] = [
     id: 1,
     title: 'HVAC & Refrigeration',
     path: '/services?tab=0',
-    imageUrl: '/images/IMG_Ref.jpg',
+    imageUrl: '/images/IMG_8150.png',
     logoUrl: '/images/icons/ServiceLogo.svg'
   },
   {
     id: 2,
     title: 'Plumbing',
     path: '/services?tab=1',
-    imageUrl: '/images/IMG_Pipes.jpg',
+    imageUrl: '/images/IMG_8874.jpg',
     logoUrl: '/images/icons/ServiceLogo.svg'
   },
   {
     id: 3,
     title: 'Sheet Metal',
     path: '/services?tab=2',
-    imageUrl: '/images/IMG_SheetM.jpg',
+    imageUrl: '/images/IMG_3973.JPG',
     logoUrl: '/images/icons/ServiceLogo.svg'
   },
   {
     id: 4,
     title: 'Hydronic Heating',
     path: '/services?tab=3',
-    imageUrl: '/images/IMG_AC.jpg',
+    imageUrl: '/images/IMG_8154.jpg',
     logoUrl: '/images/icons/ServiceLogo.svg'
   },
   {
     id: 5,
     title: 'Mechanical Wiring',
     path: '/services?tab=4',
-    imageUrl: '/images/IMG_Draft.jpg',
+    imageUrl: '/images/IMG_8178.jpg',
     logoUrl: '/images/icons/ServiceLogo.svg'
   }
 ];
@@ -62,7 +62,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
       'flue venting',
       'industrial ventilation and ductwork'
     ],
-    imageUrl: '/images/IMG_Ref.jpg'
+    imageUrl: '/images/IMG_8150.png'
   },
   {
     id: 2,
@@ -77,7 +77,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
       'Emergency repairs',
       'Code compliance upgrades'
     ],
-    imageUrl: '/images/IMG_Pipes.jpg'
+    imageUrl: '/images/IMG_8874.jpg'
   },
   {
     id: 3,
@@ -91,7 +91,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
       'Exhaust systems',
       'Custom fabrication and design'
     ],
-    imageUrl: '/images/IMG_SheetM.jpg'
+    imageUrl: '/images/IMG_3973.JPG'
   },
   {
     id: 4,
@@ -106,7 +106,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
       'Condensation lines',
       'Control wiring'
     ],
-    imageUrl: '/images/IMG_AC.jpg'
+    imageUrl: '/images/IMG_8154.jpg'
   },
   {
     id: 5,
@@ -119,7 +119,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
       'data centre wiring',
       'system and equipment maintenance'
     ],
-    imageUrl: '/images/IMG_Draft.jpg'
+    imageUrl: '/images/IMG_8178.jpg'
   }
 ];
 

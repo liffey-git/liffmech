@@ -10,8 +10,8 @@ const ContactPage: React.FC = () => {
   return (
     <Box>      {/* Hero Section */}
       <HeroSection 
-        imageUrl="/images/IMG_Pipes.jpg"
-        height="40vh"
+        imageUrl="/images/IMG_4001.JPG"
+        height="50vh"
       />
       
       <Box sx={{ pt: 14, pb: 14 }}>

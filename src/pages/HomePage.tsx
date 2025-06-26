@@ -103,11 +103,11 @@ const HomePage: React.FC = () => {
   const featuredProject: Project = {
     id: 1,
     title: 'Jack Nathan Health Centres',
-    imageUrl: '/images/Hero1.jpg'
+    imageUrl: '/images/IMG_8967.jpg'
   };
   const projectThumbnails: Project[] = [
-    { id: 1, title: 'Project 1', imageUrl: '/images/Hero1.jpg' },
-    { id: 2, title: 'Project 2', imageUrl: '/images/Hero1.jpg' }
+    { id: 1, title: 'Project 1', imageUrl: '/images/IMG_4160.JPG' },
+    { id: 2, title: 'Project 2', imageUrl: '/images/IMG_9072.jpg' }
   ];
 
   return (

@@ -17,10 +17,10 @@ const ServicesPage: React.FC = () => {
     setSelectedTab(newValue);
   };
   return (
-    <Box>      {/* Hero Section */}
+    <Box>      
       <HeroSection 
-        imageUrl="/images/IMG_Draft.jpg"
-        height="40vh"
+        imageUrl="/images/IMG_8883.jpg"
+        height="50vh"
       />      {/* Services Title and Introduction */}
       <Box sx={{ pt: 14, pb: 14, backgroundColor: '#fff' }}>        
         <Container maxWidth="lg">
@@ -55,10 +55,11 @@ const ServicesPage: React.FC = () => {
                 md: 'calc(40% - 16px)' 
               },
               display: 'flex',
-              justifyContent: 'center' // Center the image
-            }}>              <Box 
+              justifyContent: 'center'
+            }}>              
+            <Box 
                 component="img"
-                src="/images/IMG_Pipes.jpg"
+                src="/images/IMG_8129.jpg"
                 alt="Liffey Mechanical Services"
                 sx={{
                   width: '100%',
