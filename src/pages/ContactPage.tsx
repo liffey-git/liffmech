@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Box, Container, Typography, Paper, Link } from '@mui/material';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PhoneIcon from '@mui/icons-material/Phone';
@@ -7,6 +7,11 @@ import ContactForm from '../components/forms/ContactForm';
 import HeroSection from '../components/common/HeroSection';
 
 const ContactPage: React.FC = () => {
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <Box>      {/* Hero Section */}
       <HeroSection 

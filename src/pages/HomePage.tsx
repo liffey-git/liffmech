@@ -90,14 +90,18 @@ const HomePage: React.FC = () => {
     scrollContainer.addEventListener('wheel', handleWheel, { passive: false });
     scrollContainer.addEventListener('touchstart', handleTouchStart, { passive: false });
     scrollContainer.addEventListener('touchmove', handleTouchMove, { passive: false });
-    
-    return () => {
+      return () => {
       scrollContainer.removeEventListener('scroll', handleScroll);
       scrollContainer.removeEventListener('wheel', handleWheel);
       scrollContainer.removeEventListener('touchstart', handleTouchStart);
       scrollContainer.removeEventListener('touchmove', handleTouchMove);
     };
   }, [currentServiceIndex]);
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   // Example projects for the projects section
   const featuredProject: Project = {

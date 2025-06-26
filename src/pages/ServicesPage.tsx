@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Container, Typography, Tabs, Tab, Accordion, AccordionSummary, AccordionDetails } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useLocation, Link as RouterLink } from 'react-router-dom';
@@ -13,6 +13,11 @@ const ServicesPage: React.FC = () => {
   const initialTab = tabParam ? parseInt(tabParam, 10) : 0;
   
   const [selectedTab, setSelectedTab] = useState(initialTab);
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const handleTabChange = (_event: React.SyntheticEvent, newValue: number) => {
     setSelectedTab(newValue);
   };
