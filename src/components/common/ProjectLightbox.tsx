@@ -1,15 +1,12 @@
 import React from 'react';
-import { Box, Modal, Typography, IconButton } from '@mui/material';
+import { Box, Modal, Typography, IconButton, Chip } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
+import { Project } from '../../types';
 
 interface ProjectLightboxProps {
   isOpen: boolean;
   onClose: () => void;
-  project: {
-    title: string;
-    description: string;
-    imageUrl: string;
-  } | null;
+  project: Project | null;
 }
 
 const ProjectLightbox: React.FC<ProjectLightboxProps> = ({ isOpen, onClose, project }) => {
@@ -116,11 +113,43 @@ const ProjectLightbox: React.FC<ProjectLightboxProps> = ({ isOpen, onClose, proj
               sx={{
                 color: '#333',
                 lineHeight: 1.7,
-                fontSize: '1.1rem'
+                fontSize: '1.1rem',
+                mb: 3
               }}
             >
               {project.description}
             </Typography>
+
+            {/* Service Tags */}
+            <Box sx={{ mb: 2 }}>
+              <Typography variant="subtitle2" gutterBottom sx={{ fontWeight: 600, color: '#1e4388' }}>
+                Services
+              </Typography>
+              <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                {project.services.map((service, index) => (
+                  <Chip
+                    key={index}
+                    label={service}
+                    size="small"
+                    variant="outlined"
+                    sx={{
+                      color: 'primary.main',
+                      borderColor: 'primary.main'
+                    }}
+                  />
+                ))}
+              </Box>
+            </Box>
+
+            {/* Industry */}
+            <Box sx={{ mb: 3 }}>
+              <Typography variant="subtitle2" gutterBottom sx={{ fontWeight: 600, color: '#1e4388' }}>
+                Industry
+              </Typography>
+              <Typography variant="body2" sx={{ color: '#666' }}>
+                {project.industry}
+              </Typography>
+            </Box>
 
             {/* Optional: Add project details */}
             <Box sx={{ mt: 4, pt: 3, borderTop: '1px solid #e0e0e0' }}>

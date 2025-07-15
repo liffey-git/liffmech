@@ -1,8 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { Box, Container, Typography } from '@mui/material';
+import React, { useState, useEffect, useMemo } from 'react';
+import { Box, Container, Typography, Divider } from '@mui/material';
 import HeroSection from '../components/common/HeroSection';
-import ProjectCard from '../components/common/ProjectCard';
+import FilterableProjectCard from '../components/common/FilterableProjectCard';
+import FeaturedProjectCard from '../components/common/FeaturedProjectCard';
+import ProjectFilters from '../components/common/ProjectFilters';
 import ProjectLightbox from '../components/common/ProjectLightbox';
+import { Project } from '../types';
+import { FEATURED_PROJECT, PROJECTS_BY_CATEGORY } from '../utils/projectsData';
 
 const ProjectsPage: React.FC = () => {
   // Scroll to top when component mounts
@@ -11,13 +15,11 @@ const ProjectsPage: React.FC = () => {
   }, []);
 
   const [lightboxOpen, setLightboxOpen] = useState(false);
-  const [selectedProject, setSelectedProject] = useState<{
-    title: string;
-    description: string;
-    imageUrl: string;
-  } | null>(null);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [selectedServices, setSelectedServices] = useState<string[]>([]);
+  const [selectedClientTypes, setSelectedClientTypes] = useState<string[]>([]);
 
-  const handleProjectClick = (project: { title: string; description: string; imageUrl: string }) => {
+  const handleProjectClick = (project: Project) => {
     setSelectedProject(project);
     setLightboxOpen(true);
   };
@@ -26,91 +28,56 @@ const ProjectsPage: React.FC = () => {
     setLightboxOpen(false);
     setSelectedProject(null);
   };
-  // Sample projects data
-  const featuredProject = {
-    id: 1,
-    title: 'Jack Nathan Health Centres',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore. Excepteur sint occaecat cupidatat non proident.',
-    imageUrl: '/images/IMG_8967.jpg'
+
+  const handleClearFilters = () => {
+    setSelectedServices([]);
+    setSelectedClientTypes([]);
   };
-  const projects = [
-    {
-      id: 2,
-      title: 'TD Bank',
-      description: 'A comprehensive mechanical installation for TD Bank\'s flagship branch location. This project included advanced HVAC systems, energy-efficient heating and cooling solutions, and specialized ventilation systems to ensure optimal comfort for both customers and staff. Our team worked closely with the bank\'s facilities management to deliver a system that meets their high standards for reliability and efficiency.',
-      imageUrl: '/images/IMG_8944.jpg'
-    },
-    {
-      id: 3,
-      title: 'BMO Financial',
-      description: 'Complete mechanical systems overhaul for BMO\'s regional office building. The project encompassed installation of modern HVAC equipment, plumbing systems, and building automation controls. Our expertise in commercial banking environments ensured minimal disruption to daily operations while delivering state-of-the-art mechanical solutions.',
-      imageUrl: '/images/IMG_8961.jpg'
-    },
-    {
-      id: 4,
-      title: 'CIBC Corporate Centre',
-      description: 'Large-scale mechanical infrastructure project for CIBC\'s corporate headquarters. We provided comprehensive mechanical services including climate control systems, industrial-grade plumbing, and specialized air filtration systems. The project required precise coordination with other trades and strict adherence to corporate security protocols.',
-      imageUrl: '/images/IMG_3877.JPG'
-    },
-    {
-      id: 5,
-      title: 'RBC Branch',
-      description: 'Multi-location mechanical services project covering several RBC branch locations across Ontario. Each site received customized HVAC solutions, upgraded plumbing systems, and energy-efficient mechanical equipment. Our standardized approach ensured consistency across all locations while meeting each site\'s unique requirements.',
-      imageUrl: '/images/IMG_9072.jpg'
-    },
-    {
-      id: 6,
-      title: 'Scotiabank Plaza',
-      description: 'Premium mechanical installation for Scotiabank\'s flagship plaza location. This high-profile project featured advanced building automation systems, precision climate control, and specialized mechanical equipment for the banking hall and office spaces. Our team delivered exceptional quality to match the prestige of this landmark location.',
-      imageUrl: '/images/IMG_4160.JPG'
-    },
-    {
-      id: 7,
-      title: 'Walmart',
-      description: 'Industrial-scale mechanical project for Walmart\'s regional distribution facility. The scope included massive HVAC systems for warehouse climate control, specialized refrigeration systems for cold storage areas, and comprehensive plumbing infrastructure. Our industrial expertise ensured optimal performance for this critical supply chain facility.',
-      imageUrl: '/images/IMG_3910.JPG'
-    },
-    {
-      id: 8,
-      title: 'A&W Restaurant',
-      description: 'Multi-site restaurant mechanical services covering several A&W locations. Each restaurant received commercial kitchen ventilation systems, grease management solutions, HVAC systems optimized for food service environments, and specialized plumbing for commercial kitchen operations. Our food service expertise ensured compliance with all health and safety regulations.',
-      imageUrl: '/images/IMG_8146.jpg'
-    },
-    {
-      id: 9,
-      title: 'Pizza Hut',
-      description: 'Comprehensive mechanical systems for Pizza Hut restaurant locations including commercial kitchen exhaust systems, specialized oven ventilation, HVAC systems designed for food service environments, and complete plumbing installations. Our restaurant industry experience delivered systems that support efficient operations and food safety standards.',
-      imageUrl: '/images/IMG_4199.JPG'
-    },
-    {
-      id: 10,
-      title: 'Isabelle\'s Nightclub',
-      description: 'Specialized mechanical installation for this entertainment venue featuring advanced ventilation systems for large crowds, climate control optimized for nightclub environments, specialized plumbing for bar and restaurant operations, and acoustically-designed HVAC systems to minimize noise interference with sound systems.',
-      imageUrl: '/images/IMG_8923.jpg'
-    },
-    {
-      id: 11,
-      title: 'Ballroom Bowl',
-      description: 'Complex mechanical project for this bowling and entertainment facility. The installation included specialized ventilation for the bowling lanes, restaurant-grade kitchen systems, HVAC solutions for various entertainment zones, and comprehensive plumbing for the full-service facility. Our versatile expertise handled the diverse mechanical needs of this multi-use entertainment venue.',
-      imageUrl: '/images/IMG_8837.JPG'
+
+  // Filter logic
+  const filteredProjects = useMemo(() => {
+    if (selectedServices.length === 0 && selectedClientTypes.length === 0) {
+      return PROJECTS_BY_CATEGORY;
     }
-  ];
+
+    const filtered: Record<string, Project[]> = {};
+    
+    Object.entries(PROJECTS_BY_CATEGORY).forEach(([category, projects]) => {
+      const categoryFiltered = projects.filter(project => {
+        const serviceMatch = selectedServices.length === 0 || 
+          selectedServices.some(service => project.services.includes(service));
+        const clientTypeMatch = selectedClientTypes.length === 0 || 
+          selectedClientTypes.includes(project.clientType);
+        
+        return serviceMatch && clientTypeMatch;
+      });
+      
+      if (categoryFiltered.length > 0) {
+        filtered[category] = categoryFiltered;
+      }
+    });
+    
+    return filtered;
+  }, [selectedServices, selectedClientTypes]);
+
+  const hasActiveFilters = selectedServices.length > 0 || selectedClientTypes.length > 0;
 
   return (
-    <Box>      {/* Hero Section */}
+    <Box>
+      {/* Hero Section */}
       <HeroSection 
         imageUrl="/images/IMG_8855.jpg"
         height="50vh"
       />
       
-      {/* Main Content - Combined Introduction and Featured Project */}
-      <Box sx={{ pt: 14, pb: 2, backgroundColor: '#fff' }}>        
+      {/* Main Content */}
+      <Box sx={{ pt: 14, pb: 8, backgroundColor: '#fff' }}>
         <Container maxWidth="lg">
           <Typography variant="h1" component="h1" gutterBottom align="center" sx={{ mb: 2 }} color="primary" fontWeight={600}>
             Projects
           </Typography>
           
-          {/* Centered paragraph with controlled width */}
+          {/* Introduction */}
           <Box sx={{ 
             display: 'flex', 
             justifyContent: 'center', 
@@ -119,90 +86,95 @@ const ProjectsPage: React.FC = () => {
             <Typography 
               variant="body1" 
               align="center" 
-              textAlign="left"
               sx={{ 
                 maxWidth: '800px' 
               }}
             >
-              We call Toronto home, but all of Ontario is our backyard. Liffey has completed projects across the province, of every size and type. We collaborate closely with developers, owners, subcontractors, and site managers to ensure projects are completed on time and on budget. Browse a selection of some of our highest-profile projects here. 
+              We call Toronto home, but all of Ontario is our backyard. Liffey has completed projects across the province, of every size and type. We collaborate closely with developers, owners, subcontractors, and site managers to ensure projects are completed on time and on budget.
             </Typography>
           </Box>
           
           {/* Featured Project */}
-          <Box sx={{ mb: 6 }}>
+          <Box sx={{ mb: 8 }}>
+            <Typography variant="h2" component="h2" gutterBottom align="center" sx={{ mb: 4 }} color="primary" fontWeight={600}>
+              Featured Project
+            </Typography>
             <Box sx={{ 
               display: 'flex', 
-              flexWrap: 'wrap', 
-              gap: 4
-            }}>
-              <Box sx={{ 
-                width: { 
-                  xs: '100%', 
-                  md: 'calc(50% - 16px)' 
-                } 
-              }}>
-                <Box 
-                  component="img"
-                  src={featuredProject.imageUrl}
-                  alt={featuredProject.title}
-                  sx={{
-                    width: '100%',
-                    height: 'auto',
-                    borderRadius: 2
-                  }}
-                />
-              </Box>
-              <Box sx={{ 
-                width: { 
-                  xs: '100%', 
-                  md: 'calc(50% - 16px)' 
-                }}}>
-                <Typography variant="h3" component="h2" gutterBottom color="primary" fontWeight={600}>
-                  {featuredProject.title}
-                </Typography>
-                <Typography variant="body1">
-                  {featuredProject.description}
-                </Typography>
-              </Box>
-            </Box>
-          </Box>        </Container>
-      </Box>
-      
-      {/* Projects Grid Section */}
-      <Box sx={{ pb: 20, backgroundColor: '#fff' }}>
-        <Container maxWidth="lg">
-          <Box sx={{ 
-            display: 'flex',
-            justifyContent: 'center'
-          }}>
-            <Box sx={{ 
-              display: 'flex', 
-              flexWrap: 'wrap', 
-              gap: 3,
-              maxWidth: '1200px',
               justifyContent: 'center'
-            }}>              
-            {projects.map((project) => (
-                <Box 
-                  key={project.id}
-                  sx={{ 
-                    width: { 
-                      xs: '100%', 
-                      sm: 'calc(50% - 12px)', 
-                      md: 'calc(25% - 18px)' 
-                    },
-                    maxWidth: '280px'
-                  }}
-                >
-                  <ProjectCard
-                    title={project.title}
-                    imageUrl={project.imageUrl}
+            }}>
+              <FeaturedProjectCard 
+                project={FEATURED_PROJECT}
+                onClick={() => handleProjectClick(FEATURED_PROJECT)}
+              />
+            </Box>
+          </Box>
+        </Container>
+      </Box>
+
+      {/* Filters and Projects Section */}
+      <Box sx={{ pb: 20, backgroundColor: '#fafafa' }}>
+        <Container maxWidth="lg">
+          {/* Project Filters */}
+          <ProjectFilters
+            selectedServices={selectedServices}
+            selectedClientTypes={selectedClientTypes}
+            onServiceChange={setSelectedServices}
+            onClientTypeChange={setSelectedClientTypes}
+            onClearFilters={handleClearFilters}
+          />
+
+          {/* Projects by Category */}
+          {Object.entries(filteredProjects).map(([category, projects], categoryIndex) => (
+            <Box key={category} sx={{ mb: 6 }}>
+              <Typography 
+                variant="h3" 
+                component="h2" 
+                gutterBottom 
+                color="primary" 
+                fontWeight={600}
+                sx={{ mb: 3 }}
+              >
+                {category}
+              </Typography>
+              
+              <Box sx={{ 
+                display: 'grid',
+                gridTemplateColumns: {
+                  xs: '1fr',
+                  sm: 'repeat(2, 1fr)',
+                  md: 'repeat(3, 1fr)'
+                },
+                gap: 3,
+                mb: 4
+              }}>
+                {projects.map((project) => (
+                  <FilterableProjectCard 
+                    key={project.id}
+                    project={project}
                     onClick={() => handleProjectClick(project)}
                   />
-                </Box>
-            ))}
-            </Box>          
-          </Box>
+                ))}
+              </Box>
+              
+              {/* Divider between categories (except last one) */}
+              {categoryIndex < Object.entries(filteredProjects).length - 1 && (
+                <Divider sx={{ my: 4, bgcolor: 'rgba(0,0,0,0.1)' }} />
+              )}
+            </Box>
+          ))}
+
+          {/* No Results Message */}
+          {Object.keys(filteredProjects).length === 0 && hasActiveFilters && (
+            <Box sx={{ textAlign: 'center', py: 8 }}>
+              <Typography variant="h5" color="text.secondary" gutterBottom>
+                No projects match your selected filters
+              </Typography>
+              <Typography variant="body1" color="text.secondary">
+                Try adjusting your filters or clearing them to see all projects.
+              </Typography>
+            </Box>
+          )}
         </Container>
       </Box>
 

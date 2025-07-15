@@ -62,7 +62,12 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
       'flue venting',
       'industrial ventilation and ductwork'
     ],
-    imageUrl: '/images/IMG_8150.png'
+    imageUrl: '/images/IMG_8150.png',
+    carouselImages: [
+      '/images/IMG_8150.png',
+      '/images/IMG_8156.jpg',
+      '/images/IMG_8200.jpg'
+    ]
   },
   {
     id: 2,
@@ -77,7 +82,12 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
       'Emergency repairs',
       'Code compliance upgrades'
     ],
-    imageUrl: '/images/IMG_8874.jpg'
+    imageUrl: '/images/IMG_8874.jpg',
+    carouselImages: [
+      '/images/IMG_8874.jpg',
+      '/images/IMG_8871.jpg',
+      '/images/IMG_8883.jpg'
+    ]
   },
   {
     id: 3,
@@ -91,7 +101,12 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
       'Exhaust systems',
       'Custom fabrication and design'
     ],
-    imageUrl: '/images/IMG_3973.JPG'
+    imageUrl: '/images/IMG_3973.JPG',
+    carouselImages: [
+      '/images/IMG_3973.JPG',
+      '/images/IMG_3972.JPG',
+      '/images/IMG_4001.JPG'
+    ]
   },
   {
     id: 4,
@@ -106,7 +121,12 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
       'Condensation lines',
       'Control wiring'
     ],
-    imageUrl: '/images/IMG_8154.jpg'
+    imageUrl: '/images/IMG_8154.jpg',
+    carouselImages: [
+      '/images/IMG_8154.jpg',
+      '/images/IMG_8178.jpg',
+      '/images/IMG_8179.jpg'
+    ]
   },
   {
     id: 5,
@@ -119,7 +139,12 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
       'data centre wiring',
       'system and equipment maintenance'
     ],
-    imageUrl: '/images/IMG_8178.jpg'
+    imageUrl: '/images/IMG_8178.jpg',
+    carouselImages: [
+      '/images/IMG_8178.jpg',
+      '/images/IMG_8198.jpg',
+      '/images/IMG_9072.jpg'
+    ]
   }
 ];
 

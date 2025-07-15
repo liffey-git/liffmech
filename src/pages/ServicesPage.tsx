@@ -3,6 +3,7 @@ import { Box, Container, Typography, Tabs, Tab, Accordion, AccordionSummary, Acc
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useLocation, Link as RouterLink } from 'react-router-dom';
 import HeroSection from '../components/common/HeroSection';
+import ImageCarousel from '../components/common/ImageCarousel';
 import { SERVICE_CATEGORIES } from '../utils/constants';
 import { ServiceCategory } from '../types';
 
@@ -76,7 +77,8 @@ const ServicesPage: React.FC = () => {
             </Box>
           </Box>
         </Container>
-      </Box>      {/* Service Categories - Desktop Tabs View */}
+      </Box>      
+      {/* Service Categories - Desktop Tabs View */}
       <Box sx={{ display: { xs: 'none', md: 'block' }, pt: 14, pb: 10, backgroundColor: '#fafafa' }}>        
         <Container maxWidth="lg">          
           <Typography variant="h3" component="h2" gutterBottom align="center" sx={{ mb: 4, mt: 4 }} color="primary" fontWeight={600}>
@@ -168,15 +170,13 @@ const ServicesPage: React.FC = () => {
                       justifyContent: 'center',
                       alignItems: 'flex-start'
                     }}>
-                      <Box 
-                        component="img"
-                        src={category.imageUrl}
-                        alt={category.title}                        
+                      <ImageCarousel
+                        images={category.carouselImages}
+                        alt={category.title}
                         sx={{
                           width: '100%',
                           maxWidth: '600px',
                           height: '500px',
-                          objectFit: 'cover',
                           borderRadius: 3,
                           boxShadow: '0 8px 24px rgba(0,0,0,0.12)'
                         }}
@@ -234,14 +234,13 @@ const ServicesPage: React.FC = () => {
                       mb: 3
                     }}
                   >
-                    <Box 
-                      component="img"
-                      src={category.imageUrl}
+                    <ImageCarousel
+                      images={category.carouselImages}
                       alt={category.title}
                       sx={{
                         width: '100%',
                         maxWidth: '350px',
-                        height: 'auto',
+                        height: '250px',
                         borderRadius: 2,
                         boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
                       }}

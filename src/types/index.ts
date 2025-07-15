@@ -12,7 +12,10 @@ export interface Project {
   id: number;
   title: string;
   imageUrl: string;
-  description?: string;
+  description: string;
+  industry: string;
+  services: string[]; // Service tags from service categories
+  clientType: 'Healthcare' | 'Financial' | 'Retail' | 'Entertainment' | 'Hospitality' | 'Industrial' | 'Commercial';
 }
 
 export interface ContactFormData {
@@ -36,4 +39,5 @@ export interface ServiceCategory {
   description: string;
   items: string[];
   imageUrl: string;
+  carouselImages: string[];
 }

@@ -107,11 +107,31 @@ const HomePage: React.FC = () => {
   const featuredProject: Project = {
     id: 1,
     title: 'Jack Nathan Health Centres',
-    imageUrl: '/images/IMG_8967.jpg'
+    imageUrl: '/images/IMG_8967.jpg',
+    description: 'Comprehensive mechanical systems for healthcare facilities',
+    industry: 'Healthcare',
+    services: ['HVAC & Refrigeration'],
+    clientType: 'Healthcare'
   };
   const projectThumbnails: Project[] = [
-    { id: 1, title: 'Project 1', imageUrl: '/images/IMG_4160.JPG' },
-    { id: 2, title: 'Project 2', imageUrl: '/images/IMG_9072.jpg' }
+    { 
+      id: 1, 
+      title: 'Commercial HVAC Installation', 
+      imageUrl: '/images/IMG_4160.JPG',
+      description: 'Professional HVAC system installation for commercial facility',
+      industry: 'Commercial',
+      services: ['HVAC & Refrigeration'],
+      clientType: 'Commercial'
+    },
+    { 
+      id: 2, 
+      title: 'Healthcare Mechanical Systems', 
+      imageUrl: '/images/IMG_9072.jpg',
+      description: 'Specialized mechanical systems for healthcare environment',
+      industry: 'Healthcare', 
+      services: ['Plumbing'],
+      clientType: 'Healthcare'
+    }
   ];
 
   return (
