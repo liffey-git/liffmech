@@ -131,13 +131,28 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
   {
     id: 5,
     title: 'Mechanical Wiring',
-    description: 'From designing new systems to retrofitting existing ones, we are able to provide full electrical services for every type of wiring project. We are skilled in developing tailored lighting installations, conducting energy efficiency audits, and providing green energy alternatives. Our expertise covers:',
+    description: 'rom designing new systems to retrofitting existing ones, we add value by integrating electrical services into overall project planning and rollout. We are skilled in developing tailored lighting installations, conducting energy efficiency audits, and providing green energy alternatives. Our expertise covers: ',
     items: [
       'wiring and controls for HVAC, VRF, boilers and building automation',
-      'retrofits and upgrades for lighting and other electrical service',
       'heat tracing and snow melt systems',
       'data centre wiring',
       'system and equipment maintenance'
+    ],
+    imageUrl: '/images/IMG_8178.jpg',
+    carouselImages: [
+      '/images/IMG_8178.jpg',
+      '/images/IMG_8198.jpg',
+      '/images/IMG_9072.jpg'
+    ]
+  },
+    {
+    id: 6,
+    title: 'Snow Melt',
+    description: 'Benefiting from a team of certified technicians with extensive experience in Canadian winters, Liffey is a partner you can trust for delivering snow-free parking and driveways. We have developed excellent relationships with manufacturers, and we draw on those relationships to stay abreast of the latest developments in snow-melt systems. With our knowledge of the most up-to-date technology, we can ensure you the optimal solution, from installation of loops to commissioning of systems.',
+    items: [
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+      'Sed tempor nisi sed imperdiet auctor',
+      'Donec posuere nulla nec lectus molestie, non lacinia odio sodales'
     ],
     imageUrl: '/images/IMG_8178.jpg',
     carouselImages: [
