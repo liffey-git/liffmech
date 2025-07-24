@@ -79,7 +79,15 @@ const ServicesPage: React.FC = () => {
         </Container>
       </Box>      
       {/* Service Categories - Desktop Tabs View */}
-      <Box sx={{ display: { xs: 'none', md: 'block' }, pt: 14, pb: 10, backgroundColor: '#fafafa' }}>        
+      <Box sx={{ 
+        display: { xs: 'none', md: 'block' }, 
+        pt: 14, 
+        pb: 10, 
+        backgroundColor: 'rgba(30, 67, 136, 0.08)',
+        backdropFilter: 'blur(10px)',
+        borderTop: '1px solid rgba(30, 67, 136, 0.12)',
+        borderBottom: '1px solid rgba(30, 67, 136, 0.12)'
+      }}>        
         <Container maxWidth="lg">          
           <Typography variant="h3" component="h2" gutterBottom align="center" sx={{ mb: 4, mt: 4 }} color="primary" fontWeight={600}>
             Our Service Categories
@@ -190,7 +198,15 @@ const ServicesPage: React.FC = () => {
         </Container>
       </Box>        
       {/* Service Categories - Mobile Accordion View */}
-      <Box sx={{ display: { xs: 'block', md: 'none' }, pt: 14, pb: 14, backgroundColor: '#fafafa' }}>        
+      <Box sx={{ 
+        display: { xs: 'block', md: 'none' }, 
+        pt: 14, 
+        pb: 14, 
+        backgroundColor: 'rgba(30, 67, 136, 0.08)',
+        backdropFilter: 'blur(10px)',
+        borderTop: '1px solid rgba(30, 67, 136, 0.12)',
+        borderBottom: '1px solid rgba(30, 67, 136, 0.12)'
+      }}>        
         <Container maxWidth="lg">
           <Typography variant="h3" component="h2" gutterBottom align="center" sx={{ mb: 6 }} color="primary" fontWeight={600}>
             Our Service Categories

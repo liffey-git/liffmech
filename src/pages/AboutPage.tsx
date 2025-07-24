@@ -111,7 +111,14 @@ const AboutPage: React.FC = () => {
         </Container>
       </Box>
         {/* What We Offer */}          
-      <Box sx={{ py: 14, backgroundColor: '#f5f5f5' }}>        <Container maxWidth="lg">
+      <Box sx={{ 
+        py: 14, 
+        backgroundColor: 'rgba(30, 67, 136, 0.08)',
+        backdropFilter: 'blur(10px)',
+        borderTop: '1px solid rgba(30, 67, 136, 0.12)',
+        borderBottom: '1px solid rgba(30, 67, 136, 0.12)'
+      }}>        
+        <Container maxWidth="lg">
           <Typography variant="h3" component="h2" gutterBottom align="center" sx={{ mb: 3 }} color="primary" fontWeight={600}>
             What We Offer
           </Typography>
@@ -270,7 +277,13 @@ const AboutPage: React.FC = () => {
         </Container>
       </Box>
         {/* Communication—the Liffey Difference */}
-      <Box sx={{ py: 14, backgroundColor: '#f5f5f5' }}>        
+      <Box sx={{ 
+        py: 14, 
+        backgroundColor: 'rgba(30, 67, 136, 0.08)',
+        backdropFilter: 'blur(10px)',
+        borderTop: '1px solid rgba(30, 67, 136, 0.12)',
+        borderBottom: '1px solid rgba(30, 67, 136, 0.12)'
+      }}>        
         <Container maxWidth="lg">
           <Typography variant="h3" component="h2" gutterBottom align="center" sx={{ mb: 3 }} color="primary" fontWeight={600}>
             Communication—the Liffey Difference
@@ -509,7 +522,13 @@ const AboutPage: React.FC = () => {
         </Container>
       </Box>
         {/* Community Involvement */}
-      <Box sx={{ py: 14, backgroundColor: '#f5f5f5' }}>        
+      <Box sx={{ 
+        py: 14, 
+        backgroundColor: 'rgba(30, 67, 136, 0.08)',
+        backdropFilter: 'blur(10px)',
+        borderTop: '1px solid rgba(30, 67, 136, 0.12)',
+        borderBottom: '1px solid rgba(30, 67, 136, 0.12)'
+      }}>        
         <Container maxWidth="lg">
           <Typography variant="h3" component="h2" gutterBottom align="center" sx={{ mb: 3 }} color="primary" fontWeight={600}>
             Community Involvement

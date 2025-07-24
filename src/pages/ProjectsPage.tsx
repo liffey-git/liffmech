@@ -96,24 +96,32 @@ const ProjectsPage: React.FC = () => {
           
           {/* Featured Project */}
           <Box sx={{ mb: 8 }}>
-            <Typography variant="h2" component="h2" gutterBottom align="center" sx={{ mb: 4 }} color="primary" fontWeight={600}>
-              Featured Project
-            </Typography>
-            <Box sx={{ 
-              display: 'flex', 
-              justifyContent: 'center'
-            }}>
-              <FeaturedProjectCard 
-                project={FEATURED_PROJECT}
-                onClick={() => handleProjectClick(FEATURED_PROJECT)}
-              />
-            </Box>
+            <Container maxWidth="lg">
+              <Typography variant="h2" component="h2" gutterBottom align="center" sx={{ mb: 4 }} color="primary" fontWeight={600}>
+                Featured Project
+              </Typography>
+              <Box sx={{ 
+                display: 'flex', 
+                justifyContent: 'center'
+              }}>
+                <FeaturedProjectCard 
+                  project={FEATURED_PROJECT}
+                  onClick={() => handleProjectClick(FEATURED_PROJECT)}
+                />
+              </Box>
+            </Container>
           </Box>
         </Container>
       </Box>
 
       {/* Filters and Projects Section */}
-      <Box sx={{ pb: 20, backgroundColor: '#fafafa' }}>
+      <Box sx={{ 
+        pb: 20, 
+        backgroundColor: 'rgba(30, 67, 136, 0.08)',
+        backdropFilter: 'blur(10px)',
+        borderTop: '1px solid rgba(30, 67, 136, 0.12)',
+        borderBottom: '1px solid rgba(30, 67, 136, 0.12)'
+      }}>
         <Container maxWidth="lg">
           {/* Project Filters */}
           <ProjectFilters

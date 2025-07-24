@@ -437,7 +437,14 @@ const HomePage: React.FC = () => {
           </Box>
         </Container>
       </Box>      {/* Projects Section */}
-      <Box sx={{ pt: 20, pb: 20, backgroundColor: '#fff' }}>
+      <Box sx={{ 
+        pt: 20, 
+        pb: 20, 
+        backgroundColor: 'rgba(30, 67, 136, 0.08)',
+        backdropFilter: 'blur(10px)',
+        borderTop: '1px solid rgba(30, 67, 136, 0.12)',
+        borderBottom: '1px solid rgba(30, 67, 136, 0.12)'
+      }}>
         <Container maxWidth="lg">
           <Typography
             variant="h2"

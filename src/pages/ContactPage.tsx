@@ -123,7 +123,9 @@ const ContactPage: React.FC = () => {
           <Box sx={{ 
             mt: 4, 
             p: 4, 
-            backgroundColor: '#f5f5f5', 
+            backgroundColor: 'rgba(30, 67, 136, 0.08)', 
+            backdropFilter: 'blur(10px)',
+            border: '1px solid rgba(30, 67, 136, 0.12)',
             borderRadius: 2,
             maxWidth: 800,
             mx: 'auto'

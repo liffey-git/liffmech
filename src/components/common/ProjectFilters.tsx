@@ -33,7 +33,7 @@ const ProjectFilters: React.FC<ProjectFiltersProps> = ({
   const hasActiveFilters = selectedServices.length > 0 || selectedClientTypes.length > 0;
 
   return (
-    <Box sx={{ mb: 4 }}>
+    <Box sx={{ mb: 4, mt: 4 }}>
       <Typography variant="h5" component="h2" gutterBottom color="primary" fontWeight={600}>
         Filter Projects
       </Typography>
