@@ -14,7 +14,13 @@ import {
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link as RouterLink } from 'react-router-dom';
-import { NAVIGATION_ITEMS } from '../../utils/constants';
+
+const navItems = [
+  { name: 'About Us', path: '/about' },
+  { name: 'Services', path: '/services' },
+  { name: 'Projects', path: '/projects' },
+  { name: 'Contact Us', path: '/contact' },
+];
 
 const Header: React.FC = () => {
   const theme = useTheme();
@@ -28,6 +34,7 @@ const Header: React.FC = () => {
   const handleCloseMenu = () => {
     setAnchorEl(null);
   };
+
   return (
     <AppBar position="fixed" color="primary" sx={{ zIndex: theme.zIndex.drawer + 1 }}>
       <Container maxWidth="xl">
@@ -41,11 +48,22 @@ const Header: React.FC = () => {
               alignItems: 'center', 
               textDecoration: 'none',
               color: 'white',
-              flexGrow: isMobile ? 1 : 0
+              flexGrow: isMobile ? 1 : 0,
+              gap: 1.5
             }}
           >
+            <Box
+              component="img"
+              src="/images/icons/liffyDrop_Wht_100x100.svg"
+              alt="Liffey Mechanical Logo"
+              sx={{
+                width: '32px',
+                height: '32px',
+                flexShrink: 0
+              }}
+            />
             <Typography
-              variant="h6"
+              variant="h4"
               component="div"
               sx={{ 
                 fontWeight: 700, 
@@ -55,14 +73,17 @@ const Header: React.FC = () => {
             >
               LIFFEY MECHANICAL
             </Typography>
-          </Box>          {/* Desktop Nav */}
+          </Box>
+
+          {/* Desktop Nav */}
           {!isMobile && (
             <Box sx={{ marginLeft: 'auto', display: 'flex' }}>
-              {NAVIGATION_ITEMS.map((item) => (
+              {navItems.map((item) => (
                 <Button
                   key={item.name}
                   component={RouterLink}
-                  to={item.path}                  sx={{ 
+                  to={item.path}
+                  sx={{ 
                     color: 'white',
                     fontSize: '1rem',
                     fontWeight: 500,
@@ -79,11 +100,13 @@ const Header: React.FC = () => {
 
           {/* Mobile Nav */}
           {isMobile && (
-            <>              <IconButton
+            <>
+              <IconButton
                 size="large"
                 edge="end"
                 color="inherit"
-                aria-label="Open navigation menu"                aria-controls={anchorEl ? 'navigation-menu' : undefined}
+                aria-label="Open navigation menu"
+                aria-controls={anchorEl ? 'navigation-menu' : undefined}
                 aria-haspopup="true"
                 aria-expanded={anchorEl ? 'true' : undefined}
                 onClick={handleOpenMenu}
@@ -91,7 +114,8 @@ const Header: React.FC = () => {
               >
                 <MenuIcon />
               </IconButton>
-              <Menu                id="navigation-menu"
+              <Menu
+                id="navigation-menu"
                 anchorEl={anchorEl}
                 open={!!anchorEl}
                 onClose={handleCloseMenu}
@@ -100,7 +124,7 @@ const Header: React.FC = () => {
                 }}
                 sx={{ mt: '45px' }}
               >
-                {NAVIGATION_ITEMS.map((item) => (
+                {navItems.map((item) => (
                   <MenuItem 
                     key={item.name} 
                     component={RouterLink} 
