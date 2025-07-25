@@ -452,7 +452,6 @@ const HomePage: React.FC = () => {
             gutterBottom
             sx={{
               mb: 6,
-              fontWeight: 600,
               textTransform: 'uppercase',
               color: '#1e4388',
               fontSize: { xs: '2.25rem', md: '3.5rem' },

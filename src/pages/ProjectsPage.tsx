@@ -73,7 +73,7 @@ const ProjectsPage: React.FC = () => {
       {/* Main Content */}
       <Box sx={{ pt: 14, pb: 8, backgroundColor: '#fff' }}>
         <Container maxWidth="lg">
-          <Typography variant="h1" component="h1" gutterBottom align="center" sx={{ mb: 2 }} color="primary" fontWeight={600}>
+          <Typography variant="h1" component="h1" gutterBottom align="center" sx={{ mb: 2 }} color="primary">
             Projects
           </Typography>
           
@@ -97,9 +97,6 @@ const ProjectsPage: React.FC = () => {
           {/* Featured Project */}
           <Box sx={{ mb: 8 }}>
             <Container maxWidth="lg">
-              <Typography variant="h2" component="h2" gutterBottom align="center" sx={{ mb: 4 }} color="primary" fontWeight={600}>
-                Featured Project
-              </Typography>
               <Box sx={{ 
                 display: 'flex', 
                 justifyContent: 'center'

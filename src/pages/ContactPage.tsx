@@ -22,7 +22,7 @@ const ContactPage: React.FC = () => {
       <Box sx={{ pt: 14, pb: 14 }}>
         <Container maxWidth="lg">
           {/* Page Header */}          <Box sx={{ mb: 6 }}>
-            <Typography variant="h1" component="h1" align="center" gutterBottom color="primary" fontWeight={600}>
+            <Typography variant="h1" component="h1" align="center" gutterBottom color="primary">
               Contact Us
             </Typography>
             <Typography 
@@ -58,7 +58,7 @@ const ContactPage: React.FC = () => {
                   color: 'white',
                   borderRadius: 2
                 }}
-              >                <Typography variant="h3" component="h2" gutterBottom sx={{ mb: 4, color: 'white' }} fontWeight={600}>
+              >                <Typography variant="h3" component="h2" gutterBottom sx={{ mb: 4, color: 'white' }}>
                   Contact Information
                 </Typography>
                 

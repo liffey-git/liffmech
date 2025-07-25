@@ -18,7 +18,7 @@ const AboutPage: React.FC = () => {
         {/* Introduction and Mission/Vision Section */}      
         <Box sx={{ pt: 14, pb: 14, backgroundColor: '#fff' }}>        
           <Container maxWidth="lg">
-          <Typography variant="h1" component="h1" align="center" gutterBottom color="primary" fontWeight={600}>
+          <Typography variant="h1" component="h1" align="center" gutterBottom color="primary">
             About Us
           </Typography>
           
@@ -51,7 +51,7 @@ const AboutPage: React.FC = () => {
                   border: '1px solid #e0e0e0'
                 }}
               >                
-              <Typography variant="h3" component="h2" gutterBottom color="primary" fontWeight={600}>
+              <Typography variant="h3" component="h2" gutterBottom color="primary">
                   Pride
                 </Typography>
                 <Typography variant="body1">
@@ -75,7 +75,7 @@ const AboutPage: React.FC = () => {
                   border: '1px solid #e0e0e0'
                 }}
               >                
-              <Typography variant="h3" component="h2" gutterBottom color="primary" fontWeight={600}>
+              <Typography variant="h3" component="h2" gutterBottom color="primary">
                   Professionalism
                 </Typography>
                 <Typography variant="body1">
@@ -99,7 +99,7 @@ const AboutPage: React.FC = () => {
                   border: '1px solid #e0e0e0'
                 }}
               >                
-              <Typography variant="h3" component="h2" gutterBottom color="primary" fontWeight={600}>
+              <Typography variant="h3" component="h2" gutterBottom color="primary">
                   Partnership
                 </Typography>
                 <Typography variant="body1">
@@ -119,7 +119,7 @@ const AboutPage: React.FC = () => {
         borderBottom: '1px solid rgba(30, 67, 136, 0.12)'
       }}>        
         <Container maxWidth="lg">
-          <Typography variant="h3" component="h2" gutterBottom align="center" sx={{ mb: 3 }} color="primary" fontWeight={600}>
+          <Typography variant="h3" component="h2" gutterBottom align="center" sx={{ mb: 3 }} color="primary">
             What We Offer
           </Typography>
           <Box sx={{ 
@@ -165,7 +165,7 @@ const AboutPage: React.FC = () => {
         {/* Our Approach */}
       <Box sx={{ pt: 14, pb: 15, backgroundColor: '#fff' }}>        
         <Container maxWidth="lg">
-          <Typography variant="h3" component="h2" gutterBottom align="center" sx={{ mb: 3 }} color="primary" fontWeight={600}>
+          <Typography variant="h3" component="h2" gutterBottom align="center" sx={{ mb: 3 }} color="primary">
             Our Approach
           </Typography>
           <Box sx={{
@@ -285,7 +285,7 @@ const AboutPage: React.FC = () => {
         borderBottom: '1px solid rgba(30, 67, 136, 0.12)'
       }}>        
         <Container maxWidth="lg">
-          <Typography variant="h3" component="h2" gutterBottom align="center" sx={{ mb: 3 }} color="primary" fontWeight={600}>
+          <Typography variant="h3" component="h2" gutterBottom align="center" sx={{ mb: 3 }} color="primary">
             Communication—the Liffey Difference
           </Typography>
           <Box sx={{ 
@@ -331,7 +331,7 @@ const AboutPage: React.FC = () => {
       {/* Executive Team */}
       <Box sx={{ py: 14, backgroundColor: '#fff' }}>        
         <Container maxWidth="lg">
-          <Typography variant="h3" component="h2" gutterBottom align="center" sx={{ mb: 5 }} color="primary" fontWeight={600}>
+          <Typography variant="h3" component="h2" gutterBottom align="center" sx={{ mb: 5 }} color="primary">
             Executive Team
           </Typography>
           
@@ -530,7 +530,7 @@ const AboutPage: React.FC = () => {
         borderBottom: '1px solid rgba(30, 67, 136, 0.12)'
       }}>        
         <Container maxWidth="lg">
-          <Typography variant="h3" component="h2" gutterBottom align="center" sx={{ mb: 3 }} color="primary" fontWeight={600}>
+          <Typography variant="h3" component="h2" gutterBottom align="center" sx={{ mb: 3 }} color="primary">
             Community Involvement
           </Typography>
           <Box sx={{ 

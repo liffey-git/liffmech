@@ -31,7 +31,7 @@ const ServicesPage: React.FC = () => {
       {/* Services Title and Introduction */}
       <Box sx={{ pt: 14, pb: 14, backgroundColor: '#fff' }}>        
         <Container maxWidth="lg">
-          <Typography variant="h1" component="h1" align="center" gutterBottom sx={{ mb: 6 }} color="primary" fontWeight={600}>
+          <Typography variant="h1" component="h1" align="center" gutterBottom sx={{ mb: 6 }} color="primary">
             Services
           </Typography>
           
@@ -89,7 +89,7 @@ const ServicesPage: React.FC = () => {
         borderBottom: '1px solid rgba(30, 67, 136, 0.12)'
       }}>        
         <Container maxWidth="lg">          
-          <Typography variant="h3" component="h2" gutterBottom align="center" sx={{ mb: 4, mt: 4 }} color="primary" fontWeight={600}>
+          <Typography variant="h3" component="h2" gutterBottom align="center" sx={{ mb: 4, mt: 4 }} color="primary">
             Our Service Categories
           </Typography>
 
@@ -208,7 +208,7 @@ const ServicesPage: React.FC = () => {
         borderBottom: '1px solid rgba(30, 67, 136, 0.12)'
       }}>        
         <Container maxWidth="lg">
-          <Typography variant="h3" component="h2" gutterBottom align="center" sx={{ mb: 6 }} color="primary" fontWeight={600}>
+          <Typography variant="h3" component="h2" gutterBottom align="center" sx={{ mb: 6 }} color="primary" fontWeight={700}>
             Our Service Categories
           </Typography>
             <Box sx={{ px: 2 }}>
@@ -284,7 +284,7 @@ const ServicesPage: React.FC = () => {
       <Box sx={{ pt: 20, pb: 20, backgroundColor: '#fff', color: '#333' }}>
         <Container maxWidth="lg">          
           <Box sx={{ textAlign: 'center' }}>
-            <Typography variant="h3" gutterBottom color="primary" fontWeight={600}>
+            <Typography variant="h3" gutterBottom color="primary">
               Ready to Discuss Your Project?
             </Typography>
             <Typography variant="body1" sx={{ maxWidth: 700, mx: 'auto', mb: 4 }}>
