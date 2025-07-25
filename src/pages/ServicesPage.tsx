@@ -160,7 +160,7 @@ const ServicesPage: React.FC = () => {
                       <Typography variant="body1" paragraph sx={{ mb: 3, flex: '0 0 auto' }}>
                         {category.description}
                       </Typography>
-                      <Box component="ul" sx={{ pl: 3, '& li': { mb: 1.5 }, flex: '1 1 auto' }}>
+                      <Box component="ul" sx={{ '& li': { mb: 1.5 }, flex: '1 1 auto' }}>
                         {category.items.map((item, itemIndex) => (
                           <Box component="li" key={itemIndex}>
                             <Typography variant="body1">
@@ -265,7 +265,7 @@ const ServicesPage: React.FC = () => {
                   <Typography variant="body1" paragraph sx={{ mb: 3 }}>
                     {category.description}
                   </Typography>
-                  <Box component="ul" sx={{ pl: 3, '& li': { mb: 1.5 } }}>
+                  <Box component="ul" sx={{ '& li': { mb: 1.5 } }}>
                     {category.items.map((item, itemIndex) => (
                       <Box component="li" key={itemIndex}>
                         <Typography variant="body1">

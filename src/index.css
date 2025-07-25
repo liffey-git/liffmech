@@ -67,3 +67,30 @@ a {
   opacity: 0;
   transition: opacity 300ms;
 }
+
+/* Custom bullet points with Liffey Drop icon */
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+li {
+  position: relative;
+  padding-left: 1.5rem;
+  line-height: 1.6;
+}
+
+li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-top: 1.25px;
+  width: 1em;
+  height: 1em;
+  background-image: url('./liffyDrop_DrkBlue_100x100.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
