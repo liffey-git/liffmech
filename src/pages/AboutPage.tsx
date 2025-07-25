@@ -12,7 +12,7 @@ const AboutPage: React.FC = () => {
     <Box>
       {/* Hero Section */}
       <HeroSection 
-        imageUrl="/images/IMG_4013.JPG"
+        imageUrl="/images/LiffyTrk_bnr.jpg"
         height="50vh"
       />
         {/* Introduction and Mission/Vision Section */}      
