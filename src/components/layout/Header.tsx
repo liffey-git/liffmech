@@ -49,7 +49,7 @@ const Header: React.FC = () => {
               textDecoration: 'none',
               color: 'white',
               flexGrow: isMobile ? 1 : 0,
-              gap: 1.5
+              gap: .75
             }}
           >
             <Box
