@@ -36,6 +36,13 @@ export const SERVICES: Service[] = [
     path: '/services?tab=4',
     imageUrl: '/images/IMG_8178.jpg',
     logoUrl: '/images/icons/ServiceLogo.svg'
+  },
+  {
+    id: 6,
+    title: 'Snow Melt',
+    path: '/services?tab=5',
+    imageUrl: '/images/IMG_8178.jpg',
+    logoUrl: '/images/icons/ServiceLogo.svg'
   }
 ];
 

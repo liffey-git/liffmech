@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { Box, Container, Typography, Tabs, Tab, Accordion, AccordionSummary, AccordionDetails } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useLocation, Link as RouterLink } from 'react-router-dom';
@@ -15,10 +15,45 @@ const ServicesPage: React.FC = () => {
   
   const [selectedTab, setSelectedTab] = useState(initialTab);
 
-  // Scroll to top when component mounts
-  useEffect(() => {
-    window.scrollTo(0, 0);
+  // Handle initial scroll position immediately before browser paint
+  useLayoutEffect(() => {
+    if (tabParam !== null) {
+      // Immediately scroll to prevent flash at top
+      window.scrollTo(0, 0);
+      // Then find and scroll to service categories
+      const timer = requestAnimationFrame(() => {
+        const serviceCategoriesSection = document.querySelector('[data-section="service-categories"]');
+        if (serviceCategoriesSection) {
+          serviceCategoriesSection.scrollIntoView({ behavior: 'auto', block: 'start' });
+        }
+      });
+      return () => cancelAnimationFrame(timer);
+    } else {
+      window.scrollTo(0, 0);
+    }
   }, []);
+
+  // Handle initial scroll position based on tab parameter
+  useEffect(() => {
+    if (tabParam !== null) {
+      // If a tab parameter is provided, scroll to the service categories section immediately
+      const serviceCategoriesSection = document.querySelector('[data-section="service-categories"]');
+      if (serviceCategoriesSection) {
+        serviceCategoriesSection.scrollIntoView({ behavior: 'auto', block: 'start' });
+      }
+    } else {
+      // Otherwise scroll to top
+      window.scrollTo(0, 0);
+    }
+  }, []); // Run only once on mount
+
+  // Update tab when URL parameter changes
+  useEffect(() => {
+    if (tabParam !== null) {
+      const newTab = parseInt(tabParam, 10);
+      setSelectedTab(newTab);
+    }
+  }, [tabParam]);
   const handleTabChange = (_event: React.SyntheticEvent, newValue: number) => {
     setSelectedTab(newValue);
   };
@@ -79,15 +114,15 @@ const ServicesPage: React.FC = () => {
         </Container>
       </Box>      
       {/* Service Categories - Desktop Tabs View */}
-      <Box sx={{ 
-        display: { xs: 'none', md: 'block' }, 
-        pt: 14, 
-        pb: 10, 
-        backgroundColor: 'rgba(30, 67, 136, 0.08)',
-        backdropFilter: 'blur(10px)',
-        borderTop: '1px solid rgba(30, 67, 136, 0.12)',
-        borderBottom: '1px solid rgba(30, 67, 136, 0.12)'
-      }}>        
+      <Box 
+        data-section="service-categories"
+        sx={{ 
+          display: { xs: 'none', md: 'block' }, 
+          pt: 14, 
+          pb: 10, 
+          backgroundColor: '#fff'
+        }}
+      >        
         <Container maxWidth="lg">          
           <Typography variant="h3" component="h2" gutterBottom align="center" sx={{ mb: 4, mt: 4 }} color="primary">
             Our Service Categories
@@ -202,10 +237,7 @@ const ServicesPage: React.FC = () => {
         display: { xs: 'block', md: 'none' }, 
         pt: 14, 
         pb: 14, 
-        backgroundColor: 'rgba(30, 67, 136, 0.08)',
-        backdropFilter: 'blur(10px)',
-        borderTop: '1px solid rgba(30, 67, 136, 0.12)',
-        borderBottom: '1px solid rgba(30, 67, 136, 0.12)'
+        backgroundColor: '#fff'
       }}>        
         <Container maxWidth="lg">
           <Typography variant="h3" component="h2" gutterBottom align="center" sx={{ mb: 6 }} color="primary" fontWeight={700}>

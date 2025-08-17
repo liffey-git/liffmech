@@ -474,7 +474,7 @@ const HomePage: React.FC = () => {
                           }}
                         >
                           <LearnMoreButton
-                            path="/services"
+                            path={service.path}
                             variant="dark"
                             showPlayIcon
                             fontSize={{ xs: '0.875rem', sm: '1rem', md: '1rem' }} // Responsive font size
