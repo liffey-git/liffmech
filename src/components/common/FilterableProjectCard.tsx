@@ -50,13 +50,12 @@ const FilterableProjectCard: React.FC<FilterableProjectCardProps> = ({ project, 
             color="text.secondary" 
             sx={{ 
               mb: 2,
-              display: '-webkit-box',
-              WebkitLineClamp: 3,
-              WebkitBoxOrient: 'vertical',
-              overflow: 'hidden'
+              display: 'flex',
+              alignItems: 'center',
+              fontWeight: 500
             }}
           >
-            {project.description}
+            {project.location}
           </Typography>
           
           {/* Service Tags */}

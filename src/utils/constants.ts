@@ -46,21 +46,18 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     description: 'Liffey offers comprehensive HVAC and refrigeration services, from conception and design to construction and installation. We test and calibrate our systems to ensure the highest level of quality control, and we also service systems that we install for their entire lifespans. We provide:',
     items: [
       'VRF system installations ',
-      'boiler installs, repairs, and tear downs ',
-      'makeup air unit installs',
-      'air handling unit replacements and rebuilds',
-      'steam humidifiers',
-      'air compressor venting and piping',
-      'steam generators',
-      'unit heaters',
-      'radiant heaters',
-      'high-pressure gas pipes and PRVs',
-      'local control wiring',
-      'gas detection systems (including CO/CO2, flammable vapor, and refrigerant)',
-      'semi-hermetic compressors teardowns/rebuilds',
-      'grease ducting',
-      'flue venting',
-      'industrial ventilation and ductwork'
+      'Makeup air unit installs',
+      'Air handling unit replacements and rebuilds',
+      'Steam humidifiers',
+      'Air compressor venting and piping',
+      'Steam generators',
+      'Unit heaters and radiant heaters',
+      'High-pressure gas pipes and PRVs',
+      'Gas detection systems (including CO/CO2, flammable vapor, and refrigerant)',
+      'Semi-hermetic compressors teardowns/rebuilds',
+      'Grease ducting',
+      'Flue venting',
+      'Industrial ventilation and ductwork'
     ],
     imageUrl: '/images/IMG_8150.png',
     carouselImages: [
@@ -114,6 +111,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     description: 'We are experts in hydronic heating, with a team of highly trained technicians who have years of experience in installations of snow-melt systems, in-floor heating, radiators, chilled water and heating, boilers, and more. Our signature is top-flight workmanship that maximizes efficiency for our clients—residential, commercial and industrial.',
     items: [
       'Boiler installations and replacements',
+      'Boiler installs, repairs, and tear downs ',
       'Snow-melt systems',
       'In-floor heating',
       'Radiators',
@@ -133,10 +131,11 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     title: 'Mechanical Wiring',
     description: 'rom designing new systems to retrofitting existing ones, we add value by integrating electrical services into overall project planning and rollout. We are skilled in developing tailored lighting installations, conducting energy efficiency audits, and providing green energy alternatives. Our expertise covers: ',
     items: [
-      'wiring and controls for HVAC, VRF, boilers and building automation',
-      'heat tracing and snow melt systems',
-      'data centre wiring',
-      'system and equipment maintenance'
+      'Wiring and controls for HVAC, VRF, boilers and building automation',
+      'Heat tracing and snow melt systems',
+      'Local control wiring',
+      'Data centre wiring',
+      'System and equipment maintenance'
     ],
     imageUrl: '/images/IMG_8178.jpg',
     carouselImages: [

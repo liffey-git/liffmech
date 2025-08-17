@@ -109,6 +109,7 @@ const HomePage: React.FC = () => {
     title: 'Jack Nathan Health Centres',
     imageUrl: '/images/IMG_8967.jpg',
     description: 'Comprehensive mechanical systems for healthcare facilities',
+    location: 'Toronto, Ontario',
     industry: 'Healthcare',
     services: ['HVAC & Refrigeration'],
     clientType: 'Healthcare'
@@ -119,6 +120,7 @@ const HomePage: React.FC = () => {
       title: 'Commercial HVAC Installation', 
       imageUrl: '/images/IMG_4160.JPG',
       description: 'Professional HVAC system installation for commercial facility',
+      location: 'Downtown Toronto, Ontario',
       industry: 'Commercial',
       services: ['HVAC & Refrigeration'],
       clientType: 'Commercial'
@@ -128,6 +130,7 @@ const HomePage: React.FC = () => {
       title: 'Healthcare Mechanical Systems', 
       imageUrl: '/images/IMG_9072.jpg',
       description: 'Specialized mechanical systems for healthcare environment',
+      location: 'Mississauga, Ontario',
       industry: 'Healthcare', 
       services: ['Plumbing'],
       clientType: 'Healthcare'

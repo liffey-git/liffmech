@@ -13,7 +13,7 @@ import {
   useTheme
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useLocation } from 'react-router-dom';
 
 const navItems = [
   { name: 'About Us', path: '/about' },
@@ -26,6 +26,7 @@ const Header: React.FC = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const location = useLocation();
 
   const handleOpenMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -33,6 +34,10 @@ const Header: React.FC = () => {
 
   const handleCloseMenu = () => {
     setAnchorEl(null);
+  };
+
+  const isActivePage = (path: string) => {
+    return location.pathname === path;
   };
 
   return (
@@ -43,13 +48,13 @@ const Header: React.FC = () => {
           <Box 
             component={RouterLink}
             to="/"
-            sx={{ 
-              display: 'flex', 
-              alignItems: 'center', 
-              textDecoration: 'none',
-              color: 'white',
-              flexGrow: isMobile ? 1 : 0,
-              gap: .75
+          sx={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            textDecoration: 'none',
+            color: 'white',
+            flexGrow: isMobile ? 1 : 0,
+          gap: .75
             }}
           >
             <Box
@@ -86,9 +91,23 @@ const Header: React.FC = () => {
                   sx={{ 
                     color: 'white',
                     fontSize: '1rem',
-                    fontWeight: 500,
+                    fontWeight: isActivePage(item.path) ? 700 : 500,
+                    position: 'relative',
+                    mx: 0.5,
+                    px: 2,
+                    py: 1,
+                    borderRadius: 2,
+                    textTransform: 'none',
+                    transition: 'all 0.3s ease-in-out',
+                    backgroundColor: isActivePage(item.path) 
+                      ? 'rgba(255, 255, 255, 0.15)' 
+                      : 'transparent',
                     '&:hover': {
-                      backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                      backgroundColor: isActivePage(item.path)
+                        ? 'rgba(255, 255, 255, 0.25)'
+                        : 'rgba(255, 255, 255, 0.1)',
+                      transform: 'translateY(-1px)',
+                      boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)'
                     }
                   }}
                 >
@@ -130,8 +149,33 @@ const Header: React.FC = () => {
                     component={RouterLink} 
                     to={item.path}
                     onClick={handleCloseMenu}
+                    sx={{
+                      backgroundColor: isActivePage(item.path) ? 'rgba(30, 67, 136, 0.08)' : 'transparent',
+                      borderRadius: 1,
+                      mx: 1,
+                      my: 0.5,
+                      transition: 'all 0.2s ease-in-out',
+                      border: isActivePage(item.path) ? '1px solid rgba(30, 67, 136, 0.2)' : '1px solid transparent',
+                      '&:hover': {
+                        backgroundColor: isActivePage(item.path) 
+                          ? 'rgba(30, 67, 136, 0.12)' 
+                          : 'rgba(30, 67, 136, 0.04)',
+                        borderColor: 'rgba(30, 67, 136, 0.2)',
+                        transform: 'translateX(4px)'
+                      }
+                    }}
                   >
-                    <Typography textAlign="center">{item.name}</Typography>
+                    <Typography 
+                      textAlign="center"
+                      sx={{ 
+                        fontWeight: isActivePage(item.path) ? 600 : 400,
+                        color: isActivePage(item.path) ? 'primary.main' : 'inherit',
+                        fontSize: '0.95rem',
+                        transition: 'color 0.2s ease-in-out'
+                      }}
+                    >
+                      {item.name}
+                    </Typography>
                   </MenuItem>
                 ))}
               </Menu>

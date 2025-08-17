@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Modal, Typography, IconButton, Chip } from '@mui/material';
+import { Box, Modal, Typography, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { Project } from '../../types';
 
@@ -26,13 +26,14 @@ const ProjectLightbox: React.FC<ProjectLightboxProps> = ({ isOpen, onClose, proj
       <Box
         sx={{
           position: 'relative',
-          maxWidth: '90vw',
-          maxHeight: '90vh',
+          width: '100%',
+          maxWidth: '1200px', // Match page content width
           backgroundColor: 'white',
           borderRadius: 3,
           boxShadow: '0 24px 48px rgba(0,0,0,0.3)',
           overflow: 'hidden',
-          outline: 'none'
+          outline: 'none',
+          mx: 'auto'
         }}
       >
         {/* Close Button */}
@@ -55,115 +56,61 @@ const ProjectLightbox: React.FC<ProjectLightboxProps> = ({ isOpen, onClose, proj
           <CloseIcon />
         </IconButton>
 
+        {/* Image Section - Full Width */}
         <Box
           sx={{
-            display: 'flex',
-            flexDirection: { xs: 'column', md: 'row' },
-            minHeight: { xs: 'auto', md: '500px' },
-            maxHeight: '90vh'
+            width: '100%',
+            height: { xs: '300px', sm: '400px', md: '500px' },
+            position: 'relative'
           }}
         >
-          {/* Image Section */}
           <Box
+            component="img"
+            src={project.imageUrl}
+            alt={project.title}
             sx={{
-              width: { xs: '100%', md: '60%' },
-              minHeight: { xs: '300px', md: '500px' },
-              position: 'relative'
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover'
+            }}
+          />
+        </Box>
+
+        {/* Content Section - Below Image */}
+        <Box
+          sx={{
+            p: { xs: 3, md: 4 },
+            display: 'flex',
+            flexDirection: { xs: 'column', sm: 'row' },
+            justifyContent: 'space-between',
+            alignItems: { xs: 'flex-start', sm: 'center' },
+            gap: 2
+          }}
+        >
+          {/* Title */}
+          <Typography
+            variant="h4"
+            component="h2"
+            sx={{
+              color: '#1e4388',
+              fontWeight: 600,
+              flex: 1
             }}
           >
-            <Box
-              component="img"
-              src={project.imageUrl}
-              alt={project.title}
-              sx={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover'
-              }}
-            />
-          </Box>
+            {project.title}
+          </Typography>
 
-          {/* Content Section */}
-          <Box
+          {/* Location */}
+          <Typography
+            variant="body1"
             sx={{
-              width: { xs: '100%', md: '40%' },
-              p: { xs: 3, md: 4 },
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'flex-start',
-              backgroundColor: '#fafafa',
-              borderLeft: { md: '1px solid #e0e0e0' }
+              color: 'text.secondary',
+              fontWeight: 500,
+              textAlign: { xs: 'left', sm: 'right' }
             }}
           >
-            <Typography
-              variant="h4"
-              component="h2"
-              gutterBottom
-              sx={{
-                color: '#1e4388',
-                fontWeight: 600,
-                mb: 3
-              }}
-            >
-              {project.title}
-            </Typography>
-
-            <Typography
-              variant="body1"
-              sx={{
-                color: '#333',
-                lineHeight: 1.7,
-                fontSize: '1.1rem',
-                mb: 3
-              }}
-            >
-              {project.description}
-            </Typography>
-
-            {/* Service Tags */}
-            <Box sx={{ mb: 2 }}>
-              <Typography variant="subtitle2" gutterBottom sx={{ fontWeight: 600, color: '#1e4388' }}>
-                Services
-              </Typography>
-              <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                {project.services.map((service, index) => (
-                  <Chip
-                    key={index}
-                    label={service}
-                    size="small"
-                    variant="outlined"
-                    sx={{
-                      color: 'primary.main',
-                      borderColor: 'primary.main'
-                    }}
-                  />
-                ))}
-              </Box>
-            </Box>
-
-            {/* Industry */}
-            <Box sx={{ mb: 3 }}>
-              <Typography variant="subtitle2" gutterBottom sx={{ fontWeight: 600, color: '#1e4388' }}>
-                Industry
-              </Typography>
-              <Typography variant="body2" sx={{ color: '#666' }}>
-                {project.industry}
-              </Typography>
-            </Box>
-
-            {/* Optional: Add project details */}
-            <Box sx={{ mt: 4, pt: 3, borderTop: '1px solid #e0e0e0' }}>
-              <Typography
-                variant="body2"
-                sx={{
-                  color: '#666',
-                  fontStyle: 'italic'
-                }}
-              >
-                Click outside or press the close button to return to projects.
-              </Typography>
-            </Box>
-          </Box>
+            {project.location}
+          </Typography>
         </Box>
       </Box>
     </Modal>

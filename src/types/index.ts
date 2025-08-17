@@ -13,6 +13,7 @@ export interface Project {
   title: string;
   imageUrl: string;
   description: string;
+  location: string;
   industry: string;
   services: string[]; // Service tags from service categories
   clientType: 'Healthcare' | 'Financial' | 'Retail' | 'Entertainment' | 'Hospitality' | 'Industrial' | 'Commercial';
