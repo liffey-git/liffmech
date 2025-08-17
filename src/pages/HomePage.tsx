@@ -8,7 +8,9 @@ import { Project } from '../types';
 
 const HomePage: React.FC = () => {
   const [currentServiceIndex, setCurrentServiceIndex] = useState(0);
-  const scrollContainerRef = useRef<HTMLDivElement>(null);  // Handle scroll to change background image based on visible service
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  // Handle scroll to change background image based on visible service
   useEffect(() => {
     const scrollContainer = scrollContainerRef.current;
     if (!scrollContainer) return;
@@ -26,7 +28,9 @@ const HomePage: React.FC = () => {
       if (clampedIndex !== currentServiceIndex) {
         setCurrentServiceIndex(clampedIndex);
       }
-    };    // Handle wheel events for scroll pass-through
+    };
+
+    // Handle wheel events for scroll pass-through
     const handleWheel = (e: WheelEvent) => {
       const container = e.currentTarget as HTMLElement;
       const { scrollTop, scrollHeight, clientHeight } = container;
@@ -37,7 +41,7 @@ const HomePage: React.FC = () => {
       if ((isAtTop && e.deltaY < 0) || (isAtBottom && e.deltaY > 0)) {
         e.preventDefault();
         e.stopPropagation();
-        
+
         // For downward scrolling at bottom, scroll to next section
         if (isAtBottom && e.deltaY > 0) {
           const servicesSection = container.closest('div[data-section="services"]');
@@ -49,7 +53,7 @@ const HomePage: React.FC = () => {
             }
           }
         }
-        
+
         // Fallback: manual page scroll
         window.scrollBy({
           top: e.deltaY * 0.5, // Reduce scroll speed for better control
@@ -70,7 +74,7 @@ const HomePage: React.FC = () => {
       const { scrollTop, scrollHeight, clientHeight } = container;
       const isAtTop = scrollTop === 0;
       const isAtBottom = Math.abs(scrollHeight - clientHeight - scrollTop) <= 1;
-      
+
       const touchY = e.touches[0].clientY;
       const deltaY = touchStartY - touchY;
 
@@ -90,7 +94,8 @@ const HomePage: React.FC = () => {
     scrollContainer.addEventListener('wheel', handleWheel, { passive: false });
     scrollContainer.addEventListener('touchstart', handleTouchStart, { passive: false });
     scrollContainer.addEventListener('touchmove', handleTouchMove, { passive: false });
-      return () => {
+
+    return () => {
       scrollContainer.removeEventListener('scroll', handleScroll);
       scrollContainer.removeEventListener('wheel', handleWheel);
       scrollContainer.removeEventListener('touchstart', handleTouchStart);
@@ -114,10 +119,11 @@ const HomePage: React.FC = () => {
     services: ['HVAC & Refrigeration'],
     clientType: 'Healthcare'
   };
+
   const projectThumbnails: Project[] = [
-    { 
-      id: 1, 
-      title: 'Commercial HVAC Installation', 
+    {
+      id: 2,
+      title: 'Commercial HVAC Installation',
       imageUrl: '/images/IMG_4160.JPG',
       description: 'Professional HVAC system installation for commercial facility',
       location: 'Downtown Toronto, Ontario',
@@ -125,15 +131,25 @@ const HomePage: React.FC = () => {
       services: ['HVAC & Refrigeration'],
       clientType: 'Commercial'
     },
-    { 
-      id: 2, 
-      title: 'Healthcare Mechanical Systems', 
+    {
+      id: 3,
+      title: 'Healthcare Mechanical Systems',
       imageUrl: '/images/IMG_9072.jpg',
       description: 'Specialized mechanical systems for healthcare environment',
       location: 'Mississauga, Ontario',
-      industry: 'Healthcare', 
+      industry: 'Healthcare',
       services: ['Plumbing'],
       clientType: 'Healthcare'
+    },
+    {
+      id: 4,
+      title: 'Industrial Sheet Metal Work',
+      imageUrl: '/images/IMG_4142.JPG',
+      description: 'Custom sheet metal fabrication and installation',
+      location: 'Vaughan, Ontario',
+      industry: 'Industrial',
+      services: ['Sheet Metal'],
+      clientType: 'Industrial'
     }
   ];
 
@@ -261,14 +277,16 @@ const HomePage: React.FC = () => {
             display: 'flex',
             alignItems: 'center'
           }}
-        >          <Box sx={{
-          display: 'flex',
-          flexDirection: { xs: 'column', md: 'row' },
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          width: '100%',
-          height: '100%',
-        }}>            {/* Left Column - ONLY SERVICES Title */}
+        >
+          <Box sx={{
+            display: 'flex',
+            flexDirection: { xs: 'column', md: 'row' },
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            width: '100%',
+            height: '100%',
+          }}>
+            {/* Left Column - ONLY SERVICES Title */}
             <Box sx={{
               width: { xs: '100%', md: '35%' },
               display: 'flex',
@@ -308,7 +326,9 @@ const HomePage: React.FC = () => {
               >
                 SERVICES
               </Typography>
-            </Box>            {/* Right Column - Vertical Scrolling Service Containers */}
+            </Box>
+
+            {/* Right Column - Vertical Scrolling Service Containers */}
             <Box sx={{
               width: '100%', // Changed to span full width
               height: { xs: '70%', md: '100%' },
@@ -322,7 +342,9 @@ const HomePage: React.FC = () => {
               justifyContent: { xs: 'center', md: 'flex-end' }, // Align to right on desktop
               pr: { md: 0 }, // Ensure no right padding on desktop
               pointerEvents: 'none' // Prevent blocking clicks on left column
-            }}>              <Box                ref={scrollContainerRef}
+            }}>
+              <Box
+                ref={scrollContainerRef}
                 sx={{
                   height: '100%',
                   width: '100%',
@@ -338,111 +360,115 @@ const HomePage: React.FC = () => {
                   willChange: 'scroll-position',
                   // Ensure smooth scrolling on touch devices
                   WebkitOverflowScrolling: 'touch'
-                }}              >{SERVICES.map((service) => (
-                <Box
-                  key={service.id}
-                  sx={{
-                    width: '100%',
-                    height: { xs: '100%', md: '100%' },
-                    scrollSnapAlign: 'center', // Center each service in the viewport
-                    scrollSnapStop: 'always',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'flex-end', // Changed from 'flex-start' to 'flex-end' to align service containers to the right
-                    mb: { xs: 1, md: 1.5 },
-                    color: 'white',
-                    '&:last-child': {
-                      mb: 0
-                    }
-                  }}
-                >                    
-                {/* Service Container */}                    
-                <Box sx={{
-                  borderRadius: 2,
-                  overflow: 'hidden',
-                  position: 'relative',
-                  p: { xs: 3, md: 4 },
-                  width: '75%',
-                  height: { xs: 'calc(100% - 12px)', md: 'calc(100% - 18px)' },
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'flex-end', // Changed from 'flex-start' to 'flex-end' to align content to the right
-                  justifyContent: 'center',
-                }}>
-                    {/* Background watermark logo */}
-                    <Box
-                      component="img"
-                      src={service.logoUrl}
-                      alt=""
-                      sx={{
-                        position: 'absolute',
-                        top: '50%',
-                        left: '70%',
-                        transform: 'translate(-50%, -50%)',
-                        width: '17.5%',
-                        height: 'auto',
-                        opacity: 1,
-                        pointerEvents: 'none'
-                      }}
-                    />                      
-                    {/* Water Drop Title */}
-                    <Box sx={{
+                }}
+              >
+                {SERVICES.map((service) => (
+                  <Box
+                    key={service.id}
+                    sx={{
+                      width: '100%',
+                      height: { xs: '100%', md: '100%' },
+                      scrollSnapAlign: 'center', // Center each service in the viewport
+                      scrollSnapStop: 'always',
                       display: 'flex',
-                      justifyContent: 'flex-end', // Changed from 'flex-start' to 'flex-end' for right alignment
-                      alignItems: 'flex-start',
-                      width: '100%'
-                    }}>                        
-                    <Typography
-                      variant="h3"
-                      component="h3"
-                      sx={{
-                        fontWeight: 600,
+                      alignItems: 'center',
+                      justifyContent: 'flex-end', // Changed from 'flex-start' to 'flex-end' to align service containers to the right
+                      mb: { xs: 1, md: 1.5 },
+                      color: 'white',
+                      '&:last-child': {
+                        mb: 0
+                      }
+                    }}
+                  >
+                    {/* Service Container */}
+                    <Box sx={{
+                      borderRadius: 2,
+                      overflow: 'hidden',
+                      position: 'relative',
+                      p: { xs: 3, md: 4 },
+                      width: '75%',
+                      height: { xs: 'calc(100% - 12px)', md: 'calc(100% - 18px)' },
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'flex-end', // Changed from 'flex-start' to 'flex-end' to align content to the right
+                      justifyContent: 'center',
+                    }}>
+                      {/* Background watermark logo */}
+                      <Box
+                        component="img"
+                        src={service.logoUrl}
+                        alt=""
+                        sx={{
+                          position: 'absolute',
+                          top: '50%',
+                          left: '70%',
+                          transform: 'translate(-50%, -50%)',
+                          width: '17.5%',
+                          height: 'auto',
+                          opacity: 1,
+                          pointerEvents: 'none'
+                        }}
+                      />
+                      
+                      {/* Water Drop Title */}
+                      <Box sx={{
+                        display: 'flex',
+                        justifyContent: 'flex-end', // Changed from 'flex-start' to 'flex-end' for right alignment
+                        alignItems: 'flex-start',
+                        width: '100%'
+                      }}>
+                        <Typography
+                          variant="h3"
+                          component="h3"
+                          sx={{
+                            fontWeight: 600,
+                            zIndex: 2,
+                            position: 'relative',
+                            fontSize: { xs: '1.5rem', md: '1.875rem' },
+                            textAlign: 'right' // Add right text alignment
+                          }}
+                        >
+                          {service.title}
+                        </Typography>
+                      </Box>
+                      
+                      {/* Bottom section with Learn More and Play button */}
+                      <Box sx={{
+                        display: 'flex',
+                        marginTop: '0.8rem',
+                        justifyContent: 'flex-end', // Right alignment
+                        alignItems: 'center',
                         zIndex: 2,
                         position: 'relative',
-                        fontSize: { xs: '1.5rem', md: '1.875rem' },
-                        textAlign: 'right' // Add right text alignment
-                      }}
-                    >
-                        {service.title}
-                      </Typography>
-                    </Box>                      
-                    {/* Bottom section with Learn More and Play button */}
-                    <Box sx={{
-                      display: 'flex',
-                      marginTop: '0.8rem',
-                      justifyContent: 'flex-end', // Right alignment
-                      alignItems: 'center',
-                      zIndex: 2,
-                      position: 'relative',
-                      width: '100%'
-                    }}>
-                      <Box
-                        component={RouterLink}
-                        to={service.path}
-                        sx={{
-                          textDecoration: 'none',
-                          color: 'inherit'
-                        }}
-                      >
-                        <LearnMoreButton
-                          path="/services"
-                          variant="dark"
-                          showPlayIcon
-                          fontSize={{ xs: '1rem', md: '1rem' }}
-                        />
+                        width: '100%'
+                      }}>
+                        <Box
+                          component={RouterLink}
+                          to={service.path}
+                          sx={{
+                            textDecoration: 'none',
+                            color: 'inherit'
+                          }}
+                        >
+                          <LearnMoreButton
+                            path="/services"
+                            variant="dark"
+                            showPlayIcon
+                            fontSize={{ xs: '1rem', md: '1rem' }}
+                          />
+                        </Box>
                       </Box>
                     </Box>
                   </Box>
-                </Box>
                 ))}
               </Box>
             </Box>
           </Box>
         </Container>
-      </Box>      {/* Projects Section */}
+      </Box>      {/* Projects Section - Responsive Grid with FilterableProjectCard Styling */}
       <Box sx={{ 
-        pt: 20, 
-        pb: 20, 
+        pt: 14,
+        pb: 14,
         backgroundColor: 'rgba(30, 67, 136, 0.08)',
         backdropFilter: 'blur(10px)',
         borderTop: '1px solid rgba(30, 67, 136, 0.12)',
@@ -454,139 +480,271 @@ const HomePage: React.FC = () => {
             component="h2"
             gutterBottom
             sx={{
-              mb: 6,
+              mb: 4,
               textTransform: 'uppercase',
               color: '#1e4388',
               fontSize: { xs: '2.25rem', md: '3.5rem' },
               letterSpacing: '0.05em'
-            }}          >
+            }}
+          >
             PROJECTS
-          </Typography>          <Box sx={{
-            display: 'flex',
-            gap: 4, // Increased spacing between columns
-            alignItems: 'stretch' // Make both columns equal height
-          }}>            {/* Featured Project - Left Side (60% width) */}            <Box sx={{
-              width: {
-                xs: '100%',
-                md: 'calc(60% - 16px)' // 60% width minus half the gap
-              },
-              display: 'flex',
-              flexDirection: 'column'
-            }}>{/* Square image for featured project with title overlay */}
+          </Typography>
+
+          {/* Featured Project on Top + 3 Below Layout */}
+          <Box sx={{ mb: 4 }}>
+            {/* Featured Project - Full Width on Top */}
+            <Box
+              component={RouterLink}
+              to="/projects"
+              sx={{ 
+                textDecoration: 'none',
+                display: 'block',
+                mb: 4
+              }}
+            >
               <Box
                 sx={{
-                  position: 'relative',
-                  width: '100%',
-                  aspectRatio: '1', // Square image
+                  display: 'flex',
+                  flexDirection: { xs: 'column', md: 'row' },
+                  boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+                  transition: 'all 0.3s ease',
+                  backgroundColor: 'white',
                   borderRadius: 1,
                   overflow: 'hidden',
-                  mb: 4 // Increased spacing between image and text
+                  width: '100%', // Full width to match 3 cards below
+                  height: { md: '400px' }, // Fixed height on desktop
+                  '&:hover': {
+                    boxShadow: '0 8px 24px rgba(0,0,0,0.15)',
+                    transform: 'translateY(-4px)'
+                  }
                 }}
               >
+                {/* Featured Project Image - Full Height */}
                 <Box
                   component="img"
                   src={featuredProject.imageUrl}
                   alt={featuredProject.title}
                   sx={{
-                    width: '100%',
-                    height: '100%',
+                    height: { xs: '300px', md: '100%' }, // Full height on desktop
+                    width: { xs: '100%', md: '50%' }, // Half width on desktop
                     objectFit: 'cover',
-                    display: 'block'
+                    display: 'block',
+                    flexShrink: 0
                   }}
                 />
-                {/* Title overlay with transparent white background */}
-                <Box
-                  sx={{
-                    position: 'absolute',
-                    bottom: 75,
-                    left: 0,
-                    right: 0,
-                    p: 3,
-                    background: 'rgba(255, 255, 255, 0.75)', // Transparent white background
-                  }}
-                >
-                  <Typography
-                    variant="h5"
-                    sx={{
-                      fontSize: { xs: '1.25rem', md: '1.5rem' },
-                      fontWeight: 700,
-                      color: '#1e4388' // Blue text color
+                
+                {/* Featured Card Content */}
+                <Box sx={{ 
+                  p: 4, // Increased padding for larger card
+                  flexGrow: 1,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center' // Center content vertically
+                }}>
+                  <Typography 
+                    variant="h3" // Even larger title
+                    component="h3" 
+                    sx={{ 
+                      fontWeight: 600,
+                      color: '#1e4388',
+                      mb: 2,
+                      fontSize: { xs: '1.75rem', md: '2.25rem' }
                     }}
                   >
-                    {featuredProject.title}                  
-                    </Typography>
+                    {featuredProject.title}
+                  </Typography>
+                  
+                  <Typography 
+                    variant="h6"
+                    color="text.secondary" 
+                    sx={{ 
+                      mb: 3,
+                      fontWeight: 500,
+                      fontSize: '1.25rem'
+                    }}
+                  >
+                    {featuredProject.location}
+                  </Typography>
+
+                  <Typography 
+                    variant="body1" 
+                    sx={{ 
+                      mb: 3,
+                      lineHeight: 1.6,
+                      color: 'text.primary',
+                      fontSize: '1.125rem'
+                    }}
+                  >
+                    {featuredProject.description}
+                  </Typography>
+                  
+                  {/* Service Tags */}
+                  <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mb: 2 }}>
+                    {featuredProject.services.map((service: string, index: number) => (
+                      <Box
+                        key={index}
+                        sx={{
+                          px: 3,
+                          py: 1,
+                          fontSize: '1rem',
+                          height: '40px',
+                          color: '#1e4388',
+                          borderColor: '#1e4388',
+                          border: '2px solid #1e4388',
+                          borderRadius: '20px',
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          fontWeight: 600,
+                          '&:hover': {
+                            backgroundColor: '#1e4388',
+                            color: 'white'
+                          }
+                        }}
+                      >
+                        {service}
+                      </Box>
+                    ))}
+                  </Box>
+                  
+                  <Typography 
+                    variant="body1" 
+                    sx={{ 
+                      color: 'text.secondary',
+                      fontStyle: 'italic',
+                      fontSize: '1rem'
+                    }}
+                  >
+                    {featuredProject.industry}
+                  </Typography>
                 </Box>
-              </Box>              
-              {/* Text content fills remaining space */}
-              <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
-                <Typography variant="body1" sx={{ flexGrow: 1, fontSize: { xs: '1rem', md: '1.125rem' }, lineHeight: 1.7, mb: 3 }}>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                </Typography>
-                {/* Learn More Button */}
-                  <LearnMoreButton
-                    path="/projects"
-                    variant="light"
-                    showPlayIcon
-                    fontSize={{ xs: '1rem', md: '1rem' }}
-                  />
               </Box>
-            </Box>            {/* Project Thumbnails - Right Side (40% width) */}            
+            </Box>
+
+            {/* 3 Project Cards in a Row Below */}
             <Box sx={{
-              width: {
-                xs: '100%',
-                md: 'calc(40% - 16px)' // 40% width minus half the gap
+              display: 'grid',
+              gridTemplateColumns: { 
+                xs: '1fr', 
+                sm: 'repeat(2, 1fr)',
+                md: 'repeat(3, 1fr)'
               },
-              display: 'flex',
-              flexDirection: 'column',
-              gap: 4, // Same gap as between columns
-              height: '100%' // Take full height to match left column
+              gap: 3
             }}>
-              {projectThumbnails.map((project) => (
+              {projectThumbnails.map((project: Project) => (
                 <Box
                   key={project.id}
-                  sx={{
-                    position: 'relative',
-                    borderRadius: 1,
-                    overflow: 'hidden',
-                    aspectRatio: '1', // Keep both projects square
-                    width: '100%',
-                    flex: '0 0 auto' // Don't allow flexing of the aspect ratio
-                  }}
+                  component={RouterLink}
+                  to="/projects"
+                  sx={{ textDecoration: 'none' }}
                 >
                   <Box
-                    component="img"
-                    src={project.imageUrl}
-                    alt={project.title}
                     sx={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover',
-                      display: 'block'
-                    }}
-                  />                  <Box
-                    sx={{
-                      position: 'absolute',
-                      bottom: 35,
-                      left: 0,
-                      right: 0,
-                      p: 2,
-                      background: 'rgba(255, 255, 255, 0.75)', // Transparent white background
+                      display: 'flex',
+                      flexDirection: 'column',
+                      boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+                      transition: 'all 0.3s ease',
+                      backgroundColor: 'white',
+                      borderRadius: 1,
+                      overflow: 'hidden',
+                      height: '100%', // Make all cards same height
+                      '&:hover': {
+                        boxShadow: '0 8px 24px rgba(0,0,0,0.15)',
+                        transform: 'translateY(-4px)'
+                      }
                     }}
                   >
-                    <Typography
-                      variant="h6"
+                    {/* Project Image - Same as FilterableProjectCard */}
+                    <Box
+                      component="img"
+                      src={project.imageUrl}
+                      alt={project.title}
                       sx={{
-                        fontSize: { xs: '1rem', md: '1.125rem' },
-                        fontWeight: 600,
-                        color: '#1e4388' // Blue text color
+                        height: '200px',
+                        width: '100%',
+                        objectFit: 'cover',
+                        display: 'block'
                       }}
-                    >
-                      {project.title}
-                    </Typography>
+                    />
+                    
+                    {/* Card Content - Same as FilterableProjectCard */}
+                    <Box sx={{ p: 2, flexGrow: 1 }}>
+                      <Typography 
+                        variant="h6" 
+                        component="h3" 
+                        gutterBottom 
+                        sx={{ 
+                          fontWeight: 600,
+                          color: '#1e4388',
+                          mb: 1
+                        }}
+                      >
+                        {project.title}
+                      </Typography>
+                      
+                      <Typography 
+                        variant="body2" 
+                        color="text.secondary" 
+                        sx={{ 
+                          mb: 2,
+                          fontWeight: 500
+                        }}
+                      >
+                        {project.location}
+                      </Typography>
+                      
+                      {/* Service Tags - Same as FilterableProjectCard */}
+                      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5, mb: 1 }}>
+                        {project.services.map((service: string, index: number) => (
+                          <Box
+                            key={index}
+                            sx={{
+                              px: 1.5,
+                              py: 0.25,
+                              fontSize: '0.7rem',
+                              height: '24px',
+                              color: '#1e4388',
+                              borderColor: '#1e4388',
+                              border: '1px solid #1e4388',
+                              borderRadius: '12px',
+                              display: 'inline-flex',
+                              alignItems: 'center',
+                              fontWeight: 500,
+                              '&:hover': {
+                                backgroundColor: '#1e4388',
+                                color: 'white'
+                              }
+                            }}
+                          >
+                            {service}
+                          </Box>
+                        ))}
+                      </Box>
+                      
+                      {/* Industry Tag - Same as FilterableProjectCard */}
+                      <Typography 
+                        variant="caption" 
+                        sx={{ 
+                          color: 'text.secondary',
+                          fontStyle: 'italic'
+                        }}
+                      >
+                        {project.industry}
+                      </Typography>
+                    </Box>
                   </Box>
                 </Box>
               ))}
             </Box>
+          </Box>
+
+          {/* View All Projects Button */}
+          <Box sx={{ textAlign: 'center' }}>
+            <LearnMoreButton
+              path="/projects"
+              variant="light"
+              showPlayIcon
+              fontSize={{ xs: '1rem', md: '1.125rem' }}
+            />
           </Box>
         </Container>
       </Box>
