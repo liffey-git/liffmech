@@ -215,8 +215,9 @@ const HomePage: React.FC = () => {
         sx={{
           position: 'relative',
           height: {
-            xs: '45vh',
-            md: '70vh'
+            xs: '100vh', // Full viewport height on mobile for better scrolling
+            sm: '80vh',  // Slightly reduced on small tablets
+            md: '70vh'   // Original desktop height
           },
           overflow: 'hidden',
           backgroundColor: '#000' // Fallback background to prevent white flash
@@ -267,7 +268,7 @@ const HomePage: React.FC = () => {
           />
         ))}
 
-        {/* Services Content - Clean Two Column Layout */}
+        {/* Services Content - Responsive Layout */}
         <Container
           maxWidth="lg"
           sx={{
@@ -275,7 +276,8 @@ const HomePage: React.FC = () => {
             zIndex: 2,
             height: '100%',
             display: 'flex',
-            alignItems: 'center'
+            alignItems: 'center',
+            px: { xs: 2, sm: 3, md: 4 } // Responsive padding
           }}
         >
           <Box sx={{
@@ -285,31 +287,38 @@ const HomePage: React.FC = () => {
             justifyContent: 'space-between',
             width: '100%',
             height: '100%',
+            gap: { xs: 0, sm: 2, md: 0 } // Add gap on small screens
           }}>
-            {/* Left Column - ONLY SERVICES Title */}
+            {/* Left Column - SERVICES Title - Responsive */}
             <Box sx={{
               width: { xs: '100%', md: '35%' },
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'center',
               alignItems: { xs: 'center', md: 'flex-start' },
-              height: { xs: '30%', md: '100%' },
-              pl: { md: 0 }, // Ensure no left padding on desktop
-              position: 'relative'
+              height: { xs: '25%', sm: '30%', md: '100%' }, // Responsive height
+              pl: { md: 0 },
+              position: 'relative',
+              mb: { xs: 2, md: 0 } // Margin bottom on mobile
             }}>
-              {/* Semi-transparent blue background container spanning full height */}
+              {/* Semi-transparent blue background - Responsive */}
               <Box sx={{
-                backgroundColor: 'rgba(30, 67, 136, 0.5)', // Semi-transparent blue background
+                backgroundColor: 'rgba(30, 67, 136, 0.6)', // Slightly more opaque for better mobile readability
                 position: 'absolute',
-                top: 0,
-                bottom: 0,
+                top: { xs: '50%', md: 0 },
+                bottom: { xs: 'auto', md: 0 },
                 left: { xs: '50%', md: '50%' },
-                transform: { xs: 'translateX(-64.5%)', md: 'translateX(-64.5%)' },
-                width: { xs: '120%', md: '120%' }, // Wider than the text
+                transform: { 
+                  xs: 'translate(-50%, -50%)', 
+                  md: 'translateX(-64.5%)' 
+                },
+                width: { xs: '90%', sm: '80%', md: '120%' }, // Responsive width
+                height: { xs: 'auto', md: '100%' }, // Auto height on mobile
+                py: { xs: 2, md: 0 }, // Vertical padding on mobile
                 zIndex: 0,
-                borderRadius: 1
+                borderRadius: { xs: 2, md: 1 } // More rounded on mobile
               }} />
-              {/* SERVICES Title positioned at edge */}
+              {/* SERVICES Title - Responsive */}
               <Typography
                 variant="h3"
                 component="h2"
@@ -317,31 +326,36 @@ const HomePage: React.FC = () => {
                   color: 'white',
                   fontWeight: 600,
                   textTransform: 'uppercase',
-                  fontSize: { xs: '2.25rem', md: '3.5rem' },
+                  fontSize: { 
+                    xs: '2rem',    // Smaller on mobile
+                    sm: '2.5rem',  // Medium on small tablets
+                    md: '3.5rem'   // Original on desktop
+                  },
                   letterSpacing: '0.05em',
                   position: 'relative',
                   zIndex: 1,
-                  textAlign: { xs: 'center', md: 'left' }
+                  textAlign: 'center', // Always centered for better mobile experience
+                  px: { xs: 2, md: 0 } // Horizontal padding on mobile
                 }}
               >
                 SERVICES
               </Typography>
             </Box>
 
-            {/* Right Column - Vertical Scrolling Service Containers */}
+            {/* Right Column - Service Containers - Responsive */}
             <Box sx={{
-              width: '100%', // Changed to span full width
-              height: { xs: '70%', md: '100%' },
-              position: 'absolute', // Position absolutely to span full width
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
+              width: '100%',
+              height: { xs: '75%', sm: '70%', md: '100%' }, // Responsive height
+              position: { xs: 'relative', md: 'absolute' }, // Relative on mobile, absolute on desktop
+              top: { xs: 'auto', md: 0 },
+              left: { xs: 'auto', md: 0 },
+              right: { xs: 'auto', md: 0 },
+              bottom: { xs: 'auto', md: 0 },
               display: 'flex',
               alignItems: 'center',
-              justifyContent: { xs: 'center', md: 'flex-end' }, // Align to right on desktop
-              pr: { md: 0 }, // Ensure no right padding on desktop
-              pointerEvents: 'none' // Prevent blocking clicks on left column
+              justifyContent: { xs: 'center', md: 'flex-end' },
+              pr: { md: 0 },
+              pointerEvents: 'none'
             }}>
               <Box
                 ref={scrollContainerRef}
@@ -349,17 +363,16 @@ const HomePage: React.FC = () => {
                   height: '100%',
                   width: '100%',
                   overflowY: 'auto',
-                  scrollSnapType: 'y mandatory', // Re-enable scroll snap for proper centering
-                  scrollbarWidth: 'none', // Hide scrollbar for Firefox
-                  msOverflowStyle: 'none', // Hide scrollbar for IE/Edge
+                  scrollSnapType: 'y mandatory',
+                  scrollbarWidth: 'none',
+                  msOverflowStyle: 'none',
                   '&::-webkit-scrollbar': {
-                    display: 'none' // Hide scrollbar for Chrome/Safari/Opera
+                    display: 'none'
                   },
-                  pointerEvents: 'auto', // Re-enable pointer events for scrollable content
-                  // Improve scroll performance
+                  pointerEvents: 'auto',
                   willChange: 'scroll-position',
-                  // Ensure smooth scrolling on touch devices
-                  WebkitOverflowScrolling: 'touch'
+                  WebkitOverflowScrolling: 'touch',
+                  px: { xs: 1, sm: 2, md: 0 } // Horizontal padding on mobile/tablet
                 }}
               >
                 {SERVICES.map((service) => (
@@ -368,11 +381,11 @@ const HomePage: React.FC = () => {
                     sx={{
                       width: '100%',
                       height: { xs: '100%', md: '100%' },
-                      scrollSnapAlign: 'center', // Center each service in the viewport
+                      scrollSnapAlign: 'center',
                       scrollSnapStop: 'always',
                       display: 'flex',
                       alignItems: 'center',
-                      justifyContent: 'flex-end', // Changed from 'flex-start' to 'flex-end' to align service containers to the right
+                      justifyContent: { xs: 'center', md: 'flex-end' }, // Center on mobile
                       mb: { xs: 1, md: 1.5 },
                       color: 'white',
                       '&:last-child': {
@@ -380,20 +393,24 @@ const HomePage: React.FC = () => {
                       }
                     }}
                   >
-                    {/* Service Container */}
+                    {/* Service Container - Responsive */}
                     <Box sx={{
-                      borderRadius: 2,
+                      borderRadius: { xs: 3, md: 2 }, // More rounded on mobile
                       overflow: 'hidden',
                       position: 'relative',
-                      p: { xs: 3, md: 4 },
-                      width: '75%',
-                      height: { xs: 'calc(100% - 12px)', md: 'calc(100% - 18px)' },
+                      p: { xs: 2, sm: 3, md: 4 }, // Responsive padding
+                      width: { xs: '95%', sm: '85%', md: '75%' }, // Responsive width
+                      height: { 
+                        xs: 'calc(100% - 8px)', 
+                        sm: 'calc(100% - 10px)', 
+                        md: 'calc(100% - 18px)' 
+                      },
                       display: 'flex',
                       flexDirection: 'column',
-                      alignItems: 'flex-end', // Changed from 'flex-start' to 'flex-end' to align content to the right
-                      justifyContent: 'center',
+                      alignItems: { xs: 'center', md: 'flex-end' }, // Center on mobile
+                      justifyContent: 'center'
                     }}>
-                      {/* Background watermark logo */}
+                      {/* Background watermark logo - Responsive */}
                       <Box
                         component="img"
                         src={service.logoUrl}
@@ -401,21 +418,22 @@ const HomePage: React.FC = () => {
                         sx={{
                           position: 'absolute',
                           top: '50%',
-                          left: '70%',
+                          left: { xs: '50%', md: '70%' }, // Centered on mobile
                           transform: 'translate(-50%, -50%)',
-                          width: '17.5%',
+                          width: { xs: '15%', sm: '16%', md: '17.5%' }, // Responsive size
                           height: 'auto',
-                          opacity: 1,
+                          opacity: { xs: 0.7, md: 1 }, // Slightly more transparent on mobile
                           pointerEvents: 'none'
                         }}
                       />
                       
-                      {/* Water Drop Title */}
+                      {/* Service Title - Responsive */}
                       <Box sx={{
                         display: 'flex',
-                        justifyContent: 'flex-end', // Changed from 'flex-start' to 'flex-end' for right alignment
+                        justifyContent: { xs: 'center', md: 'flex-end' }, // Center on mobile
                         alignItems: 'flex-start',
-                        width: '100%'
+                        width: '100%',
+                        mb: { xs: 1, md: 0 }
                       }}>
                         <Typography
                           variant="h3"
@@ -424,19 +442,24 @@ const HomePage: React.FC = () => {
                             fontWeight: 600,
                             zIndex: 2,
                             position: 'relative',
-                            fontSize: { xs: '1.5rem', md: '1.875rem' },
-                            textAlign: 'right' // Add right text alignment
+                            fontSize: { 
+                              xs: '1.25rem',  // Smaller on mobile
+                              sm: '1.5rem',   // Medium on tablets
+                              md: '1.875rem'  // Original on desktop
+                            },
+                            textAlign: { xs: 'center', md: 'right' }, // Center on mobile
+                            textShadow: '2px 2px 4px rgba(0,0,0,0.5)' // Text shadow for better readability
                           }}
                         >
                           {service.title}
                         </Typography>
                       </Box>
                       
-                      {/* Bottom section with Learn More and Play button */}
+                      {/* Learn More Button - Responsive */}
                       <Box sx={{
                         display: 'flex',
-                        marginTop: '0.8rem',
-                        justifyContent: 'flex-end', // Right alignment
+                        marginTop: { xs: '0.5rem', md: '0.8rem' },
+                        justifyContent: { xs: 'center', md: 'flex-end' }, // Center on mobile
                         alignItems: 'center',
                         zIndex: 2,
                         position: 'relative',
@@ -454,7 +477,7 @@ const HomePage: React.FC = () => {
                             path="/services"
                             variant="dark"
                             showPlayIcon
-                            fontSize={{ xs: '1rem', md: '1rem' }}
+                            fontSize={{ xs: '0.875rem', sm: '1rem', md: '1rem' }} // Responsive font size
                           />
                         </Box>
                       </Box>
@@ -469,10 +492,7 @@ const HomePage: React.FC = () => {
       <Box sx={{ 
         pt: 14,
         pb: 14,
-        backgroundColor: 'rgba(30, 67, 136, 0.08)',
-        backdropFilter: 'blur(10px)',
-        borderTop: '1px solid rgba(30, 67, 136, 0.12)',
-        borderBottom: '1px solid rgba(30, 67, 136, 0.12)'
+        backgroundColor: '#fff'
       }}>
         <Container maxWidth="lg">
           <Typography
