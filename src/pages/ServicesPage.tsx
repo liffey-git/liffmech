@@ -31,7 +31,7 @@ const ServicesPage: React.FC = () => {
     } else {
       window.scrollTo(0, 0);
     }
-  }, []);
+  }, [tabParam]);
 
   // Handle initial scroll position based on tab parameter
   useEffect(() => {
@@ -45,7 +45,7 @@ const ServicesPage: React.FC = () => {
       // Otherwise scroll to top
       window.scrollTo(0, 0);
     }
-  }, []); // Run only once on mount
+  }, [tabParam]); // Added tabParam dependency
 
   // Update tab when URL parameter changes
   useEffect(() => {

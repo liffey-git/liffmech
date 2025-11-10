@@ -213,7 +213,7 @@ export const gridLayouts = {
   // Featured item layout (larger horizontal space)
   featuredLayout: {
     display: 'flex',
-    flexDirection: { xs: 'column', lg: 'row' } as any,
+    flexDirection: { xs: 'column', lg: 'row' } as 'column' | 'row' | { xs: 'column'; lg: 'row' },
     gap: { xs: spacing.lg, lg: spacing.xl },
     alignItems: { xs: 'center', lg: 'flex-start' }
   } as SxProps<Theme>

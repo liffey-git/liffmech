@@ -206,8 +206,8 @@ const ProjectFilters: React.FC<ProjectFiltersProps> = ({
     const selectedValues = typeof value === 'string' ? value.split(',') : value;
     
     // Separate services and client types
-    const services = selectedValues.filter(v => SERVICE_TAGS.includes(v as any));
-    const clientTypes = selectedValues.filter(v => CLIENT_TYPES.includes(v as any));
+    const services = selectedValues.filter(v => SERVICE_TAGS.includes(v as typeof SERVICE_TAGS[number]));
+    const clientTypes = selectedValues.filter(v => CLIENT_TYPES.includes(v as typeof CLIENT_TYPES[number]));
     
     onServiceChange(services);
     onClientTypeChange(clientTypes);
