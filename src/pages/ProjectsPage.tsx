@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Box, Container, Typography, Divider } from '@mui/material';
+import { useLocation } from 'react-router-dom';
 import HeroSection from '../components/common/HeroSection';
 import FilterableProjectCard from '../components/common/FilterableProjectCard';
 import FeaturedProjectCard from '../components/common/FeaturedProjectCard';
@@ -9,6 +10,8 @@ import { Project } from '../types';
 import { FEATURED_PROJECT, PROJECTS_BY_CATEGORY } from '../utils/projectsData';
 
 const ProjectsPage: React.FC = () => {
+  const location = useLocation();
+  
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -18,6 +21,46 @@ const ProjectsPage: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
   const [selectedClientTypes, setSelectedClientTypes] = useState<string[]>([]);
+
+  // Check for project parameter in URL and open lightbox
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const projectId = params.get('project');
+    
+    if (projectId) {
+      // Find project in all categories or featured project
+      let foundProject: Project | null = null;
+      
+      if (FEATURED_PROJECT.id === parseInt(projectId)) {
+        foundProject = FEATURED_PROJECT;
+      } else {
+        // Search in all categories
+        Object.values(PROJECTS_BY_CATEGORY).forEach(projects => {
+          const project = projects.find(p => p.id === parseInt(projectId));
+          if (project) {
+            foundProject = project;
+          }
+        });
+      }
+      
+      if (foundProject) {
+        setSelectedProject(foundProject);
+        setLightboxOpen(true);
+        
+        // Position page at the project card (20% from top) without smooth scrolling
+        setTimeout(() => {
+          const projectCard = document.querySelector(`[data-project-id="${projectId}"]`);
+          if (projectCard) {
+            const cardRect = projectCard.getBoundingClientRect();
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const targetPosition = cardRect.top + scrollTop - (window.innerHeight * 0.2);
+            
+            window.scrollTo(0, targetPosition);
+          }
+        }, 100);
+      }
+    }
+  }, [location.search]);
 
   const handleProjectClick = (project: Project) => {
     setSelectedProject(project);

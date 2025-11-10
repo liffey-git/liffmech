@@ -1,8 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, Container, Typography, Paper } from '@mui/material';
 import HeroSection from '../components/common/HeroSection';
+import ImageLightbox from '../components/common/ImageLightbox';
 
 const AboutPage: React.FC = () => {
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -360,12 +363,7 @@ const AboutPage: React.FC = () => {
                   height: { xs: 180, md: 180 }, 
                   borderRadius: '50%',
                   overflow: 'hidden',
-                  mb: 2,
-                  transition: 'transform 0.3s ease-in-out',
-                  cursor: 'pointer',
-                  '&:hover': {
-                    transform: 'scale(1.1)'
-                  }
+                  mb: 2
                 }}
               >
                 <Box
@@ -404,12 +402,7 @@ const AboutPage: React.FC = () => {
                   height: { xs: 180, md: 180 }, 
                   borderRadius: '50%',
                   overflow: 'hidden',
-                  mb: 2,
-                  transition: 'transform 0.3s ease-in-out',
-                  cursor: 'pointer',
-                  '&:hover': {
-                    transform: 'scale(1.1)'
-                  }
+                  mb: 2
                 }}
               >
                 <Box
@@ -448,12 +441,7 @@ const AboutPage: React.FC = () => {
                   height: { xs: 180, md: 180 }, 
                   borderRadius: '50%',
                   overflow: 'hidden',
-                  mb: 2,
-                  transition: 'transform 0.3s ease-in-out',
-                  cursor: 'pointer',
-                  '&:hover': {
-                    transform: 'scale(1.1)'
-                  }
+                  mb: 2
                 }}
               >
                 <Box
@@ -492,12 +480,7 @@ const AboutPage: React.FC = () => {
                   height: { xs: 180, md: 180 }, 
                   borderRadius: '50%',
                   overflow: 'hidden',
-                  mb: 2,
-                  transition: 'transform 0.3s ease-in-out',
-                  cursor: 'pointer',
-                  '&:hover': {
-                    transform: 'scale(1.1)'
-                  }
+                  mb: 2
                 }}
               >
                 <Box
@@ -548,12 +531,18 @@ const AboutPage: React.FC = () => {
               <Box 
                 component="img"
                 src="/images/3b13d67a-c025-4152-8bae-94dd985cb341.jpg"
-                alt="Section Image"
+                alt="Community Involvement"
+                onClick={() => setLightboxOpen(true)}
                 sx={{ 
                   width: '100%', 
                   height: '400px', 
                   objectFit: 'cover',
-                  borderRadius: 2
+                  borderRadius: 2,
+                  cursor: 'pointer',
+                  transition: 'transform 0.3s ease-in-out',
+                  '&:hover': {
+                    transform: 'scale(1.02)'
+                  }
                 }}
               />
             </Box>
@@ -575,6 +564,14 @@ const AboutPage: React.FC = () => {
             </Box>
           </Box>
         </Container>      </Box>
+
+      {/* Image Lightbox */}
+      <ImageLightbox
+        isOpen={lightboxOpen}
+        onClose={() => setLightboxOpen(false)}
+        imageUrl="/images/3b13d67a-c025-4152-8bae-94dd985cb341.jpg"
+        alt="Community Involvement"
+      />
     </Box>
   );
 };

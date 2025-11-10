@@ -10,6 +10,7 @@ interface FilterableProjectCardProps {
 const FilterableProjectCard: React.FC<FilterableProjectCardProps> = ({ project, onClick }) => {
   return (
     <Card 
+      data-project-id={project.id}
       sx={{ 
         maxWidth: 345,
         height: 'auto',

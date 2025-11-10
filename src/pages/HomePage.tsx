@@ -4,102 +4,150 @@ import { Link as RouterLink } from 'react-router-dom';
 import HeroSection from '../components/common/HeroSection';
 import LearnMoreButton from '../components/common/LearnMoreButton';
 import { SERVICES } from '../utils/constants';
+import { FEATURED_PROJECT, PROJECTS_BY_CATEGORY } from '../utils/projectsData';
 import { Project } from '../types';
 
 const HomePage: React.FC = () => {
   const [currentServiceIndex, setCurrentServiceIndex] = useState(0);
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const servicesSectionRef = useRef<HTMLDivElement>(null);
 
-  // Handle scroll to change background image based on visible service
+  // Handle scroll capture in services section
   useEffect(() => {
-    const scrollContainer = scrollContainerRef.current;
-    if (!scrollContainer) return;
+    let wheelDelta = 0;
+    const SCROLL_THRESHOLD = 300; // Amount to scroll before changing service (increased for slower feel)
 
-    const handleScroll = (e: Event) => {
-      const container = e.target as HTMLElement;
-      const containerHeight = container.clientHeight;
-      const scrollTop = container.scrollTop;
-      const serviceHeight = containerHeight; // Each service takes full height
-
-      // Calculate which service is most visible
-      const newIndex = Math.round(scrollTop / serviceHeight);
-      const clampedIndex = Math.max(0, Math.min(newIndex, SERVICES.length - 1));
-
-      if (clampedIndex !== currentServiceIndex) {
-        setCurrentServiceIndex(clampedIndex);
-      }
-    };
-
-    // Handle wheel events for scroll pass-through
     const handleWheel = (e: WheelEvent) => {
-      const container = e.currentTarget as HTMLElement;
-      const { scrollTop, scrollHeight, clientHeight } = container;
-      const isAtTop = scrollTop <= 1; // Small tolerance for floating point precision
-      const isAtBottom = scrollTop >= scrollHeight - clientHeight - 1; // Small tolerance
+      const servicesSection = servicesSectionRef.current;
+      if (!servicesSection) return;
 
-      // If we're at boundaries and trying to scroll past them
-      if ((isAtTop && e.deltaY < 0) || (isAtBottom && e.deltaY > 0)) {
+      const rect = servicesSection.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      const isMobile = window.innerWidth < 900;
+      
+      // For mobile: Check if SERVICES title is at navbar position (64px from top)
+      // For desktop: Check if section center is roughly centered in viewport
+      let shouldCapture = false;
+      
+      if (isMobile) {
+        // Mobile: Start capturing when section is entering viewport, but allow scrolling back up when at top
+        const isScrollingDown = e.deltaY > 0;
+        if (isScrollingDown) {
+          shouldCapture = rect.top <= 400 && rect.bottom > windowHeight * 0.3;
+        } else {
+          // When scrolling up, only capture if section is already positioned (top near navbar)
+          shouldCapture = rect.top <= 100 && rect.top >= 0;
+        }
+      } else {
+        // Desktop: Check if section center is roughly centered in viewport
+        const sectionCenter = rect.top + rect.height / 2;
+        const viewportCenter = windowHeight / 2;
+        const centerThreshold = windowHeight * 0.25;
+        shouldCapture = Math.abs(sectionCenter - viewportCenter) <= centerThreshold;
+      }
+
+      if (shouldCapture) {
+        const direction = e.deltaY > 0 ? 1 : -1;
+        const newIndex = currentServiceIndex + direction;
+
+        // If trying to scroll beyond boundaries, allow normal page scroll
+        if (newIndex < 0 || newIndex >= SERVICES.length) {
+          // At boundaries, don't prevent scroll - let page scroll naturally
+          wheelDelta = 0;
+          return;
+        }
+
+        // Within bounds, capture the scroll
         e.preventDefault();
         e.stopPropagation();
 
-        // For downward scrolling at bottom, scroll to next section
-        if (isAtBottom && e.deltaY > 0) {
-          const servicesSection = container.closest('div[data-section="services"]');
-          if (servicesSection) {
-            const nextSection = servicesSection.nextElementSibling as HTMLElement;
-            if (nextSection) {
-              nextSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-              return;
-            }
-          }
-        }
+        wheelDelta += e.deltaY;
 
-        // Fallback: manual page scroll
-        window.scrollBy({
-          top: e.deltaY * 0.5, // Reduce scroll speed for better control
-          behavior: 'auto'
-        });
+        // Check if we should change service
+        if (Math.abs(wheelDelta) >= SCROLL_THRESHOLD) {
+          setCurrentServiceIndex(newIndex);
+          wheelDelta = 0;
+        }
+      } else {
+        // Reset when not in capture zone
+        wheelDelta = 0;
       }
-      // If not at boundaries, allow normal container scrolling with snap
     };
 
-    // Handle touch events for mobile scroll pass-through
+    // Handle touch for mobile
     let touchStartY = 0;
+    let touchDelta = 0;
+
     const handleTouchStart = (e: TouchEvent) => {
       touchStartY = e.touches[0].clientY;
     };
 
     const handleTouchMove = (e: TouchEvent) => {
-      const container = e.currentTarget as HTMLElement;
-      const { scrollTop, scrollHeight, clientHeight } = container;
-      const isAtTop = scrollTop === 0;
-      const isAtBottom = Math.abs(scrollHeight - clientHeight - scrollTop) <= 1;
+      const servicesSection = servicesSectionRef.current;
+      if (!servicesSection) return;
 
-      const touchY = e.touches[0].clientY;
-      const deltaY = touchStartY - touchY;
+      const rect = servicesSection.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      const isMobile = window.innerWidth < 900;
+      
+      // For mobile: Check if SERVICES title is at navbar position (64px from top)
+      // For desktop: Check if section is in viewport
+      let inSection = false;
+      
+      if (isMobile) {
+        const touchY = e.touches[0].clientY;
+        const deltaY = touchStartY - touchY;
+        
+        // Mobile: Start capturing when section is entering viewport, but allow scrolling back up when at top
+        const isScrollingDown = deltaY > 0;
+        if (isScrollingDown) {
+          inSection = rect.top <= 400 && rect.bottom > windowHeight * 0.3;
+        } else {
+          // When scrolling up, only capture if section is already positioned (top near navbar)
+          inSection = rect.top <= 100 && rect.top >= 0;
+        }
+      } else {
+        // Desktop: Check if section is in viewport (at least 50% visible)
+        const sectionMiddle = rect.top + rect.height / 2;
+        inSection = sectionMiddle >= 0 && sectionMiddle <= windowHeight;
+      }
 
-      // If we're at boundaries and trying to scroll past them
-      if ((isAtTop && deltaY < 0) || (isAtBottom && deltaY > 0)) {
+      if (inSection) {
+        const touchY = e.touches[0].clientY;
+        const deltaY = touchStartY - touchY;
+        const direction = deltaY > 0 ? 1 : -1;
+        const newIndex = currentServiceIndex + direction;
+
+        // If trying to scroll beyond boundaries, allow normal page scroll
+        if (newIndex < 0 || newIndex >= SERVICES.length) {
+          // At boundaries, don't prevent scroll - let page scroll naturally
+          touchDelta = 0;
+          return;
+        }
+
+        // Within bounds, capture the scroll
         e.preventDefault();
-        e.stopPropagation();
-        // Allow page scroll by not preventing the touch event
-        window.scrollBy({
-          top: deltaY,
-          behavior: 'auto'
-        });
+
+        touchDelta += deltaY;
+        touchStartY = touchY;
+
+        if (Math.abs(touchDelta) >= SCROLL_THRESHOLD) {
+          setCurrentServiceIndex(newIndex);
+          touchDelta = 0;
+        }
+      } else {
+        // Reset when not in section
+        touchDelta = 0;
       }
     };
 
-    scrollContainer.addEventListener('scroll', handleScroll);
-    scrollContainer.addEventListener('wheel', handleWheel, { passive: false });
-    scrollContainer.addEventListener('touchstart', handleTouchStart, { passive: false });
-    scrollContainer.addEventListener('touchmove', handleTouchMove, { passive: false });
+    window.addEventListener('wheel', handleWheel, { passive: false });
+    window.addEventListener('touchstart', handleTouchStart, { passive: true });
+    window.addEventListener('touchmove', handleTouchMove, { passive: false });
 
     return () => {
-      scrollContainer.removeEventListener('scroll', handleScroll);
-      scrollContainer.removeEventListener('wheel', handleWheel);
-      scrollContainer.removeEventListener('touchstart', handleTouchStart);
-      scrollContainer.removeEventListener('touchmove', handleTouchMove);
+      window.removeEventListener('wheel', handleWheel);
+      window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchmove', handleTouchMove);
     };
   }, [currentServiceIndex]);
 
@@ -108,50 +156,13 @@ const HomePage: React.FC = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  // Example projects for the projects section
-  const featuredProject: Project = {
-    id: 1,
-    title: 'Jack Nathan Health Centres',
-    imageUrl: '/images/IMG_8967.jpg',
-    description: 'Comprehensive mechanical systems for healthcare facilities',
-    location: 'Toronto, Ontario',
-    industry: 'Healthcare',
-    services: ['HVAC & Refrigeration'],
-    clientType: 'Healthcare'
-  };
-
-  const projectThumbnails: Project[] = [
-    {
-      id: 2,
-      title: 'Commercial HVAC Installation',
-      imageUrl: '/images/IMG_4160.JPG',
-      description: 'Professional HVAC system installation for commercial facility',
-      location: 'Downtown Toronto, Ontario',
-      industry: 'Commercial',
-      services: ['HVAC & Refrigeration'],
-      clientType: 'Commercial'
-    },
-    {
-      id: 3,
-      title: 'Healthcare Mechanical Systems',
-      imageUrl: '/images/IMG_9072.jpg',
-      description: 'Specialized mechanical systems for healthcare environment',
-      location: 'Mississauga, Ontario',
-      industry: 'Healthcare',
-      services: ['Plumbing'],
-      clientType: 'Healthcare'
-    },
-    {
-      id: 4,
-      title: 'Industrial Sheet Metal Work',
-      imageUrl: '/images/IMG_4142.JPG',
-      description: 'Custom sheet metal fabrication and installation',
-      location: 'Vaughan, Ontario',
-      industry: 'Industrial',
-      services: ['Sheet Metal'],
-      clientType: 'Industrial'
-    }
-  ];
+  // Get featured project and first 3 projects from the data source
+  const featuredProject = FEATURED_PROJECT;
+  
+  // Get first 3 projects from all categories combined
+  const projectThumbnails: Project[] = Object.values(PROJECTS_BY_CATEGORY)
+    .flat()
+    .slice(0, 3);
 
   return (
     <Box>
@@ -209,116 +220,107 @@ const HomePage: React.FC = () => {
             </Box>
           </Box>
         </Container>
-      </Box>      {/* Services Section with Dynamic Background */}
+      </Box>      {/* Services Section with TRUE Parallax - Original height */}
       <Box
+        ref={servicesSectionRef}
         data-section="services"
         sx={{
           position: 'relative',
           height: {
-            xs: '100vh', // Full viewport height on mobile for better scrolling
-            sm: '80vh',  // Slightly reduced on small tablets
-            md: '70vh'   // Original desktop height
+            xs: '70vh',
+            md: '70vh'
           },
-          overflow: 'hidden',
-          backgroundColor: '#000' // Fallback background to prevent white flash
+          backgroundColor: '#000'
         }}
       >
-        {/* Base background image - always visible */}
-        <Box
-          sx={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundImage: `url(${SERVICES[0]?.imageUrl})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            zIndex: 0
-          }}
-        />
-
-        {/* Multiple background images with fade transitions */}
-        {SERVICES.map((service, index) => (
+        {/* Sticky container that stays in viewport while scrolling */}
+        <Box sx={{
+          position: 'relative',
+          height: '100%',
+          overflow: 'hidden'
+        }}>
+          {/* Base background image - always visible */}
           <Box
-            key={service.id}
             sx={{
               position: 'absolute',
               top: 0,
               left: 0,
               right: 0,
               bottom: 0,
-              backgroundImage: `url(${service.imageUrl})`,
+              backgroundImage: `url(${SERVICES[0]?.imageUrl})`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
-              opacity: currentServiceIndex === index ? 1 : 0,
-              transition: 'opacity 1s ease-in-out',
-              zIndex: 1,
-              '&::before': {
-                content: '""',
+              zIndex: 0
+            }}
+          />
+
+          {/* Multiple background images with fade transitions */}
+          {SERVICES.map((service, index) => (
+            <Box
+              key={service.id}
+              sx={{
                 position: 'absolute',
                 top: 0,
                 left: 0,
                 right: 0,
                 bottom: 0,
-                backgroundColor: 'rgba(0, 0, 0, 0.3)',
-                zIndex: 1
-              }
-            }}
-          />
-        ))}
+                backgroundImage: `url(${service.imageUrl})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                opacity: currentServiceIndex === index ? 1 : 0,
+                transition: 'opacity 0.8s ease-in-out',
+                zIndex: 1,
+                '&::before': {
+                  content: '""',
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  backgroundColor: 'rgba(0, 0, 0, 0.3)',
+                  zIndex: 1
+                }
+              }}
+            />
+          ))}
 
-        {/* Services Content - Responsive Layout */}
-        <Container
-          maxWidth="lg"
-          sx={{
-            position: 'relative',
-            zIndex: 2,
-            height: '100%',
-            display: 'flex',
-            alignItems: 'center',
-            px: { xs: 2, sm: 3, md: 4 } // Responsive padding
-          }}
-        >
-          <Box sx={{
-            display: 'flex',
-            flexDirection: { xs: 'column', md: 'row' },
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            width: '100%',
-            height: '100%',
-            gap: { xs: 0, sm: 2, md: 0 } // Add gap on small screens
-          }}>
-            {/* Left Column - SERVICES Title - Responsive */}
-            <Box sx={{
-              width: { xs: '100%', md: '35%' },
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              alignItems: { xs: 'center', md: 'flex-start' },
-              height: { xs: '25%', sm: '30%', md: '100%' }, // Responsive height
-              pl: { md: 0 },
+          {/* Services Content Container */}
+          <Container
+            maxWidth="lg"
+            sx={{
               position: 'relative',
-              mb: { xs: 2, md: 0 } // Margin bottom on mobile
+              zIndex: 2,
+              height: '100%',
+              display: 'flex',
+              alignItems: 'center',
+              pointerEvents: 'none',
+              overflow: 'hidden'
+            }}
+          >
+            {/* SERVICES Title - Fixed at top of section on mobile */}
+            <Box sx={{
+              display: { xs: 'flex', md: 'none' },
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              zIndex: 10,
+              pointerEvents: 'none',
+              justifyContent: 'center',
+              alignItems: 'center',
+              height: '80px'
             }}>
-              {/* Semi-transparent blue background - Responsive */}
+              {/* Blue background bar spanning full width */}
               <Box sx={{
-                backgroundColor: 'rgba(30, 67, 136, 0.6)', // Slightly more opaque for better mobile readability
                 position: 'absolute',
-                top: { xs: '50%', md: 0 },
-                bottom: { xs: 'auto', md: 0 },
-                left: { xs: '50%', md: '50%' },
-                transform: { 
-                  xs: 'translate(-50%, -50%)', 
-                  md: 'translateX(-64.5%)' 
-                },
-                width: { xs: '90%', sm: '80%', md: '120%' }, // Responsive width
-                height: { xs: 'auto', md: '100%' }, // Auto height on mobile
-                py: { xs: 2, md: 0 }, // Vertical padding on mobile
-                zIndex: 0,
-                borderRadius: { xs: 2, md: 1 } // More rounded on mobile
+                top: 0,
+                left: 0,
+                right: 0,
+                height: '100%',
+                backgroundColor: 'rgba(30, 67, 136, 0.6)',
+                zIndex: 0
               }} />
-              {/* SERVICES Title - Responsive */}
+              
               <Typography
                 variant="h3"
                 component="h2"
@@ -326,168 +328,219 @@ const HomePage: React.FC = () => {
                   color: 'white',
                   fontWeight: 600,
                   textTransform: 'uppercase',
-                  fontSize: { 
-                    xs: '2rem',    // Smaller on mobile
-                    sm: '2.5rem',  // Medium on small tablets
-                    md: '3.5rem'   // Original on desktop
-                  },
+                  fontSize: '2rem',
                   letterSpacing: '0.05em',
+                  textAlign: 'center',
                   position: 'relative',
-                  zIndex: 1,
-                  textAlign: 'center', // Always centered for better mobile experience
-                  px: { xs: 2, md: 0 } // Horizontal padding on mobile
+                  zIndex: 1
                 }}
               >
                 SERVICES
               </Typography>
             </Box>
 
-            {/* Right Column - Service Containers - Responsive */}
             <Box sx={{
-              width: '100%',
-              height: { xs: '75%', sm: '70%', md: '100%' }, // Responsive height
-              position: { xs: 'relative', md: 'absolute' }, // Relative on mobile, absolute on desktop
-              top: { xs: 'auto', md: 0 },
-              left: { xs: 'auto', md: 0 },
-              right: { xs: 'auto', md: 0 },
-              bottom: { xs: 'auto', md: 0 },
               display: 'flex',
+              width: '100%',
+              height: '100%',
               alignItems: 'center',
-              justifyContent: { xs: 'center', md: 'flex-end' },
-              pr: { md: 0 },
-              pointerEvents: 'none'
+              gap: { xs: 2, md: 4 },
+              pt: { xs: '80px', md: 0 }
             }}>
-              <Box
-                ref={scrollContainerRef}
-                sx={{
+              {/* Left Column - SERVICES Title - Desktop only */}
+              <Box sx={{
+                display: { xs: 'none', md: 'flex' },
+                width: '35%',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'flex-start',
+                height: '100%',
+                pl: 0,
+                position: 'relative'
+              }}>
+                {/* Semi-transparent blue background - Desktop */}
+                <Box sx={{
+                  backgroundColor: 'rgba(30, 67, 136, 0.6)',
+                  position: 'absolute',
+                  top: 0,
+                  bottom: 0,
+                  left: '50%',
+                  transform: 'translateX(-50%)',
+                  width: '120%',
                   height: '100%',
-                  width: '100%',
-                  overflowY: 'auto',
-                  scrollSnapType: 'y mandatory',
-                  scrollbarWidth: 'none',
-                  msOverflowStyle: 'none',
-                  '&::-webkit-scrollbar': {
-                    display: 'none'
-                  },
-                  pointerEvents: 'auto',
-                  willChange: 'scroll-position',
-                  WebkitOverflowScrolling: 'touch',
-                  px: { xs: 1, sm: 2, md: 0 } // Horizontal padding on mobile/tablet
-                }}
-              >
-                {SERVICES.map((service) => (
-                  <Box
-                    key={service.id}
-                    sx={{
-                      width: '100%',
-                      height: { xs: '100%', md: '100%' },
-                      scrollSnapAlign: 'center',
-                      scrollSnapStop: 'always',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: { xs: 'center', md: 'flex-end' }, // Center on mobile
-                      mb: { xs: 1, md: 1.5 },
-                      color: 'white',
-                      '&:last-child': {
-                        mb: 0
-                      }
-                    }}
-                  >
-                    {/* Service Container - Responsive */}
-                    <Box sx={{
-                      borderRadius: { xs: 3, md: 2 }, // More rounded on mobile
-                      overflow: 'hidden',
-                      position: 'relative',
-                      p: { xs: 2, sm: 3, md: 4 }, // Responsive padding
-                      width: { xs: '95%', sm: '85%', md: '75%' }, // Responsive width
-                      height: { 
-                        xs: 'calc(100% - 8px)', 
-                        sm: 'calc(100% - 10px)', 
-                        md: 'calc(100% - 18px)' 
-                      },
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: { xs: 'center', md: 'flex-end' }, // Center on mobile
-                      justifyContent: 'center'
-                    }}>
-                      {/* Background watermark logo - Responsive */}
+                  zIndex: 0,
+                  borderRadius: 1
+                }} />
+                
+                {/* SERVICES Title - Desktop */}
+                <Typography
+                  variant="h3"
+                  component="h2"
+                  sx={{
+                    color: 'white',
+                    fontWeight: 600,
+                    textTransform: 'uppercase',
+                    fontSize: '3.5rem',
+                    letterSpacing: '0.05em',
+                    position: 'relative',
+                    zIndex: 1,
+                    textAlign: 'center',
+                    px: 0,
+                    width: '100%'
+                  }}
+                >
+                  SERVICES
+                </Typography>
+              </Box>
+
+              {/* Right Column - All Service Containers (Scroll Animation) */}
+              <Box sx={{
+                flex: 1,
+                width: { xs: '100%', md: 'auto' },
+                height: '100%',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: { xs: 'center', md: 'flex-end' },
+                position: 'relative',
+                overflow: 'visible',
+                pointerEvents: 'auto',
+                clipPath: {
+                  xs: 'inset(0 0 0 0)',
+                  md: 'none'
+                }
+              }}>
+                {/* All Services - Animated based on scroll progress */}
+                {SERVICES.map((service, index) => {
+                  // Calculate smooth position based on current service index
+                  // When index < currentServiceIndex: service has passed (should be above, negative translateY)
+                  // When index === currentServiceIndex: service is centered (translateY = 0)
+                  // When index > currentServiceIndex: service is upcoming (should be below, positive translateY)
+                  const position = index - currentServiceIndex;
+                  const translateY = position * 255; // 250% spacing so items are fully hidden off screen
+                  const distance = Math.abs(position);
+                  
+                  // Smooth opacity fade based on distance from center
+                  let opacity = 1;
+                  if (distance === 0) {
+                    opacity = 1; // Current service fully visible
+                  } else if (distance === 1) {
+                    opacity = 0.5; // Adjacent services more visible for smoother transition
+                  } else if (distance === 2) {
+                    opacity = 0.25; // Next adjacent visible
+                  } else if (distance === 3) {
+                    opacity = 0.1; // Far adjacent slightly visible
+                  } else {
+                    opacity = 0; // Far services invisible
+                  }
+                  
+                  const isVisible = distance <= 4; // Render current + 4 adjacent on each side for smooth entry/exit
+                  const scale = Math.max(0.85, 1 - (distance * 0.08)); // Subtle scale effect
+                  
+                  return (
+                    <Box
+                      key={service.id}
+                      sx={{
+                        position: 'absolute',
+                        display: isVisible ? 'flex' : 'none',
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        justifyContent: 'flex-end',
+                        gap: { xs: 3, md: 4 },
+                        color: 'white',
+                        pr: { xs: 0, md: 4 },
+                        ml: { xs: '25px', md: 0 },
+                        top: '50%',
+                        left: { xs: '50%', md: 'auto' },
+                        right: { xs: 'auto', md: 0 },
+                        width: '300px',
+                        height: '225px',
+                        transform: {
+                          xs: `translate(-50%, calc(-50% + ${translateY}%)) scale(${scale})`,
+                          md: `translate(0, calc(-50% + ${translateY}%)) scale(${scale})`
+                        },
+                        opacity,
+                        transition: 'transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.8s ease-in-out',
+                        pointerEvents: distance === 0 ? 'auto' : 'none',
+                        transformOrigin: 'center center',
+                        willChange: 'transform, opacity'
+                      }}
+                    >
+                      {/* Service Logo */}
                       <Box
                         component="img"
                         src={service.logoUrl}
-                        alt=""
+                        alt={service.title}
                         sx={{
+                          height: '225px',
+                          width: 'auto',
                           position: 'absolute',
-                          top: '50%',
-                          left: { xs: '50%', md: '70%' }, // Centered on mobile
-                          transform: 'translate(-50%, -50%)',
-                          width: { xs: '15%', sm: '16%', md: '17.5%' }, // Responsive size
-                          height: 'auto',
-                          opacity: { xs: 0.7, md: 1 }, // Slightly more transparent on mobile
-                          pointerEvents: 'none'
+                          zIndex: -1,
+                          top: 0,
+                          left: 0,
+                          opacity: 0.65,
+                          flexShrink: 0
                         }}
                       />
                       
-                      {/* Service Title - Responsive */}
-                      <Box sx={{
-                        display: 'flex',
-                        justifyContent: { xs: 'center', md: 'flex-end' }, // Center on mobile
-                        alignItems: 'flex-start',
-                        width: '100%',
-                        mb: { xs: 1, md: 0 }
-                      }}>
+                      {/* Title and Button Column */}
+                      <Box
+                        sx={{
+                          display: 'flex',
+                          flexDirection: 'column',
+                          alignItems: 'flex-start',
+                          gap: { xs: 1.5, md: 2 }
+                        }}
+                      >
+                        {/* Service Title */}
                         <Typography
                           variant="h3"
                           component="h3"
                           sx={{
+                            position: 'absolute',
+                            top: '15%',
+                            left: '20%',
                             fontWeight: 600,
-                            zIndex: 2,
-                            position: 'relative',
-                            fontSize: { 
-                              xs: '1.25rem',  // Smaller on mobile
-                              sm: '1.5rem',   // Medium on tablets
-                              md: '1.875rem'  // Original on desktop
-                            },
-                            textAlign: { xs: 'center', md: 'right' }, // Center on mobile
-                            textShadow: '2px 2px 4px rgba(0,0,0,0.5)' // Text shadow for better readability
+                            width: '250px',
+                            height: '125px',
+                            fontSize: '2.5rem',
+                            textAlign: 'left',
+                            textShadow: '2px 2px 4px rgba(0,0,0,0.5)',
+                            lineHeight: 1.2,
+                            display: 'flex',
+                            alignItems: 'center'
                           }}
                         >
                           {service.title}
                         </Typography>
-                      </Box>
-                      
-                      {/* Learn More Button - Responsive */}
-                      <Box sx={{
-                        display: 'flex',
-                        marginTop: { xs: '0.5rem', md: '0.8rem' },
-                        justifyContent: { xs: 'center', md: 'flex-end' }, // Center on mobile
-                        alignItems: 'center',
-                        zIndex: 2,
-                        position: 'relative',
-                        width: '100%'
-                      }}>
+                        
+                        {/* Learn More Button */}
                         <Box
                           component={RouterLink}
                           to={service.path}
                           sx={{
                             textDecoration: 'none',
-                            color: 'inherit'
+                            color: 'inherit',
+                            position: 'absolute',
+                            bottom: '15%',
+                            right: '10%',
                           }}
                         >
                           <LearnMoreButton
                             path={service.path}
                             variant="dark"
                             showPlayIcon
-                            fontSize={{ xs: '0.875rem', sm: '1rem', md: '1rem' }} // Responsive font size
+                            fontSize='1.25rem'
                           />
                         </Box>
                       </Box>
                     </Box>
-                  </Box>
-                ))}
+                  );
+                })}
               </Box>
             </Box>
-          </Box>
-        </Container>
+          </Container>
+        </Box>
       </Box>      {/* Projects Section - Responsive Grid with FilterableProjectCard Styling */}
       <Box sx={{ 
         pt: 14,
@@ -515,7 +568,7 @@ const HomePage: React.FC = () => {
             {/* Featured Project - Full Width on Top */}
             <Box
               component={RouterLink}
-              to="/projects"
+              to={`/projects?project=${featuredProject.id}`}
               sx={{ 
                 textDecoration: 'none',
                 display: 'block',
@@ -654,7 +707,7 @@ const HomePage: React.FC = () => {
                 <Box
                   key={project.id}
                   component={RouterLink}
-                  to="/projects"
+                  to={`/projects?project=${project.id}`}
                   sx={{ textDecoration: 'none' }}
                 >
                   <Box

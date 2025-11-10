@@ -154,7 +154,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     {
     id: 6,
     title: 'Snow Melt',
-    description: 'Benefiting from a team of certified technicians with extensive experience in Canadian winters, Liffey is a partner you can trust for delivering snow-free parking and driveways. We have developed excellent relationships with manufacturers, and we draw on those relationships to stay abreast of the latest developments in snow-melt systems. With our knowledge of the most up-to-date technology, we can ensure you the optimal solution, from installation of loops to commissioning of systems.',
+    description: 'The Liffey team knows Canadian winters. We have a team of certified technicians with extensive experience in all the weather conditions winter can throw at us, and over the years we have developed excellent relationships with manufacturers. That ensures that we stay abreast of the latest developments in snow-melt systems, allowing us to provide residential, industrial and commercial clients with the optimal solution—from installation to commissioning. Our command of the latest technology ensures that you will enjoy snow-free parking and driveways no matter what winter brings your way.',
     items: [
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
       'Sed tempor nisi sed imperdiet auctor',

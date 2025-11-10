@@ -11,6 +11,7 @@ interface FeaturedProjectCardProps {
 const FeaturedProjectCard: React.FC<FeaturedProjectCardProps> = ({ project, onClick }) => {
   return (
     <Card 
+      data-project-id={project.id}
       sx={{ 
         width: '100%',
         maxWidth: { xs: '100%', lg: '1000px' },
