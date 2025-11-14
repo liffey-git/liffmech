@@ -170,7 +170,64 @@ const HomePage: React.FC = () => {
       <HeroSection
         imageUrl="/images/Hero1.jpg"
         height="70vh"
-      />        {/* About Section */}
+      >
+        <Box
+          sx={{
+            textAlign: 'center',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: { sm: 2.5, md: 3.75 },
+            padding: { sm: 3, md: 4 },
+          }}
+        >
+          {/* Company Name */}
+          <Typography
+            variant="h2"
+            component="div"
+            sx={{
+              fontWeight: 700,
+              fontSize: { 
+                sm: '3.5rem',    // Small tablets: 56px
+                md: '5rem',      // Tablets: 80px
+                lg: '6.5rem',    // Desktop: 104px
+                xl: '8rem'       // Large desktop: 128px
+              },
+              color: '#ffffff',
+              textShadow: '2px 2px 6px rgba(0, 0, 0, 0.8), 0px 0px 20px rgba(0, 0, 0, 0.5)',
+              letterSpacing: { md: 0.8 },
+              lineHeight: 1.2,
+            }}
+          >
+            LIFFEY MECHANICAL
+          </Typography>
+          
+          {/* Tagline */}
+          <Typography
+            variant="h3"
+            component="div"
+            sx={{
+              fontWeight: 700,
+              fontSize: { 
+                sm: '1.75rem',   // Small tablets: 28px
+                md: '2.25rem',   // Tablets: 36px
+                lg: '2.75rem',   // Desktop: 44px
+                xl: '3.28125rem' // Large desktop: 52.5px
+              },
+              textShadow: '2px 2px 6px rgba(0, 0, 0, 0.8), 0px 0px 20px rgba(0, 0, 0, 0.5)',
+              display: 'flex',
+              flexDirection: { xs: 'column', sm: 'row' },
+              gap: { sm: 2, md: 3, lg: 5 },
+              alignItems: 'center',
+              lineHeight: 1.3,
+            }}
+          >
+            <Box component="span" sx={{ color: '#5cbdde' }}>Pride</Box>
+            <Box component="span" sx={{ color: '#5cbdde' }}>Professionalism</Box>
+            <Box component="span" sx={{ color: '#5cbdde' }}>Partnership</Box>
+          </Typography>
+        </Box>
+      </HeroSection>        {/* About Section */}
       <Box sx={{ pt: 20, pb: 20, backgroundColor: '#fff' }}>
         <Container maxWidth="lg">
           <Box sx={{
