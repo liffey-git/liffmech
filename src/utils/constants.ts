@@ -66,11 +66,15 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
       'Flue venting',
       'Industrial ventilation and ductwork'
     ],
-    imageUrl: '/images/IMG_8150.png',
+    imageUrl: '/images/Group 1hvacRef.jpg',
     carouselImages: [
-      '/images/IMG_8150.png',
-      '/images/IMG_8156.jpg',
-      '/images/IMG_8200.jpg'
+      '/images/Group 1hvacRef.jpg',
+      '/images/0432hvacRef.jpg',
+      '/images/4296hvacRef.jpg',
+      '/images/8148hvacRef.jpg',
+      '/images/8151hvacRef.jpg',
+      '/images/8155hvacRef.jpg',
+      '/images/8158hvacRef.jpg'
     ]
   },
   {
@@ -86,11 +90,16 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
       'Emergency repairs',
       'Code compliance upgrades'
     ],
-    imageUrl: '/images/IMG_8874.jpg',
+    imageUrl: '/images/IMG_0419Plumbing.jpg',
     carouselImages: [
-      '/images/IMG_8874.jpg',
-      '/images/IMG_8871.jpg',
-      '/images/IMG_8883.jpg'
+      '/images/IMG_0419Plumbing.jpg',
+      '/images/IMG_0436Plumbing.jpg',
+      '/images/IMG_3871Plumbing.jpg',
+      '/images/IMG_3912Plumbing.jpg',
+      '/images/IMG_4042Plumbing.jpg',
+      '/images/IMG_4098Plumbing.jpg',
+      '/images/IMG_4127Plumbing.jpg',
+      '/images/IMG_8147Plumbing.jpg'
     ]
   },
   {
@@ -105,11 +114,13 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
       'Exhaust systems',
       'Custom fabrication and design'
     ],
-    imageUrl: '/images/IMG_3973.JPG',
+    imageUrl: '/images/IMG_3824SheetMetal.jpg',
     carouselImages: [
-      '/images/IMG_3973.JPG',
-      '/images/IMG_3972.JPG',
-      '/images/IMG_4001.JPG'
+      '/images/IMG_3824SheetMet.jpg',
+      '/images/IMG_3827SheetMet.jpg',
+      '/images/IMG_3833SheetMet.jpg',
+      '/images/IMG_3836SheetMet.jpg',
+      '/images/IMG_3839SheetMet.jpg'
     ]
   },
   {
@@ -126,11 +137,12 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
       'Condensation lines',
       'Control wiring'
     ],
-    imageUrl: '/images/IMG_8154.jpg',
+    imageUrl: '/images/IMG_0426HydronicHeat.jpg',
     carouselImages: [
-      '/images/IMG_8154.jpg',
-      '/images/IMG_8178.jpg',
-      '/images/IMG_8179.jpg'
+      '/images/IMG_0426HydronicHeat.jpg',
+      '/images/IMG_0427HydronicHeat.jpg',
+      '/images/IMG_0428HydronicHeat.jpg',
+      '/images/IMG_3852HydronicHeat.jpg'
     ]
   },
   {
@@ -160,11 +172,13 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
       'Sed tempor nisi sed imperdiet auctor',
       'Donec posuere nulla nec lectus molestie, non lacinia odio sodales'
     ],
-    imageUrl: '/images/IMG_8178.jpg',
+    imageUrl: '/images/IMG_0408Snowmelt.jpg',
     carouselImages: [
-      '/images/IMG_8178.jpg',
-      '/images/IMG_8198.jpg',
-      '/images/IMG_9072.jpg'
+      '/images/IMG_0408Snowmelt.jpg',
+      '/images/IMG_0409Snowmelt.jpg',
+      '/images/IMG_0411Snowmelt.jpg',
+      '/images/IMG_0412Snowmelt.jpg',
+      '/images/IMG_0415Snowmelt.jpg'
     ]
   }
 ];
