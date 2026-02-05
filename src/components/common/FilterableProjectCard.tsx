@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography, Chip, Card, CardMedia, CardContent, CardActionArea } from '@mui/material';
+import { Typography, Card, CardMedia, CardContent, CardActionArea } from '@mui/material';
 import { Project } from '../../types';
 
 interface FilterableProjectCardProps {
@@ -18,6 +18,17 @@ const FilterableProjectCard: React.FC<FilterableProjectCardProps> = ({ project, 
         flexDirection: 'column',
         boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
         transition: 'all 0.3s ease',
+        animation: 'fadeIn 0.4s ease-in',
+        '@keyframes fadeIn': {
+          from: {
+            opacity: 0,
+            transform: 'scale(0.9)'
+          },
+          to: {
+            opacity: 1,
+            transform: 'scale(1)'
+          }
+        },
         '&:hover': {
           boxShadow: '0 8px 24px rgba(0,0,0,0.15)',
           transform: 'translateY(-4px)'
@@ -44,52 +55,6 @@ const FilterableProjectCard: React.FC<FilterableProjectCardProps> = ({ project, 
             }}
           >
             {project.title}
-          </Typography>
-          
-          <Typography 
-            variant="body2" 
-            color="text.secondary" 
-            sx={{ 
-              mb: 2,
-              display: 'flex',
-              alignItems: 'center',
-              fontWeight: 500
-            }}
-          >
-            {project.location}
-          </Typography>
-          
-          {/* Service Tags */}
-          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5, mb: 1 }}>
-            {project.services.map((service, index) => (
-              <Chip
-                key={index}
-                label={service}
-                size="small"
-                variant="outlined"
-                sx={{
-                  fontSize: '0.7rem',
-                  height: '24px',
-                  color: 'primary.main',
-                  borderColor: 'primary.main',
-                  '&:hover': {
-                    backgroundColor: 'primary.light',
-                    color: 'white'
-                  }
-                }}
-              />
-            ))}
-          </Box>
-          
-          {/* Industry Tag */}
-          <Typography 
-            variant="caption" 
-            sx={{ 
-              color: 'text.secondary',
-              fontStyle: 'italic'
-            }}
-          >
-            {project.industry}
           </Typography>
         </CardContent>
       </CardActionArea>

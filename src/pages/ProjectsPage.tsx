@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { Box, Container, Typography, Divider } from '@mui/material';
+import { Box, Container, Typography } from '@mui/material';
 import { useLocation } from 'react-router-dom';
-import HeroSection from '../components/common/HeroSection';
 import FilterableProjectCard from '../components/common/FilterableProjectCard';
 import FeaturedProjectCard from '../components/common/FeaturedProjectCard';
 import ProjectFilters from '../components/common/ProjectFilters';
@@ -107,12 +106,6 @@ const ProjectsPage: React.FC = () => {
 
   return (
     <Box>
-      {/* Hero Section */}
-      <HeroSection 
-        imageUrl="/images/IMG_8855.jpg"
-        height="50vh"
-      />
-      
       {/* Main Content */}
       <Box sx={{ pt: 14, pb: 8, backgroundColor: '#fff' }}>
         <Container maxWidth="lg">
@@ -172,45 +165,26 @@ const ProjectsPage: React.FC = () => {
             onClearFilters={handleClearFilters}
           />
 
-          {/* Projects by Category */}
-          {Object.entries(filteredProjects).map(([category, projects], categoryIndex) => (
-            <Box key={category} sx={{ mb: 6 }}>
-              <Typography 
-                variant="h3" 
-                component="h2" 
-                gutterBottom 
-                color="primary" 
-                fontWeight={600}
-                sx={{ mb: 3 }}
-              >
-                {category}
-              </Typography>
-              
-              <Box sx={{ 
-                display: 'grid',
-                gridTemplateColumns: {
-                  xs: '1fr',
-                  sm: 'repeat(2, 1fr)',
-                  md: 'repeat(3, 1fr)'
-                },
-                gap: 3,
-                mb: 4
-              }}>
-                {projects.map((project) => (
-                  <FilterableProjectCard 
-                    key={project.id}
-                    project={project}
-                    onClick={() => handleProjectClick(project)}
-                  />
-                ))}
-              </Box>
-              
-              {/* Divider between categories (except last one) */}
-              {categoryIndex < Object.entries(filteredProjects).length - 1 && (
-                <Divider sx={{ my: 4, bgcolor: 'rgba(0,0,0,0.1)' }} />
-              )}
-            </Box>
-          ))}
+          {/* Projects Grid */}
+          <Box sx={{ 
+            display: 'grid',
+            gridTemplateColumns: {
+              xs: '1fr',
+              sm: 'repeat(2, 1fr)',
+              md: 'repeat(3, 1fr)'
+            },
+            gap: 3
+          }}>
+            {Object.entries(filteredProjects).flatMap(([_category, projects]) => 
+              projects.map((project) => (
+                <FilterableProjectCard 
+                  key={project.id}
+                  project={project}
+                  onClick={() => handleProjectClick(project)}
+                />
+              ))
+            )}
+          </Box>
 
           {/* No Results Message */}
           {Object.keys(filteredProjects).length === 0 && hasActiveFilters && (

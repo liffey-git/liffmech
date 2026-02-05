@@ -81,14 +81,8 @@ const ServicesPage: React.FC = () => {
                 xs: '100%', 
                 md: 'calc(60% - 16px)' 
               }            }}>              
-              <Typography variant="h3" component="h3" gutterBottom align="left" color="primary" fontWeight={600}>
-                Lorem ipsum dolor sit amet
-              </Typography>
               <Typography variant="body1" paragraph>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc et tortor ex. Aliquam sed posuere leo. Nam bibendum at felis et consequat. Sed leo odio, egestas sed dignissim non, pretium sagittis leo. Vivamus gravida felis sit amet dui consequat, in lacinia felis elementum. Fusce enim magna, consequat ut purus ac, pharetra interdum nulla. 
-              </Typography>
-              <Typography variant="body1">
-                Donec eget lorem id lacus lobortis imperdiet. Morbi pretium convallis felis, ac finibus risus pellentesque ac. Nulla sapien tortor, eleifend pharetra felis ac, sagittis convallis eros. Quisque mollis condimentum rutrum. Praesent quam eros, maximus at libero nec, placerat sodales nibh. 
+                We provide a complete range of mechanical services for commercial, institutional, and industrial projects across Ontario. As our clients&apos; sole contractor, we work with you from initial design through to installation and post-project maintenance, with a clear focus on one objective: to ensure that your project is completed on time, on budget, and to specification.
               </Typography>
             </Box>
             <Box sx={{ 

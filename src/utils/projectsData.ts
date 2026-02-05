@@ -6,7 +6,8 @@ export const SERVICE_TAGS = [
   'Plumbing',
   'Sheet Metal',
   'Hydronic Heating',
-  'Mechanical Wiring'
+  'Mechanical Wiring',
+  'Snow Melt'
 ] as const;
 
 export const CLIENT_TYPES = [
@@ -47,7 +48,7 @@ export const PROJECTS_BY_CATEGORY: Record<string, Project[]> = {
       title: 'BMO Financial',
       description: 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris blandit aliquet elit.',
       location: 'Mississauga, Ontario',
-      imageUrl: '/images/IMG_8961.jpg',
+      imageUrl: '/images/BMO.jpg',
       industry: 'Banking',
       services: ['HVAC & Refrigeration', 'Plumbing', 'Mechanical Wiring'],
       clientType: 'Financial'

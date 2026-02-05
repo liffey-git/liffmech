@@ -181,6 +181,18 @@ const HomePage: React.FC = () => {
             padding: { sm: 3, md: 4 },
           }}
         >
+          {/* Logo Icon */}
+          <Box
+            component="img"
+            src="/images/icons/liffyDrop_Wht_100x100.svg"
+            alt="Liffey Mechanical Logo"
+            sx={{
+              width: { xs: 160, sm: 200, md: 240, lg: 280 },
+              height: { xs: 160, sm: 200, md: 240, lg: 280 },
+              filter: 'drop-shadow(2px 2px 6px rgba(0, 0, 0, 0.8))'
+            }}
+          />
+          
           {/* Company Name */}
           <Typography
             variant="h2"

@@ -64,7 +64,7 @@ const ProjectFilters: React.FC<ProjectFiltersProps> = ({
         mb: 4 
       }}>
         <Typography variant="h3" component="h2" color="primary" fontWeight={700}>
-          Filter Projects
+          Projects
         </Typography>
         
         {hasActiveFilters && (
@@ -104,7 +104,7 @@ const ProjectFilters: React.FC<ProjectFiltersProps> = ({
           fontWeight={600}
           sx={{ mb: 2, color: 'text.primary' }}
         >
-          Services
+          Filters
         </Typography>
         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1.5 }}>
           {SERVICE_TAGS.map((service) => (
@@ -148,7 +148,7 @@ const ProjectFilters: React.FC<ProjectFiltersProps> = ({
       </Box>
 
       {/* Client Types Section */}
-      <Box sx={{ mb: 2 }}>
+      <Box sx={{ mb: 2, display: 'none' }}>
         <Typography 
           variant="h6" 
           gutterBottom 

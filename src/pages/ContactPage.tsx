@@ -4,7 +4,6 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
 import ContactForm from '../components/forms/ContactForm';
-import HeroSection from '../components/common/HeroSection';
 
 const ContactPage: React.FC = () => {
   // Scroll to top when component mounts
@@ -13,12 +12,7 @@ const ContactPage: React.FC = () => {
   }, []);
 
   return (
-    <Box>      {/* Hero Section */}
-      <HeroSection 
-        imageUrl="/images/IMG_4001.JPG"
-        height="50vh"
-      />
-      
+    <Box>
       <Box sx={{ pt: 14, pb: 14 }}>
         <Container maxWidth="lg">
           {/* Page Header */}          <Box sx={{ mb: 6 }}>

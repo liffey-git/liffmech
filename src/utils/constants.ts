@@ -6,42 +6,42 @@ export const SERVICES: Service[] = [
     id: 1,
     title: 'HVAC & Refrigeration',
     path: '/services?tab=0',
-    imageUrl: '/images/IMG_8150.png',
+    imageUrl: '/images/IMG_0432hvacRef.jpg',
     logoUrl: '/images/icons/ServiceLogo.svg'
   },
   {
     id: 2,
     title: 'Plumbing',
     path: '/services?tab=1',
-    imageUrl: '/images/IMG_8874.jpg',
+    imageUrl: '/images/IMG_0419Plumbing.jpg',
     logoUrl: '/images/icons/ServiceLogo.svg'
   },
   {
     id: 3,
     title: 'Sheet Metal',
     path: '/services?tab=2',
-    imageUrl: '/images/IMG_3973.JPG',
+    imageUrl: '/images/IMG_3824SheetMet.jpg',
     logoUrl: '/images/icons/ServiceLogo.svg'
   },
   {
     id: 4,
     title: 'Hydronic Heating',
     path: '/services?tab=3',
-    imageUrl: '/images/IMG_8154.jpg',
+    imageUrl: '/images/Hydronic/HydronicHeating1.jpeg',
     logoUrl: '/images/icons/ServiceLogo.svg'
   },
   {
     id: 5,
     title: 'Mechanical Wiring',
     path: '/services?tab=4',
-    imageUrl: '/images/IMG_8178.jpg',
+    imageUrl: '/images/Mech_Wire_BG.jpg',
     logoUrl: '/images/icons/ServiceLogo.svg'
   },
   {
     id: 6,
     title: 'Snow Melt',
     path: '/services?tab=5',
-    imageUrl: '/images/IMG_8178.jpg',
+    imageUrl: '/images/Snowmelt/IMG_0408Snowmelt.jpeg',
     logoUrl: '/images/icons/ServiceLogo.svg'
   }
 ];
@@ -66,15 +66,14 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
       'Flue venting',
       'Industrial ventilation and ductwork'
     ],
-    imageUrl: '/images/Group 1hvacRef.jpg',
+    imageUrl: '/images/HVAC-R/Group 1hvacRef.jpg',
     carouselImages: [
-      '/images/Group 1hvacRef.jpg',
-      '/images/0432hvacRef.jpg',
-      '/images/4296hvacRef.jpg',
-      '/images/8148hvacRef.jpg',
-      '/images/8151hvacRef.jpg',
-      '/images/8155hvacRef.jpg',
-      '/images/8158hvacRef.jpg'
+      '/images/HVAC-R/Group 1hvacRef.jpg',
+      '/images/HVAC-R/IMG_0432hvacRef.jpg',
+      '/images/HVAC-R/WhatsApp Image 2026-02-03 at 1.44.48 PM.jpeg',
+      '/images/HVAC-R/WhatsApp Image 2026-02-03 at 1.45.19 PM.jpeg',
+      '/images/HVAC-R/IMG_0431.jpeg',
+      '/images/HVAC-R/WhatsApp Image 2026-02-03 at 11.40.32 AM.jpeg'
     ]
   },
   {
@@ -96,10 +95,11 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
       '/images/IMG_0436Plumbing.jpg',
       '/images/IMG_3871Plumbing.jpg',
       '/images/IMG_3912Plumbing.jpg',
-      '/images/IMG_4042Plumbing.jpg',
-      '/images/IMG_4098Plumbing.jpg',
-      '/images/IMG_4127Plumbing.jpg',
-      '/images/IMG_8147Plumbing.jpg'
+      '/images/Plumbing/WhatsApp Image 2026-02-03 at 1.44.18 PM.jpeg',
+      '/images/Plumbing/WhatsApp Image 2026-02-03 at 1.58.50 PM.jpeg',
+      '/images/Plumbing/WhatsApp Image 2026-02-03 at 8.50.27 AM.jpeg',
+      '/images/Plumbing/WhatsApp Image 2026-02-03 at 8.51.54 AM.jpeg',
+      '/images/Plumbing/WhatsApp Image 2026-02-03 at 8.53.19 AM.jpeg'
     ]
   },
   {
@@ -114,13 +114,13 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
       'Exhaust systems',
       'Custom fabrication and design'
     ],
-    imageUrl: '/images/IMG_3824SheetMetal.jpg',
+    imageUrl: '/images/Sheetmetal/IMG_3836.JPG',
     carouselImages: [
-      '/images/IMG_3824SheetMet.jpg',
-      '/images/IMG_3827SheetMet.jpg',
-      '/images/IMG_3833SheetMet.jpg',
-      '/images/IMG_3836SheetMet.jpg',
-      '/images/IMG_3839SheetMet.jpg'
+      '/images/Sheetmetal/IMG_3836.JPG',
+      '/images/Sheetmetal/WhatsApp Image 2026-02-03 at 1.51.15 PM.jpeg',
+      '/images/Sheetmetal/WhatsApp Image 2026-02-03 at 8.47.58 AM.jpeg',
+      '/images/Sheetmetal/WhatsApp Image 2026-02-03 at 8.49.57 AM.jpeg',
+      '/images/Sheetmetal/WhatsApp Image 2026-02-03 at 8.52.54 AM.jpeg'
     ]
   },
   {
@@ -137,9 +137,9 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
       'Condensation lines',
       'Control wiring'
     ],
-    imageUrl: '/images/IMG_0426HydronicHeat.jpg',
+    imageUrl: '/images/Hydronic/WhatsApp Image 2026-02-03 at 1.58.29 PM.jpeg',
     carouselImages: [
-      '/images/IMG_0426HydronicHeat.jpg',
+      '/images/Hydronic/WhatsApp Image 2026-02-03 at 1.58.29 PM.jpeg',
       '/images/IMG_0427HydronicHeat.jpg',
       '/images/IMG_0428HydronicHeat.jpg',
       '/images/IMG_3852HydronicHeat.jpg'
@@ -156,11 +156,11 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
       'Data centre wiring',
       'System and equipment maintenance'
     ],
-    imageUrl: '/images/IMG_8178.jpg',
+    imageUrl: '/images/Mechanical Wiring/PXL_20220809_145419586.jpg',
     carouselImages: [
-      '/images/IMG_8178.jpg',
-      '/images/IMG_8198.jpg',
-      '/images/IMG_9072.jpg'
+      '/images/Mechanical Wiring/PXL_20220809_145419586.jpg',
+      '/images/Mechanical Wiring/PXL_20220816_181528269.jpg',
+      '/images/Mechanical Wiring/unnamed.jpg'
     ]
   },
     {

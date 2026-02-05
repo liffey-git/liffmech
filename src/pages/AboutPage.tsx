@@ -247,7 +247,7 @@ const AboutPage: React.FC = () => {
                   Skilled Teams
                 </Typography>
                 <Typography variant="body2">
-                  We assemble teams of skilled tradespeople in all areas: HVAC, plumbing, refrigeration, sheet metal, hydronics, mechanical wiring, snow-melt and preventative maintenance.
+                  We assemble teams of tradespeople skilled in all our areas of service, from HVAC and plumbing to hydronics and mechanical wiring.
                 </Typography>
               </Paper>
             </Box>
@@ -292,42 +292,15 @@ const AboutPage: React.FC = () => {
             Communication—the Liffey Difference
           </Typography>
           <Box sx={{ 
-            display: 'flex', 
-            flexWrap: 'wrap', 
-            gap: 4,
-            alignItems: 'center' 
+            maxWidth: '800px',
+            mx: 'auto'
           }}>
-            <Box sx={{ 
-              width: { 
-                xs: '100%', 
-                md: 'calc(50% - 16px)' 
-              } 
-            }}>              
             <Typography variant="body1" sx={{ mb: 2 }}>
-                Experience has taught us that in a complex business like construction, the unexpected is often the norm. That is why we have made clear, ongoing communication a top priority. After vetting the skills of a potential new hire or prospective subcontractor, we ask one final question: &ldquo;How well do you communicate?&rdquo;
-              </Typography>
-              <Typography variant="body1">
-                We do so because we know that communication is the lifeblood of our business. It&apos;s what drives smooth project management, and helps our clients avoid delays, minimize frustration, and maximize savings. We respond fast. (And if we don&apos;t have the answer, we&apos;ll find it soon.) We spell everything out. And we anticipate bottlenecks by keeping our partners up to date. At Liffey, our dedication to communication is what makes us a partner you can rely on.
-              </Typography>
-            </Box>
-            <Box sx={{ 
-              width: { 
-                xs: '100%', 
-                md: 'calc(50% - 16px)' 
-              } 
-            }}>
-              <Box 
-                component="img"
-                src="/images/IMG_9699.jpeg"
-                alt="Communication - The Liffey Difference"
-                sx={{ 
-                  width: '100%', 
-                  height: '400px', 
-                  objectFit: 'cover',
-                  borderRadius: 2
-                }}
-              />
-            </Box>
+              Experience has taught us that in a complex business like construction, the unexpected is often the norm. That is why we have made clear, ongoing communication a top priority. After vetting the skills of a potential new hire or prospective subcontractor, we ask one final question: &ldquo;How well do you communicate?&rdquo;
+            </Typography>
+            <Typography variant="body1">
+              We do so because we know that communication is the lifeblood of our business. It&apos;s what drives smooth project management, and helps our clients avoid delays, minimize frustration, and maximize savings. We respond fast. (And if we don&apos;t have the answer, we&apos;ll find it soon.) We spell everything out. And we anticipate bottlenecks by keeping our partners up to date. At Liffey, our dedication to communication is what makes us a partner you can rely on.
+            </Typography>
           </Box>
         </Container>
       </Box>      
@@ -338,19 +311,19 @@ const AboutPage: React.FC = () => {
             Executive Team
           </Typography>
           
+          {/* Barry Finnerty Row */}
           <Box sx={{ 
             display: 'flex', 
             flexWrap: 'wrap', 
-            justifyContent: 'center',
-            mx: 'auto',
-            gap: { xs: 4, md: 2 }
-          }}>           
-          {/* Team Member 1 */}
+            gap: 4,
+            alignItems: 'center',
+            mb: 8
+          }}>
+            {/* Barry Finnerty */}
             <Box sx={{ 
               width: { 
                 xs: '100%', 
-                sm: 'calc(50% - 16px)',
-                md: 'calc(25% - 24px)' 
+                md: 'calc(40% - 16px)' 
               },
               display: 'flex',
               flexDirection: 'column',
@@ -359,8 +332,8 @@ const AboutPage: React.FC = () => {
             }}>
               <Box 
                 sx={{ 
-                  width: { xs: 180, md: 180 },
-                  height: { xs: 180, md: 180 }, 
+                  width: { xs: 300, md: 330 },
+                  height: { xs: 300, md: 330 }, 
                   borderRadius: '50%',
                   overflow: 'hidden',
                   mb: 2
@@ -377,19 +350,41 @@ const AboutPage: React.FC = () => {
                   }}
                 />
               </Box>
+            </Box>
+            
+            {/* Text beside Barry */}
+            <Box sx={{ 
+              width: { 
+                xs: '100%', 
+                md: 'calc(60% - 16px)' 
+              } 
+            }}>
               <Typography variant="h5" component="h3" gutterBottom>
                 Barry Finnerty
               </Typography>
-              <Typography variant="body2" color="text.secondary">
-                Founder & President
+              <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+                Founder and President
+              </Typography>
+              <Typography variant="body1">
+                A native of Ireland, Barry moved to Canada in 2012 with a wealth of experience in European mechanical and plumbing systems. He quickly adapted to his new home, leading union projects for clients that ranged from Correctional Service Canada to GO Transit and the Toronto Transit Commission. In 2018 he established Liffey Mechanical, and in under 10 years he guided the company from a niche provider of residential plumbing services to its current status as a mid-sized, full-service mechanical and plumbing contractor for industrial and commercial clients.
               </Typography>
             </Box>
+          </Box>
+
+          {/* Other Team Members Row */}
+          <Box sx={{ 
+            display: 'flex', 
+            flexWrap: 'wrap', 
+            justifyContent: 'center',
+            mx: 'auto',
+            gap: { xs: 4, md: 4 }
+          }}>
               {/* Team Member 2 */}
             <Box sx={{ 
               width: { 
                 xs: '100%', 
                 sm: 'calc(50% - 16px)',
-                md: 'calc(25% - 8px)' 
+                md: 'calc(33.33% - 24px)' 
               },
               display: 'flex',
               flexDirection: 'column',
@@ -428,7 +423,7 @@ const AboutPage: React.FC = () => {
               width: { 
                 xs: '100%', 
                 sm: 'calc(50% - 16px)',
-                md: 'calc(25% - 8px)' 
+                md: 'calc(33.33% - 24px)' 
               },
               display: 'flex',
               flexDirection: 'column',
@@ -467,7 +462,7 @@ const AboutPage: React.FC = () => {
               width: { 
                 xs: '100%', 
                 sm: 'calc(50% - 16px)',
-                md: 'calc(25% - 8px)' 
+                md: 'calc(33.33% - 24px)' 
               },
               display: 'flex',
               flexDirection: 'column',
@@ -561,6 +556,73 @@ const AboutPage: React.FC = () => {
               <Typography variant="body1">
                 We are also sponsors of the Kensington Rovers FC, perennial competitors in the Toronto Services Soccer League (TSSL), as well as the Prospects to Pro soccer club, a high-performing youth team that plays in the GTA and has even competed internationally. Through our support we show our commitment to a vibrant, healthy society.
               </Typography>
+            </Box>
+          </Box>
+
+          {/* Second Row - Three Images */}
+          <Box sx={{ 
+            display: 'flex', 
+            flexWrap: 'wrap', 
+            gap: 3,
+            mt: 6,
+            justifyContent: 'center'
+          }}>
+            <Box sx={{ 
+              width: { 
+                xs: '100%', 
+                sm: 'calc(50% - 12px)',
+                md: 'calc(33.33% - 16px)' 
+              } 
+            }}>
+              <Box 
+                component="img"
+                src="/images/Community/WhatsApp Image 2026-02-03 at 8.55.24 AM.jpeg"
+                alt="Community Involvement 1"
+                sx={{ 
+                  width: '100%', 
+                  height: '280px', 
+                  objectFit: 'cover',
+                  borderRadius: 2
+                }}
+              />
+            </Box>
+            <Box sx={{ 
+              width: { 
+                xs: '100%', 
+                sm: 'calc(50% - 12px)',
+                md: 'calc(33.33% - 16px)' 
+              } 
+            }}>
+              <Box 
+                component="img"
+                src="/images/Community/WhatsApp Image 2026-02-03 at 8.55.31 AM.jpeg"
+                alt="Community Involvement 2"
+                sx={{ 
+                  width: '100%', 
+                  height: '280px', 
+                  objectFit: 'cover',
+                  borderRadius: 2
+                }}
+              />
+            </Box>
+            <Box sx={{ 
+              width: { 
+                xs: '100%', 
+                sm: 'calc(50% - 12px)',
+                md: 'calc(33.33% - 16px)' 
+              } 
+            }}>
+              <Box 
+                component="img"
+                src="/images/Community/WhatsApp Image 2026-02-03 at 8.55.36 AM.jpeg"
+                alt="Community Involvement 3"
+                sx={{ 
+                  width: '100%', 
+                  height: '280px', 
+                  objectFit: 'cover',
+                  borderRadius: 2
+                }}
+              />
             </Box>
           </Box>
         </Container>      </Box>

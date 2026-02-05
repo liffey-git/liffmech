@@ -79,8 +79,8 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
             <Box
               key={index}
               sx={{
-                width: 8,
-                height: 8,
+                width: 16,
+                height: 16,
                 borderRadius: '50%',
                 backgroundColor: currentImageIndex === index ? 'white' : 'rgba(255, 255, 255, 0.5)',
                 cursor: 'pointer',
