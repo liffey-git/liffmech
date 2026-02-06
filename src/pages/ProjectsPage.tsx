@@ -1,75 +1,31 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Box, Container, Typography } from '@mui/material';
-import { useLocation } from 'react-router-dom';
 import FilterableProjectCard from '../components/common/FilterableProjectCard';
 import FeaturedProjectCard from '../components/common/FeaturedProjectCard';
 import ProjectFilters from '../components/common/ProjectFilters';
-import ProjectLightbox from '../components/common/ProjectLightbox';
+import BrandMarquee from '../components/common/BrandMarquee';
 import { Project } from '../types';
 import { FEATURED_PROJECT, PROJECTS_BY_CATEGORY } from '../utils/projectsData';
 
+// Client logos
+const CLIENT_LOGOS = [
+  '/images/ClientLogos/bmo-blue-on-transparent-en.svg',
+  '/images/ClientLogos/rbc-logo-shield.svg',
+  '/images/ClientLogos/scotiabank-logo-red-desktop-200px.svg',
+  '/images/ClientLogos/TD_logo.svg',
+  '/images/ClientLogos/cibc-logo-colour-142x36.svg',
+  '/images/ClientLogos/A&W_logo.svg',
+  '/images/ClientLogos/WMT-Wordmark-Standard-TrueBlue-RGB.png'
+];
+
 const ProjectsPage: React.FC = () => {
-  const location = useLocation();
-  
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const [lightboxOpen, setLightboxOpen] = useState(false);
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
   const [selectedClientTypes, setSelectedClientTypes] = useState<string[]>([]);
-
-  // Check for project parameter in URL and open lightbox
-  useEffect(() => {
-    const params = new URLSearchParams(location.search);
-    const projectId = params.get('project');
-    
-    if (projectId) {
-      // Find project in all categories or featured project
-      let foundProject: Project | null = null;
-      
-      if (FEATURED_PROJECT.id === parseInt(projectId)) {
-        foundProject = FEATURED_PROJECT;
-      } else {
-        // Search in all categories
-        Object.values(PROJECTS_BY_CATEGORY).forEach(projects => {
-          const project = projects.find(p => p.id === parseInt(projectId));
-          if (project) {
-            foundProject = project;
-          }
-        });
-      }
-      
-      if (foundProject) {
-        setSelectedProject(foundProject);
-        setLightboxOpen(true);
-        
-        // Position page at the project card (20% from top) without smooth scrolling
-        setTimeout(() => {
-          const projectCard = document.querySelector(`[data-project-id="${projectId}"]`);
-          if (projectCard) {
-            const cardRect = projectCard.getBoundingClientRect();
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            const targetPosition = cardRect.top + scrollTop - (window.innerHeight * 0.2);
-            
-            window.scrollTo(0, targetPosition);
-          }
-        }, 100);
-      }
-    }
-  }, [location.search]);
-
-  const handleProjectClick = (project: Project) => {
-    setSelectedProject(project);
-    setLightboxOpen(true);
-  };
-
-  const handleCloseLightbox = () => {
-    setLightboxOpen(false);
-    setSelectedProject(null);
-  };
 
   const handleClearFilters = () => {
     setSelectedServices([]);
@@ -109,8 +65,8 @@ const ProjectsPage: React.FC = () => {
       {/* Main Content */}
       <Box sx={{ pt: 14, pb: 8, backgroundColor: '#fff' }}>
         <Container maxWidth="lg">
-          <Typography variant="h1" component="h1" gutterBottom align="center" sx={{ mb: 2 }} color="primary">
-            Projects
+          <Typography variant="h1" component="h1" gutterBottom align="center" sx={{ mb: 2, textTransform: 'uppercase', fontWeight: 700 }} color="primary">
+            PROJECTS
           </Typography>
           
           {/* Introduction */}
@@ -139,7 +95,7 @@ const ProjectsPage: React.FC = () => {
               }}>
                 <FeaturedProjectCard 
                   project={FEATURED_PROJECT}
-                  onClick={() => handleProjectClick(FEATURED_PROJECT)}
+                  onClick={() => {/* No action */}}
                 />
               </Box>
             </Container>
@@ -147,8 +103,20 @@ const ProjectsPage: React.FC = () => {
         </Container>
       </Box>
 
+      {/* Brand Marquee */}
+      <BrandMarquee 
+        logos={CLIENT_LOGOS}
+        height={60}
+        speed={50}
+        sx={{
+          borderTop: '1px solid rgba(30, 67, 136, 0.12)',
+          borderBottom: '1px solid rgba(30, 67, 136, 0.12)'
+        }}
+      />
+
       {/* Filters and Projects Section */}
       <Box sx={{ 
+        pt: 8,
         pb: 20, 
         backgroundColor: 'rgba(30, 67, 136, 0.08)',
         backdropFilter: 'blur(10px)',
@@ -180,7 +148,7 @@ const ProjectsPage: React.FC = () => {
                 <FilterableProjectCard 
                   key={project.id}
                   project={project}
-                  onClick={() => handleProjectClick(project)}
+                  onClick={() => {/* No action */}}
                 />
               ))
             )}
@@ -199,13 +167,6 @@ const ProjectsPage: React.FC = () => {
           )}
         </Container>
       </Box>
-
-      {/* Project Lightbox */}
-      <ProjectLightbox
-        isOpen={lightboxOpen}
-        onClose={handleCloseLightbox}
-        project={selectedProject}
-      />
     </Box>
   );
 };

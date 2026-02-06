@@ -16,8 +16,8 @@ const ContactPage: React.FC = () => {
       <Box sx={{ pt: 14, pb: 14 }}>
         <Container maxWidth="lg">
           {/* Page Header */}          <Box sx={{ mb: 6 }}>
-            <Typography variant="h1" component="h1" align="center" gutterBottom color="primary">
-              Contact Us
+            <Typography variant="h1" component="h1" align="center" gutterBottom color="primary" sx={{ textTransform: 'uppercase' }}>
+              CONTACT US
             </Typography>
             <Typography 
               variant="subtitle1" 

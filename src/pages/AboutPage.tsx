@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Box, Container, Typography, Paper } from '@mui/material';
 import HeroSection from '../components/common/HeroSection';
-import ImageLightbox from '../components/common/ImageLightbox';
 
 const AboutPage: React.FC = () => {
-  const [lightboxOpen, setLightboxOpen] = useState(false);
-
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -21,13 +18,13 @@ const AboutPage: React.FC = () => {
         {/* Introduction and Mission/Vision Section */}      
         <Box sx={{ pt: 14, pb: 14, backgroundColor: '#fff' }}>        
           <Container maxWidth="lg">
-          <Typography variant="h1" component="h1" align="center" gutterBottom color="primary">
-            About Us
+          <Typography variant="h1" component="h1" align="center" gutterBottom color="primary" sx={{ textTransform: 'uppercase' }}>
+            ABOUT US
           </Typography>
           
           <Box sx={{ maxWidth: 800, mx: 'auto', mb: 8 }}>            
             <Typography variant="body1">
-              <span style={{ color: '#1e4388', fontWeight: 600 }}>Liffey Mechanical</span> was founded in 2017 with a clear goal: to provide outstanding mechanical services to the local construction industry. We do so with pride, professionalism, and an unwavering dedication to partnership.
+              <Box component="span" sx={{ color: 'primary.main', fontWeight: 600 }}>Liffey Mechanical</Box> was founded in 2017 with a clear goal: to provide outstanding mechanical services to the local construction industry. We do so with pride, professionalism, and an unwavering dedication to partnership.
             </Typography>
           </Box>
 
@@ -54,8 +51,8 @@ const AboutPage: React.FC = () => {
                   border: '1px solid #e0e0e0'
                 }}
               >                
-              <Typography variant="h3" component="h2" gutterBottom color="primary">
-                  Pride
+              <Typography variant="h3" component="h2" gutterBottom color="primary" sx={{ textTransform: 'uppercase' }}>
+                  PRIDE
                 </Typography>
                 <Typography variant="body1">
                   <span>Liffey Mechanical</span> takes its name from the River Liffey, one of Ireland&apos;s great waterways, which flows through Dublin, Kildare, and Wicklow counties. It symbolizes the pride that Barry Finnerty, founder and president of the company, feels for both his native Ireland and his new home of Canada. We embody the openness and plain talk that is the signature of Irish culture, while embracing the opportunity that Canada offers to newcomers from around the world. 
@@ -78,8 +75,8 @@ const AboutPage: React.FC = () => {
                   border: '1px solid #e0e0e0'
                 }}
               >                
-              <Typography variant="h3" component="h2" gutterBottom color="primary">
-                  Professionalism
+              <Typography variant="h3" component="h2" gutterBottom color="primary" sx={{ textTransform: 'uppercase' }}>
+                  PROFESSIONALISM
                 </Typography>
                 <Typography variant="body1">
                   Liffey operates under a simple motto: our most recent job is our best calling card. We recognize that a reputation for quality has to be earned anew every day, with every new project—and that constantly delivering the very best in workmanship and service is the key to our growth as a business.  
@@ -102,8 +99,8 @@ const AboutPage: React.FC = () => {
                   border: '1px solid #e0e0e0'
                 }}
               >                
-              <Typography variant="h3" component="h2" gutterBottom color="primary">
-                  Partnership
+              <Typography variant="h3" component="h2" gutterBottom color="primary" sx={{ textTransform: 'uppercase' }}>
+                  PARTNERSHIP
                 </Typography>
                 <Typography variant="body1">
                   The cornerstone of Liffey’s business is partnership. Success in the construction industry derives from relationships where all parties pull together to achieve excellence—not just in the physical outcome, but in communication, work processes, and managing challenges. On every project, we view ourselves as partners with a common goal.
@@ -122,8 +119,8 @@ const AboutPage: React.FC = () => {
         borderBottom: '1px solid rgba(30, 67, 136, 0.12)'
       }}>        
         <Container maxWidth="lg">
-          <Typography variant="h3" component="h2" gutterBottom align="center" sx={{ mb: 3 }} color="primary">
-            What We Offer
+          <Typography variant="h3" component="h2" gutterBottom align="center" sx={{ mb: 3, textTransform: 'uppercase' }} color="primary">
+            WHAT WE OFFER
           </Typography>
           <Box sx={{ 
             display: 'flex', 
@@ -168,8 +165,8 @@ const AboutPage: React.FC = () => {
         {/* Our Approach */}
       <Box sx={{ pt: 14, pb: 15, backgroundColor: '#fff' }}>        
         <Container maxWidth="lg">
-          <Typography variant="h3" component="h2" gutterBottom align="center" sx={{ mb: 3 }} color="primary">
-            Our Approach
+          <Typography variant="h3" component="h2" gutterBottom align="center" sx={{ mb: 3, textTransform: 'uppercase' }} color="primary">
+            OUR APPROACH
           </Typography>
           <Box sx={{
             display: 'flex',
@@ -193,7 +190,7 @@ const AboutPage: React.FC = () => {
                   border: '1px solid #e0e0e0'
                 }}
               >
-                <Typography variant="h5" component="h3" gutterBottom>
+                <Typography variant="h5" component="h3" gutterBottom sx={{ fontWeight: 700 }}>
                   Dedicated Management
                 </Typography>
                 <Typography variant="body2">
@@ -218,7 +215,7 @@ const AboutPage: React.FC = () => {
                   border: '1px solid #e0e0e0'
                 }}
               >
-                <Typography variant="h5" component="h3" gutterBottom>
+                <Typography variant="h5" component="h3" gutterBottom sx={{ fontWeight: 700 }}>
                   Transparent Quotes
                 </Typography>
                 <Typography variant="body2">
@@ -243,7 +240,7 @@ const AboutPage: React.FC = () => {
                   border: '1px solid #e0e0e0'
                 }}
               >
-                <Typography variant="h5" component="h3" gutterBottom>
+                <Typography variant="h5" component="h3" gutterBottom sx={{ fontWeight: 700 }}>
                   Skilled Teams
                 </Typography>
                 <Typography variant="body2">
@@ -268,7 +265,7 @@ const AboutPage: React.FC = () => {
                   border: '1px solid #e0e0e0'
                 }}
               >
-                <Typography variant="h5" component="h3" gutterBottom>
+                <Typography variant="h5" component="h3" gutterBottom sx={{ fontWeight: 700 }}>
                   Safety First
                 </Typography>
                 <Typography variant="body2">
@@ -288,27 +285,54 @@ const AboutPage: React.FC = () => {
         borderBottom: '1px solid rgba(30, 67, 136, 0.12)'
       }}>        
         <Container maxWidth="lg">
-          <Typography variant="h3" component="h2" gutterBottom align="center" sx={{ mb: 3 }} color="primary">
-            Communication—the Liffey Difference
+          <Typography variant="h3" component="h2" gutterBottom align="center" sx={{ mb: 3, textTransform: 'uppercase' }} color="primary">
+            COMMUNICATION—THE LIFFEY DIFFERENCE
           </Typography>
           <Box sx={{ 
-            maxWidth: '800px',
-            mx: 'auto'
+            display: 'flex', 
+            flexWrap: 'wrap', 
+            gap: 4,
+            alignItems: 'center' 
           }}>
+            <Box sx={{ 
+              width: { 
+                xs: '100%', 
+                md: 'calc(50% - 16px)' 
+              } 
+            }}>
+              <Box 
+                component="img"
+                src="/images/IMG_8883.jpg"
+                alt="Communication"
+                sx={{ 
+                  width: '100%', 
+                  height: '400px', 
+                  objectFit: 'cover',
+                  borderRadius: 2
+                }}
+              />
+            </Box>
+            <Box sx={{ 
+              width: { 
+                xs: '100%', 
+                md: 'calc(50% - 16px)' 
+              }
+            }}>
             <Typography variant="body1" sx={{ mb: 2 }}>
               Experience has taught us that in a complex business like construction, the unexpected is often the norm. That is why we have made clear, ongoing communication a top priority. After vetting the skills of a potential new hire or prospective subcontractor, we ask one final question: &ldquo;How well do you communicate?&rdquo;
             </Typography>
             <Typography variant="body1">
               We do so because we know that communication is the lifeblood of our business. It&apos;s what drives smooth project management, and helps our clients avoid delays, minimize frustration, and maximize savings. We respond fast. (And if we don&apos;t have the answer, we&apos;ll find it soon.) We spell everything out. And we anticipate bottlenecks by keeping our partners up to date. At Liffey, our dedication to communication is what makes us a partner you can rely on.
             </Typography>
+            </Box>
           </Box>
         </Container>
       </Box>      
       {/* Executive Team */}
       <Box sx={{ py: 14, backgroundColor: '#fff' }}>        
         <Container maxWidth="lg">
-          <Typography variant="h3" component="h2" gutterBottom align="center" sx={{ mb: 5 }} color="primary">
-            Executive Team
+          <Typography variant="h3" component="h2" gutterBottom align="center" sx={{ mb: 3, textTransform: 'uppercase' }} color="primary">
+            EXECUTIVE TEAM
           </Typography>
           
           {/* Barry Finnerty Row */}
@@ -508,8 +532,8 @@ const AboutPage: React.FC = () => {
         borderBottom: '1px solid rgba(30, 67, 136, 0.12)'
       }}>        
         <Container maxWidth="lg">
-          <Typography variant="h3" component="h2" gutterBottom align="center" sx={{ mb: 3 }} color="primary">
-            Community Involvement
+          <Typography variant="h3" component="h2" gutterBottom align="center" sx={{ mb: 5, textTransform: 'uppercase' }} color="primary">
+            COMMUNITY INVOLVEMENT
           </Typography>
           <Box sx={{ 
             display: 'flex', 
@@ -527,17 +551,11 @@ const AboutPage: React.FC = () => {
                 component="img"
                 src="/images/3b13d67a-c025-4152-8bae-94dd985cb341.jpg"
                 alt="Community Involvement"
-                onClick={() => setLightboxOpen(true)}
                 sx={{ 
                   width: '100%', 
                   height: '400px', 
                   objectFit: 'cover',
-                  borderRadius: 2,
-                  cursor: 'pointer',
-                  transition: 'transform 0.3s ease-in-out',
-                  '&:hover': {
-                    transform: 'scale(1.02)'
-                  }
+                  borderRadius: 2
                 }}
               />
             </Box>
@@ -626,14 +644,6 @@ const AboutPage: React.FC = () => {
             </Box>
           </Box>
         </Container>      </Box>
-
-      {/* Image Lightbox */}
-      <ImageLightbox
-        isOpen={lightboxOpen}
-        onClose={() => setLightboxOpen(false)}
-        imageUrl="/images/3b13d67a-c025-4152-8bae-94dd985cb341.jpg"
-        alt="Community Involvement"
-      />
     </Box>
   );
 };

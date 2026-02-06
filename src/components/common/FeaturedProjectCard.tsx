@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography, Chip, Card, CardMedia, CardContent, CardActionArea } from '@mui/material';
+import { Box, Typography, Chip, Card, CardMedia, CardContent } from '@mui/material';
 import { Project } from '../../types';
 import { componentStyles, colors, responsive, spacing } from '../../theme/designFramework';
 
@@ -21,13 +21,14 @@ const FeaturedProjectCard: React.FC<FeaturedProjectCardProps> = ({ project, onCl
         ...componentStyles.featuredCard
       }}
     >
-      <CardActionArea 
+      <Box 
         onClick={onClick}
         sx={{ 
           display: 'flex',
           flexDirection: { xs: 'column', lg: 'row' },
           alignItems: 'stretch',
-          height: '100%'
+          height: '100%',
+          cursor: 'default'
         }}
       >
         {/* Image Section */}
@@ -194,7 +195,7 @@ const FeaturedProjectCard: React.FC<FeaturedProjectCardProps> = ({ project, onCl
             </Box>
           </Box>
         </CardContent>
-      </CardActionArea>
+      </Box>
     </Card>
   );
 };

@@ -132,12 +132,7 @@ export const componentStyles = {
   // Featured Card (larger, more prominent)
   featuredCard: {
     borderRadius: borderRadius.large,
-    boxShadow: shadows.elevated,
-    transition: 'all 0.3s ease',
-    '&:hover': {
-      boxShadow: shadows.floating,
-      transform: 'translateY(-2px)'
-    }
+    boxShadow: shadows.elevated
   } as SxProps<Theme>,
 
   // Buttons

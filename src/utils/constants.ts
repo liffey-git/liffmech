@@ -13,14 +13,14 @@ export const SERVICES: Service[] = [
     id: 2,
     title: 'Plumbing',
     path: '/services?tab=1',
-    imageUrl: '/images/IMG_0419Plumbing.jpg',
+    imageUrl: '/images/plumingHomePG.jpg',
     logoUrl: '/images/icons/ServiceLogo.svg'
   },
   {
     id: 3,
     title: 'Sheet Metal',
     path: '/services?tab=2',
-    imageUrl: '/images/IMG_3824SheetMet.jpg',
+    imageUrl: '/images/sheetMetHomePG.jpg',
     logoUrl: '/images/icons/ServiceLogo.svg'
   },
   {
@@ -93,7 +93,6 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     carouselImages: [
       '/images/IMG_0419Plumbing.jpg',
       '/images/IMG_0436Plumbing.jpg',
-      '/images/IMG_3871Plumbing.jpg',
       '/images/IMG_3912Plumbing.jpg',
       '/images/Plumbing/WhatsApp Image 2026-02-03 at 1.44.18 PM.jpeg',
       '/images/Plumbing/WhatsApp Image 2026-02-03 at 1.58.50 PM.jpeg',
@@ -167,11 +166,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     id: 6,
     title: 'Snow Melt',
     description: 'The Liffey team knows Canadian winters. We have a team of certified technicians with extensive experience in all the weather conditions winter can throw at us, and over the years we have developed excellent relationships with manufacturers. That ensures that we stay abreast of the latest developments in snow-melt systems, allowing us to provide residential, industrial and commercial clients with the optimal solution—from installation to commissioning. Our command of the latest technology ensures that you will enjoy snow-free parking and driveways no matter what winter brings your way.',
-    items: [
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-      'Sed tempor nisi sed imperdiet auctor',
-      'Donec posuere nulla nec lectus molestie, non lacinia odio sodales'
-    ],
+    items: [],
     imageUrl: '/images/IMG_0408Snowmelt.jpg',
     carouselImages: [
       '/images/IMG_0408Snowmelt.jpg',

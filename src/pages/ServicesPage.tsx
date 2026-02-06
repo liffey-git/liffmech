@@ -66,8 +66,8 @@ const ServicesPage: React.FC = () => {
       {/* Services Title and Introduction */}
       <Box sx={{ pt: 14, pb: 14, backgroundColor: '#fff' }}>        
         <Container maxWidth="lg">
-          <Typography variant="h1" component="h1" align="center" gutterBottom sx={{ mb: 6 }} color="primary">
-            Services
+          <Typography variant="h1" component="h1" align="center" gutterBottom sx={{ mb: 6, textTransform: 'uppercase' }} color="primary">
+            SERVICES
           </Typography>
           
           <Box sx={{ 
@@ -95,7 +95,7 @@ const ServicesPage: React.FC = () => {
             }}>              
             <Box 
                 component="img"
-                src="/images/IMG_8129.jpg"
+                src="/images/IMG_8140.jpg"
                 alt="Liffey Mechanical Services"
                 sx={{
                   width: '100%',
@@ -121,8 +121,8 @@ const ServicesPage: React.FC = () => {
         }}
       >        
         <Container maxWidth="lg">          
-          <Typography variant="h3" component="h2" gutterBottom align="center" sx={{ mb: 4, mt: 4 }} color="primary">
-            Our Service Categories
+          <Typography variant="h3" component="h2" gutterBottom align="center" sx={{ mb: 4, mt: 4, textTransform: 'uppercase' }} color="primary">
+            OUR SERVICE CATEGORIES
           </Typography>
 
           <Box sx={{ width: '100%', mb: 4 }}>
@@ -186,7 +186,7 @@ const ServicesPage: React.FC = () => {
                       display: 'flex',
                       flexDirection: 'column'
                     }}>                      
-                    <Typography variant="h5" component="h3" gutterBottom color="primary" fontWeight={600} align="left">
+                    <Typography variant="h5" component="h3" gutterBottom color="primary" fontWeight={600} align="left" sx={{ textTransform: 'uppercase' }}>
                         {category.title}
                       </Typography>
                       <Typography variant="body1" paragraph sx={{ mb: 3, flex: '0 0 auto' }}>
@@ -240,8 +240,8 @@ const ServicesPage: React.FC = () => {
         borderBottom: '1px solid rgba(30, 67, 136, 0.12)'
       }}>        
         <Container maxWidth="lg">
-          <Typography variant="h3" component="h2" gutterBottom align="center" sx={{ mb: 6 }} color="primary" fontWeight={700}>
-            Our Service Categories
+          <Typography variant="h3" component="h2" gutterBottom align="center" sx={{ mb: 6, textTransform: 'uppercase' }} color="primary" fontWeight={700}>
+            WHY CHOOSE LIFFEY MECHANICAL?
           </Typography>
             <Box sx={{ px: 2 }}>
             {SERVICE_CATEGORIES.map((category: ServiceCategory) => (
@@ -329,13 +329,13 @@ const ServicesPage: React.FC = () => {
                 display: 'inline-block',
                 px: 4,
                 py: 1.5,
-                bgcolor: '#1e4388',
+                bgcolor: 'primary.main',
                 color: 'white',
                 borderRadius: 1,
                 fontWeight: 500,
                 textDecoration: 'none',
                 '&:hover': {
-                  bgcolor: '#2c5aa0'
+                  bgcolor: 'primary.light'
                 }
               }}
             >

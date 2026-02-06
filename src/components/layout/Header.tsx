@@ -41,7 +41,7 @@ const Header: React.FC = () => {
   };
 
   return (
-    <AppBar position="fixed" color="primary" sx={{ zIndex: theme.zIndex.drawer + 1 }}>
+    <AppBar position="fixed" sx={{ zIndex: theme.zIndex.drawer + 1, backgroundColor: '#1e4388' }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           {/* Logo and Brand Name */}

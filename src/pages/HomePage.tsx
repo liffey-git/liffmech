@@ -4,7 +4,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import HeroSection from '../components/common/HeroSection';
 import LearnMoreButton from '../components/common/LearnMoreButton';
 import { SERVICES } from '../utils/constants';
-import { FEATURED_PROJECT, PROJECTS_BY_CATEGORY } from '../utils/projectsData';
+import { PROJECTS_BY_CATEGORY } from '../utils/projectsData';
 import { Project } from '../types';
 
 const HomePage: React.FC = () => {
@@ -156,13 +156,13 @@ const HomePage: React.FC = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  // Get featured project and first 3 projects from the data source
-  const featuredProject = FEATURED_PROJECT;
-  
-  // Get first 3 projects from all categories combined
-  const projectThumbnails: Project[] = Object.values(PROJECTS_BY_CATEGORY)
-    .flat()
-    .slice(0, 3);
+  // Get specific projects: TD (id:2), BMO (id:3), and A&W (id:8)
+  const allProjects = Object.values(PROJECTS_BY_CATEGORY).flat();
+  const projectThumbnails: Project[] = [
+    allProjects.find(p => p.id === 2),
+    allProjects.find(p => p.id === 3),
+    allProjects.find(p => p.id === 8)
+  ].filter(Boolean) as Project[];
 
   return (
     <Box>
@@ -195,8 +195,8 @@ const HomePage: React.FC = () => {
           
           {/* Company Name */}
           <Typography
-            variant="h2"
-            component="div"
+            variant="h1"
+            component="h1"
             sx={{
               fontWeight: 700,
               fontSize: { 
@@ -216,8 +216,8 @@ const HomePage: React.FC = () => {
           
           {/* Tagline */}
           <Typography
-            variant="h3"
-            component="div"
+            variant="h2"
+            component="p"
             sx={{
               fontWeight: 700,
               fontSize: { 
@@ -278,7 +278,7 @@ const HomePage: React.FC = () => {
                   mb: 4
                 }}
               >
-                <span style={{ color: '#1e4388', fontWeight: 600 }}>Liffey Mechanical</span> was founded in 2017 with a clear goal: to provide outstanding mechanical services to the local construction industry. We do so with pride, professionalism, and an unwavering dedication to partnership.
+                <span style={{ color: '#00157B', fontWeight: 600 }}>Liffey Mechanical</span> was founded in 2017 with a clear goal: to provide outstanding mechanical services to the local construction industry. We do so with pride, professionalism, and an unwavering dedication to partnership.
               </Typography>                
               <LearnMoreButton
                 path="/about"
@@ -395,7 +395,7 @@ const HomePage: React.FC = () => {
                 component="h2"
                 sx={{
                   color: 'white',
-                  fontWeight: 600,
+                  fontWeight: 700,
                   textTransform: 'uppercase',
                   fontSize: '2rem',
                   letterSpacing: '0.05em',
@@ -447,7 +447,7 @@ const HomePage: React.FC = () => {
                   component="h2"
                   sx={{
                     color: 'white',
-                    fontWeight: 600,
+                    fontWeight: 700,
                     textTransform: 'uppercase',
                     fontSize: '3.5rem',
                     letterSpacing: '0.05em',
@@ -569,7 +569,7 @@ const HomePage: React.FC = () => {
                             position: 'absolute',
                             top: '15%',
                             left: '20%',
-                            fontWeight: 600,
+                            fontWeight: 700,
                             width: '250px',
                             height: '125px',
                             fontSize: '2.5rem',
@@ -624,9 +624,10 @@ const HomePage: React.FC = () => {
             sx={{
               mb: 4,
               textTransform: 'uppercase',
-              color: '#1e4388',
+              color: '#00157B',
               fontSize: { xs: '2.25rem', md: '3.5rem' },
-              letterSpacing: '0.05em'
+              letterSpacing: '0.05em',
+              fontWeight: 700
             }}
           >
             PROJECTS
@@ -634,135 +635,7 @@ const HomePage: React.FC = () => {
 
           {/* Featured Project on Top + 3 Below Layout */}
           <Box sx={{ mb: 4 }}>
-            {/* Featured Project - Full Width on Top */}
-            <Box
-              component={RouterLink}
-              to={`/projects?project=${featuredProject.id}`}
-              sx={{ 
-                textDecoration: 'none',
-                display: 'block',
-                mb: 4
-              }}
-            >
-              <Box
-                sx={{
-                  display: 'flex',
-                  flexDirection: { xs: 'column', md: 'row' },
-                  boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
-                  transition: 'all 0.3s ease',
-                  backgroundColor: 'white',
-                  borderRadius: 1,
-                  overflow: 'hidden',
-                  width: '100%', // Full width to match 3 cards below
-                  height: { md: '400px' }, // Fixed height on desktop
-                  '&:hover': {
-                    boxShadow: '0 8px 24px rgba(0,0,0,0.15)',
-                    transform: 'translateY(-4px)'
-                  }
-                }}
-              >
-                {/* Featured Project Image - Full Height */}
-                <Box
-                  component="img"
-                  src={featuredProject.imageUrl}
-                  alt={featuredProject.title}
-                  sx={{
-                    height: { xs: '300px', md: '100%' }, // Full height on desktop
-                    width: { xs: '100%', md: '50%' }, // Half width on desktop
-                    objectFit: 'cover',
-                    display: 'block',
-                    flexShrink: 0
-                  }}
-                />
-                
-                {/* Featured Card Content */}
-                <Box sx={{ 
-                  p: 4, // Increased padding for larger card
-                  flexGrow: 1,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'center' // Center content vertically
-                }}>
-                  <Typography 
-                    variant="h3" // Even larger title
-                    component="h3" 
-                    sx={{ 
-                      fontWeight: 600,
-                      color: '#1e4388',
-                      mb: 2,
-                      fontSize: { xs: '1.75rem', md: '2.25rem' }
-                    }}
-                  >
-                    {featuredProject.title}
-                  </Typography>
-                  
-                  <Typography 
-                    variant="h6"
-                    color="text.secondary" 
-                    sx={{ 
-                      mb: 3,
-                      fontWeight: 500,
-                      fontSize: '1.25rem'
-                    }}
-                  >
-                    {featuredProject.location}
-                  </Typography>
-
-                  <Typography 
-                    variant="body1" 
-                    sx={{ 
-                      mb: 3,
-                      lineHeight: 1.6,
-                      color: 'text.primary',
-                      fontSize: '1.125rem'
-                    }}
-                  >
-                    {featuredProject.description}
-                  </Typography>
-                  
-                  {/* Service Tags */}
-                  <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mb: 2 }}>
-                    {featuredProject.services.map((service: string, index: number) => (
-                      <Box
-                        key={index}
-                        sx={{
-                          px: 3,
-                          py: 1,
-                          fontSize: '1rem',
-                          height: '40px',
-                          color: '#1e4388',
-                          borderColor: '#1e4388',
-                          border: '2px solid #1e4388',
-                          borderRadius: '20px',
-                          display: 'inline-flex',
-                          alignItems: 'center',
-                          fontWeight: 600,
-                          '&:hover': {
-                            backgroundColor: '#1e4388',
-                            color: 'white'
-                          }
-                        }}
-                      >
-                        {service}
-                      </Box>
-                    ))}
-                  </Box>
-                  
-                  <Typography 
-                    variant="body1" 
-                    sx={{ 
-                      color: 'text.secondary',
-                      fontStyle: 'italic',
-                      fontSize: '1rem'
-                    }}
-                  >
-                    {featuredProject.industry}
-                  </Typography>
-                </Box>
-              </Box>
-            </Box>
-
-            {/* 3 Project Cards in a Row Below */}
+            {/* 3 Project Cards in a Row */}
             <Box sx={{
               display: 'grid',
               gridTemplateColumns: { 
@@ -775,8 +648,6 @@ const HomePage: React.FC = () => {
               {projectThumbnails.map((project: Project) => (
                 <Box
                   key={project.id}
-                  component={RouterLink}
-                  to={`/projects?project=${project.id}`}
                   sx={{ textDecoration: 'none' }}
                 >
                   <Box
@@ -784,15 +655,10 @@ const HomePage: React.FC = () => {
                       display: 'flex',
                       flexDirection: 'column',
                       boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
-                      transition: 'all 0.3s ease',
                       backgroundColor: 'white',
                       borderRadius: 1,
                       overflow: 'hidden',
-                      height: '100%', // Make all cards same height
-                      '&:hover': {
-                        boxShadow: '0 8px 24px rgba(0,0,0,0.15)',
-                        transform: 'translateY(-4px)'
-                      }
+                      height: '100%'
                     }}
                   >
                     {/* Project Image - Same as FilterableProjectCard */}
@@ -821,56 +687,6 @@ const HomePage: React.FC = () => {
                         }}
                       >
                         {project.title}
-                      </Typography>
-                      
-                      <Typography 
-                        variant="body2" 
-                        color="text.secondary" 
-                        sx={{ 
-                          mb: 2,
-                          fontWeight: 500
-                        }}
-                      >
-                        {project.location}
-                      </Typography>
-                      
-                      {/* Service Tags - Same as FilterableProjectCard */}
-                      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5, mb: 1 }}>
-                        {project.services.map((service: string, index: number) => (
-                          <Box
-                            key={index}
-                            sx={{
-                              px: 1.5,
-                              py: 0.25,
-                              fontSize: '0.7rem',
-                              height: '24px',
-                              color: '#1e4388',
-                              borderColor: '#1e4388',
-                              border: '1px solid #1e4388',
-                              borderRadius: '12px',
-                              display: 'inline-flex',
-                              alignItems: 'center',
-                              fontWeight: 500,
-                              '&:hover': {
-                                backgroundColor: '#1e4388',
-                                color: 'white'
-                              }
-                            }}
-                          >
-                            {service}
-                          </Box>
-                        ))}
-                      </Box>
-                      
-                      {/* Industry Tag - Same as FilterableProjectCard */}
-                      <Typography 
-                        variant="caption" 
-                        sx={{ 
-                          color: 'text.secondary',
-                          fontStyle: 'italic'
-                        }}
-                      >
-                        {project.industry}
                       </Typography>
                     </Box>
                   </Box>

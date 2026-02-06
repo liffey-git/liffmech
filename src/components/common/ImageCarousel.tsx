@@ -15,6 +15,7 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
   interval = 10000 // Default to 10 seconds
 }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [resetKey, setResetKey] = useState(0);
 
   useEffect(() => {
     if (images.length <= 1) return; // Don't cycle if only one image
@@ -26,7 +27,7 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
     }, interval);
 
     return () => clearInterval(timer);
-  }, [images.length, interval]);
+  }, [images.length, interval, resetKey]);
 
   if (!images || images.length === 0) {
     return null;
@@ -89,7 +90,10 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
                   backgroundColor: 'white'
                 }
               }}
-              onClick={() => setCurrentImageIndex(index)}
+              onClick={() => {
+                setCurrentImageIndex(index);
+                setResetKey(prev => prev + 1); // Reset the timer
+              }}
             />
           ))}
         </Box>

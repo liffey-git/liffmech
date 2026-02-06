@@ -63,8 +63,8 @@ const ProjectFilters: React.FC<ProjectFiltersProps> = ({
         justifyContent: 'space-between',
         mb: 4 
       }}>
-        <Typography variant="h3" component="h2" color="primary" fontWeight={700}>
-          Projects
+        <Typography variant="h3" component="h2" color="primary" fontWeight={700} sx={{ textTransform: 'uppercase' }}>
+          PROJECTS
         </Typography>
         
         {hasActiveFilters && (
