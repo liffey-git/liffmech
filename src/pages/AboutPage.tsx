@@ -136,7 +136,7 @@ const AboutPage: React.FC = () => {
             }}>
               <Box 
                 component="img"
-                src="/images/hero-warehouse-interior.jpg"
+                src="/images/Hero1.jpg"
                 alt="What We Offer"
                 sx={{ 
                   width: '100%', 

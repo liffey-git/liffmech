@@ -25,7 +25,7 @@ export const FEATURED_PROJECT: Project = {
   title: 'Walmart Distribution Center',
   description: 'Nulla facilisi morbi tempus iaculis urna id volutpat lacus laoreet non curabitur gravida arcu ac tortor dignissim convallis.',
   location: 'Brampton, Ontario',
-  imageUrl: '/images/hero-warehouse-interior.jpg',
+  imageUrl: '/images/Hero1.jpg',
   industry: 'Retail',
   services: ['HVAC & Refrigeration', 'Plumbing', 'Sheet Metal'],
   clientType: 'Retail'
