@@ -161,8 +161,9 @@ const HomePage: React.FC = () => {
           return true;
         }
       });
-      window.addEventListener('test' as any, null as any, opts);
-      window.removeEventListener('test' as any, null as any, opts);
+      const testHandler = () => {};
+      window.addEventListener('testPassive', testHandler, opts);
+      window.removeEventListener('testPassive', testHandler, opts);
     } catch (e) {
       supportsPassive = false;
     }
