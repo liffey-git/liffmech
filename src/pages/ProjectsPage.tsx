@@ -3,20 +3,8 @@ import { Box, Container, Typography } from '@mui/material';
 import FilterableProjectCard from '../components/common/FilterableProjectCard';
 import FeaturedProjectCard from '../components/common/FeaturedProjectCard';
 import ProjectFilters from '../components/common/ProjectFilters';
-import BrandMarquee from '../components/common/BrandMarquee';
 import { Project } from '../types';
 import { FEATURED_PROJECT, PROJECTS_BY_CATEGORY } from '../utils/projectsData';
-
-// Client logos
-const CLIENT_LOGOS = [
-  '/images/ClientLogos/bmo-blue-on-transparent-en.svg',
-  '/images/ClientLogos/rbc-logo-shield.svg',
-  '/images/ClientLogos/scotiabank-logo-red-desktop-200px.svg',
-  '/images/ClientLogos/TD_logo.svg',
-  '/images/ClientLogos/cibc-logo-colour-142x36.svg',
-  '/images/ClientLogos/A&W_logo.svg',
-  '/images/ClientLogos/WMT-Wordmark-Standard-TrueBlue-RGB.png'
-];
 
 const ProjectsPage: React.FC = () => {
   // Scroll to top when component mounts
@@ -102,17 +90,6 @@ const ProjectsPage: React.FC = () => {
           </Box>
         </Container>
       </Box>
-
-      {/* Brand Marquee */}
-      <BrandMarquee 
-        logos={CLIENT_LOGOS}
-        height={60}
-        speed={50}
-        sx={{
-          borderTop: '1px solid rgba(30, 67, 136, 0.12)',
-          borderBottom: '1px solid rgba(30, 67, 136, 0.12)'
-        }}
-      />
 
       {/* Filters and Projects Section */}
       <Box sx={{ 

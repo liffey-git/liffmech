@@ -6,43 +6,43 @@ export const SERVICES: Service[] = [
     id: 1,
     title: 'HVAC & Refrigeration',
     path: '/services?tab=0',
-    imageUrl: '/images/IMG_0432hvacRef.jpg',
-    logoUrl: '/images/icons/ServiceLogo.svg'
+    imageUrl: '/images/HVAC-R/hvac-system-installation.jpg',
+    logoUrl: '/images/icons/service-logo.svg'
   },
   {
     id: 2,
     title: 'Plumbing',
     path: '/services?tab=1',
-    imageUrl: '/images/plumingHomePG.jpg',
-    logoUrl: '/images/icons/ServiceLogo.svg'
+    imageUrl: '/images/plumbing-home.jpg',
+    logoUrl: '/images/icons/service-logo.svg'
   },
   {
     id: 3,
     title: 'Sheet Metal',
     path: '/services?tab=2',
-    imageUrl: '/images/sheetMetHomePG.jpg',
-    logoUrl: '/images/icons/ServiceLogo.svg'
+    imageUrl: '/images/sheet-metal-home.jpg',
+    logoUrl: '/images/icons/service-logo.svg'
   },
   {
     id: 4,
     title: 'Hydronic Heating',
     path: '/services?tab=3',
-    imageUrl: '/images/Hydronic/HydronicHeating1.jpeg',
-    logoUrl: '/images/icons/ServiceLogo.svg'
+    imageUrl: '/images/hydronic/HydronicHeating1.jpeg',
+    logoUrl: '/images/icons/service-logo.svg'
   },
   {
     id: 5,
     title: 'Mechanical Wiring',
     path: '/services?tab=4',
-    imageUrl: '/images/Mech_Wire_BG.jpg',
-    logoUrl: '/images/icons/ServiceLogo.svg'
+    imageUrl: '/images/Mechanical_Wiring/mechanical-wiring-controls.jpg',
+    logoUrl: '/images/icons/service-logo.svg'
   },
   {
     id: 6,
     title: 'Snow Melt',
     path: '/services?tab=5',
-    imageUrl: '/images/Snowmelt/IMG_0408Snowmelt.jpeg',
-    logoUrl: '/images/icons/ServiceLogo.svg'
+    imageUrl: '/images/snow-melt-driveway.jpg',
+    logoUrl: '/images/icons/service-logo.svg'
   }
 ];
 
@@ -66,14 +66,14 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
       'Flue venting',
       'Industrial ventilation and ductwork'
     ],
-    imageUrl: '/images/HVAC-R/Group 1hvacRef.jpg',
+    imageUrl: '/images/HVAC-R/hvac-refrigeration-main.jpg',
     carouselImages: [
-      '/images/HVAC-R/Group 1hvacRef.jpg',
-      '/images/HVAC-R/IMG_0432hvacRef.jpg',
-      '/images/HVAC-R/WhatsApp Image 2026-02-03 at 1.44.48 PM.jpeg',
-      '/images/HVAC-R/WhatsApp Image 2026-02-03 at 1.45.19 PM.jpeg',
-      '/images/HVAC-R/IMG_0431.jpeg',
-      '/images/HVAC-R/WhatsApp Image 2026-02-03 at 11.40.32 AM.jpeg'
+      '/images/HVAC-R/hvac-refrigeration-main.jpg',
+      '/images/HVAC-R/hvac-equipment-install.jpg',
+      '/images/HVAC-R/hvac-commercial-unit.jpg',
+      '/images/HVAC-R/hvac-system-installation.jpg',
+      '/images/HVAC-R/hvac-unit-exterior.jpg',
+      '/images/HVAC-R/hvac-industrial-setup.jpg'
     ]
   },
   {
@@ -89,16 +89,16 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
       'Emergency repairs',
       'Code compliance upgrades'
     ],
-    imageUrl: '/images/IMG_0419Plumbing.jpg',
+    imageUrl: '/images/plumbing-commercial.jpg',
     carouselImages: [
-      '/images/IMG_0419Plumbing.jpg',
-      '/images/IMG_0436Plumbing.jpg',
-      '/images/IMG_3912Plumbing.jpg',
-      '/images/Plumbing/WhatsApp Image 2026-02-03 at 1.44.18 PM.jpeg',
-      '/images/Plumbing/WhatsApp Image 2026-02-03 at 1.58.50 PM.jpeg',
-      '/images/Plumbing/WhatsApp Image 2026-02-03 at 8.50.27 AM.jpeg',
-      '/images/Plumbing/WhatsApp Image 2026-02-03 at 8.51.54 AM.jpeg',
-      '/images/Plumbing/WhatsApp Image 2026-02-03 at 8.53.19 AM.jpeg'
+      '/images/plumbing-commercial.jpg',
+      '/images/plumbing-pipes.jpg',
+      '/images/plumbing-installation.jpg',
+      '/images/Plumbing/plumbing-fixtures.jpg',
+      '/images/Plumbing/plumbing-system.jpg',
+      '/images/Plumbing/plumbing-water-lines.jpg',
+      '/images/Plumbing/plumbing-valve-work.jpg',
+      '/images/Plumbing/plumbing-drainage.jpg'
     ]
   },
   {
@@ -113,13 +113,13 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
       'Exhaust systems',
       'Custom fabrication and design'
     ],
-    imageUrl: '/images/Sheetmetal/IMG_3836.JPG',
+    imageUrl: '/images/Sheetmetal/sheet-metal-ductwork.jpg',
     carouselImages: [
-      '/images/Sheetmetal/IMG_3836.JPG',
-      '/images/Sheetmetal/WhatsApp Image 2026-02-03 at 1.51.15 PM.jpeg',
-      '/images/Sheetmetal/WhatsApp Image 2026-02-03 at 8.47.58 AM.jpeg',
-      '/images/Sheetmetal/WhatsApp Image 2026-02-03 at 8.49.57 AM.jpeg',
-      '/images/Sheetmetal/WhatsApp Image 2026-02-03 at 8.52.54 AM.jpeg'
+      '/images/Sheetmetal/sheet-metal-ductwork.jpg',
+      '/images/Sheetmetal/sheet-metal-fabrication.jpg',
+      '/images/Sheetmetal/sheet-metal-installation.jpg',
+      '/images/Sheetmetal/sheet-metal-hvac.jpg',
+      '/images/Sheetmetal/sheet-metal-custom.jpg'
     ]
   },
   {
@@ -136,12 +136,13 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
       'Condensation lines',
       'Control wiring'
     ],
-    imageUrl: '/images/Hydronic/WhatsApp Image 2026-02-03 at 1.58.29 PM.jpeg',
+    imageUrl: '/images/Hydronic/hydronic-installation.jpg',
     carouselImages: [
-      '/images/Hydronic/WhatsApp Image 2026-02-03 at 1.58.29 PM.jpeg',
-      '/images/IMG_0427HydronicHeat.jpg',
-      '/images/IMG_0428HydronicHeat.jpg',
-      '/images/IMG_3852HydronicHeat.jpg'
+      '/images/Hydronic/hydronic-installation.jpg',
+      '/images/hydronic-boiler-system.jpg',
+      '/images/hydronic-piping.jpg',
+      '/images/hydronic-equipment.jpg',
+      '/images/Hydronic/hydronic-controls.jpg',
     ]
   },
   {
@@ -155,11 +156,13 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
       'Data centre wiring',
       'System and equipment maintenance'
     ],
-    imageUrl: '/images/Mechanical Wiring/PXL_20220809_145419586.jpg',
+    imageUrl: '/images/Mechanical_Wiring/mechanical-wiring-controls.jpg',
     carouselImages: [
-      '/images/Mechanical Wiring/PXL_20220809_145419586.jpg',
-      '/images/Mechanical Wiring/PXL_20220816_181528269.jpg',
-      '/images/Mechanical Wiring/unnamed.jpg'
+      '/images/Mechanical_Wiring/mechanical-wiring-controls.jpg',
+      '/images/Mechanical_Wiring/mechanical-wiring-installation.jpg',
+      '/images/Mechanical_Wiring/mechanical-wiring-panel.jpg',
+      '/images/Mechanical_Wiring/mechanical-wiring-system.png',
+      '/images/Mechanical_Wiring/mechanical-wiring-equipment.jpg'
     ]
   },
     {
@@ -167,13 +170,13 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     title: 'Snow Melt',
     description: 'The Liffey team knows Canadian winters. We have a team of certified technicians with extensive experience in all the weather conditions winter can throw at us, and over the years we have developed excellent relationships with manufacturers. That ensures that we stay abreast of the latest developments in snow-melt systems, allowing us to provide residential, industrial and commercial clients with the optimal solution—from installation to commissioning. Our command of the latest technology ensures that you will enjoy snow-free parking and driveways no matter what winter brings your way.',
     items: [],
-    imageUrl: '/images/IMG_0408Snowmelt.jpg',
+    imageUrl: '/images/snow-melt-driveway.jpg',
     carouselImages: [
-      '/images/IMG_0408Snowmelt.jpg',
-      '/images/IMG_0409Snowmelt.jpg',
-      '/images/IMG_0411Snowmelt.jpg',
-      '/images/IMG_0412Snowmelt.jpg',
-      '/images/IMG_0415Snowmelt.jpg'
+      '/images/snow-melt-driveway.jpg',
+      '/images/snow-melt-installation.jpg',
+      '/images/snow-melt-system.jpg',
+      '/images/snow-melt-piping.jpg',
+      '/images/snow-melt-controls.jpg'
     ]
   }
 ];

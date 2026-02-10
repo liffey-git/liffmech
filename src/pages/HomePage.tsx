@@ -3,8 +3,9 @@ import { Box, Container, Typography } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
 import HeroSection from '../components/common/HeroSection';
 import LearnMoreButton from '../components/common/LearnMoreButton';
+import FeaturedProjectCard from '../components/common/FeaturedProjectCard';
 import { SERVICES } from '../utils/constants';
-import { PROJECTS_BY_CATEGORY } from '../utils/projectsData';
+import { PROJECTS_BY_CATEGORY, FEATURED_PROJECT } from '../utils/projectsData';
 import { Project } from '../types';
 
 const HomePage: React.FC = () => {
@@ -14,7 +15,7 @@ const HomePage: React.FC = () => {
   // Handle scroll capture in services section
   useEffect(() => {
     let wheelDelta = 0;
-    const SCROLL_THRESHOLD = 300; // Amount to scroll before changing service (increased for slower feel)
+    const SCROLL_THRESHOLD = 100; // Reduced threshold for better sensitivity across devices
 
     const handleWheel = (e: WheelEvent) => {
       const servicesSection = servicesSectionRef.current;
@@ -57,10 +58,17 @@ const HomePage: React.FC = () => {
         }
 
         // Within bounds, capture the scroll
-        e.preventDefault();
-        e.stopPropagation();
+        // Try to prevent default, but don't fail if browser blocks it
+        try {
+          e.preventDefault();
+          e.stopPropagation();
+        } catch (err) {
+          // Browser may block preventDefault in some cases
+        }
 
-        wheelDelta += e.deltaY;
+        // Normalize deltaY for different input devices
+        const normalizedDelta = Math.sign(e.deltaY) * Math.min(Math.abs(e.deltaY), 50);
+        wheelDelta += normalizedDelta;
 
         // Check if we should change service
         if (Math.abs(wheelDelta) >= SCROLL_THRESHOLD) {
@@ -125,7 +133,11 @@ const HomePage: React.FC = () => {
         }
 
         // Within bounds, capture the scroll
-        e.preventDefault();
+        try {
+          e.preventDefault();
+        } catch (err) {
+          // Browser may block preventDefault
+        }
 
         touchDelta += deltaY;
         touchStartY = touchY;
@@ -140,9 +152,27 @@ const HomePage: React.FC = () => {
       }
     };
 
-    window.addEventListener('wheel', handleWheel, { passive: false });
+    // Test if passive listeners are supported and add appropriately
+    let supportsPassive = false;
+    try {
+      const opts = Object.defineProperty({}, 'passive', {
+        get() {
+          supportsPassive = true;
+          return true;
+        }
+      });
+      window.addEventListener('test' as any, null as any, opts);
+      window.removeEventListener('test' as any, null as any, opts);
+    } catch (e) {
+      supportsPassive = false;
+    }
+
+    const wheelOptions = supportsPassive ? { passive: false } : false;
+    const touchOptions = supportsPassive ? { passive: false } : false;
+
+    window.addEventListener('wheel', handleWheel, wheelOptions);
     window.addEventListener('touchstart', handleTouchStart, { passive: true });
-    window.addEventListener('touchmove', handleTouchMove, { passive: false });
+    window.addEventListener('touchmove', handleTouchMove, touchOptions);
 
     return () => {
       window.removeEventListener('wheel', handleWheel);
@@ -184,7 +214,7 @@ const HomePage: React.FC = () => {
           {/* Logo Icon */}
           <Box
             component="img"
-            src="/images/icons/liffyDrop_Wht_100x100.svg"
+            src="/images/icons/liffey-drop-white.svg"
             alt="Liffey Mechanical Logo"
             sx={{
               width: { xs: 160, sm: 200, md: 240, lg: 280 },
@@ -610,7 +640,7 @@ const HomePage: React.FC = () => {
             </Box>
           </Container>
         </Box>
-      </Box>      {/* Projects Section - Responsive Grid with FilterableProjectCard Styling */}
+      </Box>      {/* Projects Section - Featured Project + Grid */}
       <Box sx={{ 
         pt: 14,
         pb: 14,
@@ -624,7 +654,7 @@ const HomePage: React.FC = () => {
             sx={{
               mb: 4,
               textTransform: 'uppercase',
-              color: '#00157B',
+              color: 'primary.main',
               fontSize: { xs: '2.25rem', md: '3.5rem' },
               letterSpacing: '0.05em',
               fontWeight: 700
@@ -633,66 +663,73 @@ const HomePage: React.FC = () => {
             PROJECTS
           </Typography>
 
-          {/* Featured Project on Top + 3 Below Layout */}
-          <Box sx={{ mb: 4 }}>
-            {/* 3 Project Cards in a Row */}
-            <Box sx={{
-              display: 'grid',
-              gridTemplateColumns: { 
-                xs: '1fr', 
-                sm: 'repeat(2, 1fr)',
-                md: 'repeat(3, 1fr)'
-              },
-              gap: 3
-            }}>
-              {projectThumbnails.map((project: Project) => (
+          {/* Featured Project Card */}
+          <Box sx={{ mb: 8 }}>
+            <FeaturedProjectCard 
+              project={FEATURED_PROJECT}
+              onClick={() => {/* No action */}}
+            />
+          </Box>
+
+          {/* 3 Project Cards in a Row */}
+          <Box sx={{
+            display: 'grid',
+            gridTemplateColumns: { 
+              xs: '1fr', 
+              sm: 'repeat(2, 1fr)',
+              md: 'repeat(3, 1fr)'
+            },
+            gap: 3,
+            mb: 6
+          }}>
+            {projectThumbnails.map((project: Project) => (
+              <Box
+                key={project.id}
+                sx={{ textDecoration: 'none' }}
+              >
                 <Box
-                  key={project.id}
-                  sx={{ textDecoration: 'none' }}
+                  sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+                    backgroundColor: 'white',
+                    borderRadius: 2,
+                    overflow: 'hidden',
+                    height: '100%'
+                  }}
                 >
+                  {/* Project Image */}
                   <Box
+                    component="img"
+                    src={project.imageUrl}
+                    alt={project.title}
                     sx={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
-                      backgroundColor: 'white',
-                      borderRadius: 1,
-                      overflow: 'hidden',
-                      height: '100%'
+                      height: '220px',
+                      width: '100%',
+                      objectFit: 'cover',
+                      display: 'block'
                     }}
-                  >
-                    {/* Project Image - Same as FilterableProjectCard */}
-                    <Box
-                      component="img"
-                      src={project.imageUrl}
-                      alt={project.title}
-                      sx={{
-                        height: '200px',
-                        width: '100%',
-                        objectFit: 'cover',
-                        display: 'block'
+                  />
+                  
+                  {/* Card Content */}
+                  <Box sx={{ p: 3, flexGrow: 1 }}>
+                    <Typography 
+                      variant="h6" 
+                      component="h3" 
+                      gutterBottom 
+                      sx={{ 
+                        fontWeight: 600,
+                        color: 'primary.main',
+                        mb: 1,
+                        fontSize: '1.25rem'
                       }}
-                    />
-                    
-                    {/* Card Content - Same as FilterableProjectCard */}
-                    <Box sx={{ p: 2, flexGrow: 1 }}>
-                      <Typography 
-                        variant="h6" 
-                        component="h3" 
-                        gutterBottom 
-                        sx={{ 
-                          fontWeight: 600,
-                          color: '#1e4388',
-                          mb: 1
-                        }}
-                      >
-                        {project.title}
-                      </Typography>
-                    </Box>
+                    >
+                      {project.title}
+                    </Typography>
                   </Box>
                 </Box>
-              ))}
-            </Box>
+              </Box>
+            ))}
           </Box>
 
           {/* View All Projects Button */}

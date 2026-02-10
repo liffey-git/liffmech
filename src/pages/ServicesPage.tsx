@@ -4,8 +4,26 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useLocation, Link as RouterLink } from 'react-router-dom';
 import HeroSection from '../components/common/HeroSection';
 import ImageCarousel from '../components/common/ImageCarousel';
+import BrandMarquee from '../components/common/BrandMarquee';
 import { SERVICE_CATEGORIES } from '../utils/constants';
 import { ServiceCategory } from '../types';
+
+// Client logos
+const CLIENT_LOGOS = [
+  '/images/ClientLogos/aw-logo.svg',
+  '/images/ClientLogos/ballroom-bowl-logo.png',
+  '/images/ClientLogos/bmo-logo.svg',
+  '/images/ClientLogos/cibc-logo.svg',
+  '/images/ClientLogos/cwb-logo.svg',
+  '/images/ClientLogos/isabelles-logo.jpg',
+  '/images/ClientLogos/jack-nathan-health-logo.jpg',
+  '/images/ClientLogos/lake-of-bays-logo.webp',
+  '/images/ClientLogos/rbc-logo.svg',
+  '/images/ClientLogos/scotiabank-logo.svg',
+  '/images/ClientLogos/td-logo.svg',
+  '/images/ClientLogos/the-parlour-logo.png',
+  '/images/ClientLogos/walmart-logo.png'
+];
 
 const ServicesPage: React.FC = () => {
   const location = useLocation();
@@ -60,7 +78,7 @@ const ServicesPage: React.FC = () => {
   return (
     <Box>      
       <HeroSection 
-        imageUrl="/images/IMG_8883.jpg"
+        imageUrl="/images/hero-services-banner.jpg"
         height="50vh"
       />      
       {/* Services Title and Introduction */}
@@ -95,7 +113,7 @@ const ServicesPage: React.FC = () => {
             }}>              
             <Box 
                 component="img"
-                src="/images/IMG_8140.jpg"
+                src="/images/about-mechanical-work.jpg"
                 alt="Liffey Mechanical Services"
                 sx={{
                   width: '100%',
@@ -311,9 +329,28 @@ const ServicesPage: React.FC = () => {
             ))}
           </Box>
         </Container>
-      </Box>        
+      </Box>
+
+      {/* Brand Marquee */}
+      <BrandMarquee 
+        logos={CLIENT_LOGOS}
+        height={60}
+        speed={50}
+        sx={{
+          borderTop: '1px solid rgba(30, 67, 136, 0.12)',
+          borderBottom: '1px solid rgba(30, 67, 136, 0.12)'
+        }}
+      />
+        
       {/* Call to Action */}
-      <Box sx={{ pt: 20, pb: 20, backgroundColor: '#fff', color: '#333' }}>
+      <Box sx={{ 
+        pt: 20, 
+        pb: 20, 
+        backgroundColor: 'rgba(30, 67, 136, 0.08)',
+        backdropFilter: 'blur(10px)',
+        borderTop: '1px solid rgba(30, 67, 136, 0.12)',
+        borderBottom: '1px solid rgba(30, 67, 136, 0.12)'
+      }}>
         <Container maxWidth="lg">          
           <Box sx={{ textAlign: 'center' }}>
             <Typography variant="h3" gutterBottom color="primary">

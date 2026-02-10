@@ -59,7 +59,7 @@ const Header: React.FC = () => {
           >
             <Box
               component="img"
-              src="/images/icons/liffyDrop_Wht_100x100.svg"
+              src="/images/icons/liffey-drop-white.svg"
               alt="Liffey Mechanical Logo"
               sx={{
                 width: '32px',

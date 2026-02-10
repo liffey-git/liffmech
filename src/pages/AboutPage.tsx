@@ -12,7 +12,7 @@ const AboutPage: React.FC = () => {
     <Box>
       {/* Hero Section */}
       <HeroSection 
-        imageUrl="/images/LiffyTrk_bnr.jpg"
+        imageUrl="/images/hero-truck-banner.jpg"
         height="50vh"
       />
         {/* Introduction and Mission/Vision Section */}      
@@ -136,7 +136,7 @@ const AboutPage: React.FC = () => {
             }}>
               <Box 
                 component="img"
-                src="/images/Hero1.jpg"
+                src="/images/hero-warehouse-interior.jpg"
                 alt="What We Offer"
                 sx={{ 
                   width: '100%', 
@@ -302,7 +302,7 @@ const AboutPage: React.FC = () => {
             }}>
               <Box 
                 component="img"
-                src="/images/IMG_8883.jpg"
+                src="/images/hero-services-banner.jpg"
                 alt="Communication"
                 sx={{ 
                   width: '100%', 

@@ -21,14 +21,14 @@ export const CLIENT_TYPES = [
 ] as const;
 
 export const FEATURED_PROJECT: Project = {
-  id: 1,
-  title: 'Jack Nathan Health Centres',
-  description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.',
-  location: 'Toronto, Ontario',
-  imageUrl: '/images/IMG_8967.jpg',
-  industry: 'Healthcare Facilities',
-  services: ['HVAC & Refrigeration', 'Plumbing', 'Mechanical Wiring'],
-  clientType: 'Healthcare'
+  id: 7,
+  title: 'Walmart Distribution Center',
+  description: 'Nulla facilisi morbi tempus iaculis urna id volutpat lacus laoreet non curabitur gravida arcu ac tortor dignissim convallis.',
+  location: 'Brampton, Ontario',
+  imageUrl: '/images/hero-warehouse-interior.jpg',
+  industry: 'Retail',
+  services: ['HVAC & Refrigeration', 'Plumbing', 'Sheet Metal'],
+  clientType: 'Retail'
 };
 
 export const PROJECTS_BY_CATEGORY: Record<string, Project[]> = {
@@ -38,7 +38,7 @@ export const PROJECTS_BY_CATEGORY: Record<string, Project[]> = {
       title: 'TD Bank',
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.',
       location: 'Downtown Toronto, Ontario',
-      imageUrl: '/images/IMG_8944.jpg',
+      imageUrl: '/images/td-bank-branch.jpg',
       industry: 'Banking',
       services: ['HVAC & Refrigeration', 'Mechanical Wiring'],
       clientType: 'Financial'
@@ -48,7 +48,7 @@ export const PROJECTS_BY_CATEGORY: Record<string, Project[]> = {
       title: 'BMO Financial',
       description: 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris blandit aliquet elit.',
       location: 'Mississauga, Ontario',
-      imageUrl: '/images/BMO.jpg',
+      imageUrl: '/images/bmo-financial-branch.jpg',
       industry: 'Banking',
       services: ['HVAC & Refrigeration', 'Plumbing', 'Mechanical Wiring'],
       clientType: 'Financial'
@@ -58,7 +58,7 @@ export const PROJECTS_BY_CATEGORY: Record<string, Project[]> = {
       title: 'CIBC Corporate Centre',
       description: 'Donec rutrum congue leo eget malesuada. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.',
       location: 'North York, Ontario',
-      imageUrl: '/images/IMG_3877.JPG',
+      imageUrl: '/images/cibc-corporate-centre.jpg',
       industry: 'Banking',
       services: ['HVAC & Refrigeration', 'Plumbing', 'Sheet Metal'],
       clientType: 'Financial'
@@ -68,7 +68,7 @@ export const PROJECTS_BY_CATEGORY: Record<string, Project[]> = {
       title: 'RBC Branch',
       description: 'Sed porttitor lectus nibh. Vivamus suscipit tortor eget felis porttitor volutpat. Cras ultricies ligula sed magna dictum porta.',
       location: 'Etobicoke, Ontario',
-      imageUrl: '/images/IMG_9072.jpg',
+      imageUrl: '/images/rbc-branch-interior.jpg',
       industry: 'Banking',
       services: ['HVAC & Refrigeration', 'Plumbing'],
       clientType: 'Financial'
@@ -78,7 +78,7 @@ export const PROJECTS_BY_CATEGORY: Record<string, Project[]> = {
       title: 'Scotiabank Plaza',
       description: 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae. Donec velit neque, auctor sit amet.',
       location: 'Financial District, Toronto',
-      imageUrl: '/images/IMG_4160.JPG',
+      imageUrl: '/images/scotiabank-plaza.jpg',
       industry: 'Banking',
       services: ['HVAC & Refrigeration', 'Mechanical Wiring'],
       clientType: 'Financial'
@@ -86,14 +86,14 @@ export const PROJECTS_BY_CATEGORY: Record<string, Project[]> = {
   ],
   'Retail & Commercial': [
     {
-      id: 7,
-      title: 'Walmart Distribution Center',
-      description: 'Nulla facilisi morbi tempus iaculis urna id volutpat lacus laoreet non curabitur gravida arcu ac tortor dignissim convallis.',
-      location: 'Brampton, Ontario',
-      imageUrl: '/images/IMG_3910.JPG',
-      industry: 'Retail',
-      services: ['HVAC & Refrigeration', 'Plumbing', 'Sheet Metal'],
-      clientType: 'Retail'
+      id: 1,
+      title: 'Jack Nathan Health Centres',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.',
+      location: 'Toronto, Ontario',
+      imageUrl: '/images/jack-nathan-health-centre.jpg',
+      industry: 'Healthcare Facilities',
+      services: ['HVAC & Refrigeration', 'Plumbing', 'Mechanical Wiring'],
+      clientType: 'Healthcare'
     }
   ],
   'Food Service & Hospitality': [
@@ -102,7 +102,7 @@ export const PROJECTS_BY_CATEGORY: Record<string, Project[]> = {
       title: 'A&W Restaurant',
       description: 'Lorem ipsum dolor sit amet consectetur adipiscing elit ut aliquam purus sit amet luctus venenatis lectus magna fringilla.',
       location: 'Markham, Ontario',
-      imageUrl: '/images/IMG_8146.jpg',
+      imageUrl: '/images/aw-restaurant-exterior.jpg',
       industry: 'Restaurant',
       services: ['HVAC & Refrigeration', 'Plumbing', 'Sheet Metal'],
       clientType: 'Hospitality'
@@ -112,7 +112,7 @@ export const PROJECTS_BY_CATEGORY: Record<string, Project[]> = {
       title: 'Pizza Hut',
       description: 'Consequat mauris nunc congue nisi vitae suscipit tellus mauris a diam maecenas sed enim ut sem viverra.',
       location: 'Scarborough, Ontario',
-      imageUrl: '/images/IMG_4199.JPG',
+      imageUrl: '/images/pizza-hut-location.jpg',
       industry: 'Restaurant',
       services: ['HVAC & Refrigeration', 'Sheet Metal'],
       clientType: 'Hospitality'
@@ -124,7 +124,7 @@ export const PROJECTS_BY_CATEGORY: Record<string, Project[]> = {
       title: 'Isabelle\'s Nightclub',
       description: 'Aliquet enim tortor at auctor urna nunc id cursus metus aliquam eleifend mi in nulla posuere sollicitudin aliquam ultrices.',
       location: 'King Street West, Toronto',
-      imageUrl: '/images/IMG_8923.jpg',
+      imageUrl: '/images/isabelles-nightclub.jpg',
       industry: 'Entertainment',
       services: ['HVAC & Refrigeration', 'Mechanical Wiring'],
       clientType: 'Entertainment'
@@ -134,7 +134,7 @@ export const PROJECTS_BY_CATEGORY: Record<string, Project[]> = {
       title: 'Ballroom Bowl',
       description: 'Sagittis vitae et leo duis ut diam quam nulla porttitor massa id neque aliquam vestibulum morbi blandit cursus risus.',
       location: 'Richmond Hill, Ontario',
-      imageUrl: '/images/IMG_8837.JPG',
+      imageUrl: '/images/ballroom-bowl-facility.jpg',
       industry: 'Entertainment',
       services: ['HVAC & Refrigeration', 'Plumbing', 'Sheet Metal'],
       clientType: 'Entertainment'

@@ -71,7 +71,7 @@ const BrandMarquee: React.FC<BrandMarqueeProps> = ({
       <Box
         sx={{
           display: 'flex',
-          gap: 20,
+          gap: 10,
           animation: animationDuration ? `scroll ${animationDuration}s linear infinite` : 'none',
           '@keyframes scroll': {
             '0%': {
@@ -88,7 +88,7 @@ const BrandMarquee: React.FC<BrandMarqueeProps> = ({
           ref={firstSetRef}
           sx={{
             display: 'flex',
-            gap: 20,
+            gap: 10,
             flexShrink: 0
           }}
         >
@@ -112,7 +112,7 @@ const BrandMarquee: React.FC<BrandMarqueeProps> = ({
         <Box
           sx={{
             display: 'flex',
-            gap: 20,
+            gap: 10,
             flexShrink: 0
           }}
         >
