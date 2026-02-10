@@ -161,7 +161,9 @@ const HomePage: React.FC = () => {
           return true;
         }
       });
-      const testHandler = () => {};
+      const testHandler = () => {
+        // Test handler for passive listener detection
+      };
       window.addEventListener('testPassive', testHandler, opts);
       window.removeEventListener('testPassive', testHandler, opts);
     } catch (e) {
