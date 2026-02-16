@@ -17,8 +17,6 @@ const HeroSection: React.FC<HeroSectionProps> = ({
   return (
     <Box
       sx={{
-        // Increase height to account for the navigation bar space
-        height: `calc(${height} + 64px)`,
         width: '100%',
         backgroundImage: videoUrl ? 'none' : `url(${imageUrl})`,
         backgroundSize: 'cover',
@@ -32,6 +30,10 @@ const HeroSection: React.FC<HeroSectionProps> = ({
         alignItems: 'center',
         justifyContent: 'center',
         overflow: 'hidden',
+        // For video: auto height based on content, for image: fixed height
+        ...(videoUrl ? {} : {
+          height: `calc(${height} + 64px)`,
+        }),
         // Add dark tint overlay for better text readability
         '&::before': {
           content: '""',
@@ -50,9 +52,11 @@ const HeroSection: React.FC<HeroSectionProps> = ({
         },
         // Handle mobile navigation bar height
         '@media (max-width: 599px)': {
-          height: `calc(${height} + 56px)`,
           marginTop: '-56px',
           paddingTop: '56px',
+          ...(videoUrl ? {} : {
+            height: `calc(${height} + 56px)`,
+          }),
         }
       }}
     >
@@ -65,13 +69,9 @@ const HeroSection: React.FC<HeroSectionProps> = ({
           playsInline
           disablePictureInPicture
           sx={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
+            display: 'block',
             width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            zIndex: 0,
+            height: 'auto',
             pointerEvents: 'none',
           }}
         >
