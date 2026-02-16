@@ -2,13 +2,15 @@ import React from 'react';
 import { Box } from '@mui/material';
 
 interface HeroSectionProps {
-  imageUrl: string;
+  imageUrl?: string;
+  videoUrl?: string;
   height?: string;
   children?: React.ReactNode;
 }
 
 const HeroSection: React.FC<HeroSectionProps> = ({ 
-  imageUrl, 
+  imageUrl,
+  videoUrl,
   height = '50vh',
   children
 }) => {
@@ -18,7 +20,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
         // Increase height to account for the navigation bar space
         height: `calc(${height} + 64px)`,
         width: '100%',
-        backgroundImage: `url(${imageUrl})`,
+        backgroundImage: videoUrl ? 'none' : `url(${imageUrl})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         position: 'relative',
@@ -29,6 +31,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+        overflow: 'hidden',
         // Add dark tint overlay for better text readability
         '&::before': {
           content: '""',
@@ -53,6 +56,28 @@ const HeroSection: React.FC<HeroSectionProps> = ({
         }
       }}
     >
+      {videoUrl && (
+        <Box
+          component="video"
+          autoPlay
+          loop
+          muted
+          playsInline
+          disablePictureInPicture
+          sx={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            zIndex: 0,
+            pointerEvents: 'none',
+          }}
+        >
+          <source src={videoUrl} type="video/mp4" />
+        </Box>
+      )}
       {children}
     </Box>
   );
