@@ -78,7 +78,7 @@ export const PROJECTS_BY_CATEGORY: Record<string, Project[]> = {
       title: 'Scotiabank Plaza',
       description: 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae. Donec velit neque, auctor sit amet.',
       location: 'Financial District, Toronto',
-      imageUrl: '/images/scotiabank-plaza.jpg',
+      imageUrl: '/images/Projects/Scotiabank.jpeg',
       industry: 'Banking',
       services: ['HVAC & Refrigeration', 'Mechanical Wiring'],
       clientType: 'Financial'
@@ -90,7 +90,7 @@ export const PROJECTS_BY_CATEGORY: Record<string, Project[]> = {
       title: 'Jack Nathan Health Centres',
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.',
       location: 'Toronto, Ontario',
-      imageUrl: '/images/jack-nathan-health-centre.jpg',
+      imageUrl: '/images/Projects/Jack-Nathan-Health.jpeg',
       industry: 'Healthcare Facilities',
       services: ['HVAC & Refrigeration', 'Plumbing', 'Mechanical Wiring'],
       clientType: 'Healthcare'
@@ -112,7 +112,7 @@ export const PROJECTS_BY_CATEGORY: Record<string, Project[]> = {
       title: 'Pizza Hut',
       description: 'Consequat mauris nunc congue nisi vitae suscipit tellus mauris a diam maecenas sed enim ut sem viverra.',
       location: 'Scarborough, Ontario',
-      imageUrl: '/images/pizza-hut-location.jpg',
+      imageUrl: '/images/Projects/PizzaHut.jpeg',
       industry: 'Restaurant',
       services: ['HVAC & Refrigeration', 'Sheet Metal'],
       clientType: 'Hospitality'
