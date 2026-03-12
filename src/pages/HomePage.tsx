@@ -12,7 +12,6 @@ const HomePage: React.FC = () => {
   const [currentServiceIndex, setCurrentServiceIndex] = useState(0);
   const servicesSectionRef = useRef<HTMLDivElement>(null);
 
-  // Handle scroll capture in services section
   useEffect(() => {
     let wheelDelta = 0;
     const SCROLL_THRESHOLD = 100; // Reduced threshold for better sensitivity across devices
@@ -24,22 +23,21 @@ const HomePage: React.FC = () => {
       const rect = servicesSection.getBoundingClientRect();
       const windowHeight = window.innerHeight;
       const isMobile = window.innerWidth < 900;
-      
-      // For mobile: Check if SERVICES title is at navbar position (64px from top)
-      // For desktop: Check if section center is roughly centered in viewport
+
+
       let shouldCapture = false;
       
       if (isMobile) {
-        // Mobile: Start capturing when section is entering viewport, but allow scrolling back up when at top
+
         const isScrollingDown = e.deltaY > 0;
         if (isScrollingDown) {
           shouldCapture = rect.top <= 400 && rect.bottom > windowHeight * 0.3;
         } else {
-          // When scrolling up, only capture if section is already positioned (top near navbar)
+
           shouldCapture = rect.top <= 100 && rect.top >= 0;
         }
       } else {
-        // Desktop: Check if section center is roughly centered in viewport
+
         const sectionCenter = rect.top + rect.height / 2;
         const viewportCenter = windowHeight / 2;
         const centerThreshold = windowHeight * 0.25;
@@ -50,38 +48,33 @@ const HomePage: React.FC = () => {
         const direction = e.deltaY > 0 ? 1 : -1;
         const newIndex = currentServiceIndex + direction;
 
-        // If trying to scroll beyond boundaries, allow normal page scroll
         if (newIndex < 0 || newIndex >= SERVICES.length) {
-          // At boundaries, don't prevent scroll - let page scroll naturally
+
           wheelDelta = 0;
           return;
         }
 
-        // Within bounds, capture the scroll
-        // Try to prevent default, but don't fail if browser blocks it
+
         try {
           e.preventDefault();
           e.stopPropagation();
         } catch (err) {
-          // Browser may block preventDefault in some cases
+          void err;
         }
 
-        // Normalize deltaY for different input devices
         const normalizedDelta = Math.sign(e.deltaY) * Math.min(Math.abs(e.deltaY), 50);
         wheelDelta += normalizedDelta;
 
-        // Check if we should change service
         if (Math.abs(wheelDelta) >= SCROLL_THRESHOLD) {
           setCurrentServiceIndex(newIndex);
           wheelDelta = 0;
         }
       } else {
-        // Reset when not in capture zone
+
         wheelDelta = 0;
       }
     };
 
-    // Handle touch for mobile
     let touchStartY = 0;
     let touchDelta = 0;
 
@@ -96,25 +89,23 @@ const HomePage: React.FC = () => {
       const rect = servicesSection.getBoundingClientRect();
       const windowHeight = window.innerHeight;
       const isMobile = window.innerWidth < 900;
-      
-      // For mobile: Check if SERVICES title is at navbar position (64px from top)
-      // For desktop: Check if section is in viewport
+
+
       let inSection = false;
       
       if (isMobile) {
         const touchY = e.touches[0].clientY;
         const deltaY = touchStartY - touchY;
-        
-        // Mobile: Start capturing when section is entering viewport, but allow scrolling back up when at top
+
         const isScrollingDown = deltaY > 0;
         if (isScrollingDown) {
           inSection = rect.top <= 400 && rect.bottom > windowHeight * 0.3;
         } else {
-          // When scrolling up, only capture if section is already positioned (top near navbar)
+
           inSection = rect.top <= 100 && rect.top >= 0;
         }
       } else {
-        // Desktop: Check if section is in viewport (at least 50% visible)
+
         const sectionMiddle = rect.top + rect.height / 2;
         inSection = sectionMiddle >= 0 && sectionMiddle <= windowHeight;
       }
@@ -125,18 +116,16 @@ const HomePage: React.FC = () => {
         const direction = deltaY > 0 ? 1 : -1;
         const newIndex = currentServiceIndex + direction;
 
-        // If trying to scroll beyond boundaries, allow normal page scroll
         if (newIndex < 0 || newIndex >= SERVICES.length) {
-          // At boundaries, don't prevent scroll - let page scroll naturally
+
           touchDelta = 0;
           return;
         }
 
-        // Within bounds, capture the scroll
         try {
           e.preventDefault();
         } catch (err) {
-          // Browser may block preventDefault
+          void err;
         }
 
         touchDelta += deltaY;
@@ -147,12 +136,11 @@ const HomePage: React.FC = () => {
           touchDelta = 0;
         }
       } else {
-        // Reset when not in section
+
         touchDelta = 0;
       }
     };
 
-    // Test if passive listeners are supported and add appropriately
     let supportsPassive = false;
     try {
       const opts = Object.defineProperty({}, 'passive', {
@@ -161,9 +149,7 @@ const HomePage: React.FC = () => {
           return true;
         }
       });
-      const testHandler = () => {
-        // Test handler for passive listener detection
-      };
+      const testHandler = () => undefined;
       window.addEventListener('testPassive', testHandler, opts);
       window.removeEventListener('testPassive', testHandler, opts);
     } catch (e) {
@@ -184,12 +170,10 @@ const HomePage: React.FC = () => {
     };
   }, [currentServiceIndex]);
 
-  // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  // Get specific projects: TD (id:2), BMO (id:3), and A&W (id:8)
   const allProjects = Object.values(PROJECTS_BY_CATEGORY).flat();
   const projectThumbnails: Project[] = [
     allProjects.find(p => p.id === 2),
@@ -199,13 +183,13 @@ const HomePage: React.FC = () => {
 
   return (
     <Box>
-      {/* Hero Section - Video Background */}
+      
       <HeroSection
         videoUrl="/video/liffey-mechanical-hero.mp4"
         height="70vh"
       />
 
-      {/* About Section */}
+      
       <Box sx={{ pt: 20, pb: 20, backgroundColor: '#fff' }}>
         <Container maxWidth="lg">
           <Box sx={{
@@ -214,7 +198,7 @@ const HomePage: React.FC = () => {
             alignItems: 'flex-start',
             gap: 4
           }}>
-            {/* Title */}
+            
             <Typography
               variant="h2"
               component="h2"
@@ -230,7 +214,7 @@ const HomePage: React.FC = () => {
               About Us
             </Typography>
 
-            {/* Content */}
+            
             <Box sx={{
               display: 'flex',
               flexDirection: 'column'
@@ -255,7 +239,7 @@ const HomePage: React.FC = () => {
             </Box>
           </Box>
         </Container>
-      </Box>      {/* Services Section with TRUE Parallax - Original height */}
+      </Box>      
       <Box
         ref={servicesSectionRef}
         data-section="services"
@@ -268,13 +252,13 @@ const HomePage: React.FC = () => {
           backgroundColor: '#000'
         }}
       >
-        {/* Sticky container that stays in viewport while scrolling */}
+        
         <Box sx={{
           position: 'relative',
           height: '100%',
           overflow: 'hidden'
         }}>
-          {/* Base background image - always visible */}
+          
           <Box
             sx={{
               position: 'absolute',
@@ -289,7 +273,7 @@ const HomePage: React.FC = () => {
             }}
           />
 
-          {/* Multiple background images with fade transitions */}
+          
           {SERVICES.map((service, index) => (
             <Box
               key={service.id}
@@ -319,7 +303,7 @@ const HomePage: React.FC = () => {
             />
           ))}
 
-          {/* Services Content Container */}
+          
           <Container
             maxWidth="lg"
             sx={{
@@ -332,7 +316,7 @@ const HomePage: React.FC = () => {
               overflow: 'hidden'
             }}
           >
-            {/* SERVICES Title - Fixed at top of section on mobile */}
+            
             <Box sx={{
               display: { xs: 'flex', md: 'none' },
               position: 'absolute',
@@ -345,7 +329,7 @@ const HomePage: React.FC = () => {
               alignItems: 'center',
               height: '80px'
             }}>
-              {/* Blue background bar spanning full width */}
+              
               <Box sx={{
                 position: 'absolute',
                 top: 0,
@@ -382,7 +366,7 @@ const HomePage: React.FC = () => {
               gap: { xs: 2, md: 4 },
               pt: { xs: '80px', md: 0 }
             }}>
-              {/* Left Column - SERVICES Title - Desktop only */}
+              
               <Box sx={{
                 display: { xs: 'none', md: 'flex' },
                 width: '35%',
@@ -393,7 +377,7 @@ const HomePage: React.FC = () => {
                 pl: 0,
                 position: 'relative'
               }}>
-                {/* Semi-transparent blue background - Desktop */}
+                
                 <Box sx={{
                   backgroundColor: 'rgba(30, 67, 136, 0.6)',
                   position: 'absolute',
@@ -407,7 +391,7 @@ const HomePage: React.FC = () => {
                   borderRadius: 1
                 }} />
                 
-                {/* SERVICES Title - Desktop */}
+                
                 <Typography
                   variant="h3"
                   component="h2"
@@ -428,7 +412,7 @@ const HomePage: React.FC = () => {
                 </Typography>
               </Box>
 
-              {/* Right Column - All Service Containers (Scroll Animation) */}
+              
               <Box sx={{
                 flex: 1,
                 width: { xs: '100%', md: 'auto' },
@@ -445,17 +429,16 @@ const HomePage: React.FC = () => {
                   md: 'none'
                 }
               }}>
-                {/* All Services - Animated based on scroll progress */}
+                
                 {SERVICES.map((service, index) => {
-                  // Calculate smooth position based on current service index
-                  // When index < currentServiceIndex: service has passed (should be above, negative translateY)
-                  // When index === currentServiceIndex: service is centered (translateY = 0)
-                  // When index > currentServiceIndex: service is upcoming (should be below, positive translateY)
+
+
+
+
                   const position = index - currentServiceIndex;
                   const translateY = position * 255; // 250% spacing so items are fully hidden off screen
                   const distance = Math.abs(position);
-                  
-                  // Smooth opacity fade based on distance from center
+
                   let opacity = 1;
                   if (distance === 0) {
                     opacity = 1; // Current service fully visible
@@ -501,7 +484,7 @@ const HomePage: React.FC = () => {
                         willChange: 'transform, opacity'
                       }}
                     >
-                      {/* Service Logo */}
+                      
                       <Box
                         component="img"
                         src={service.logoUrl}
@@ -518,7 +501,7 @@ const HomePage: React.FC = () => {
                         }}
                       />
                       
-                      {/* Title and Button Column */}
+                      
                       <Box
                         sx={{
                           display: 'flex',
@@ -527,7 +510,7 @@ const HomePage: React.FC = () => {
                           gap: { xs: 1.5, md: 2 }
                         }}
                       >
-                        {/* Service Title */}
+                        
                         <Typography
                           variant="h3"
                           component="h3"
@@ -549,7 +532,7 @@ const HomePage: React.FC = () => {
                           {service.title}
                         </Typography>
                         
-                        {/* Learn More Button */}
+                        
                         <Box
                           component={RouterLink}
                           to={service.path}
@@ -576,7 +559,7 @@ const HomePage: React.FC = () => {
             </Box>
           </Container>
         </Box>
-      </Box>      {/* Projects Section - Featured Project + Grid */}
+      </Box>      
       <Box sx={{ 
         pt: 14,
         pb: 14,
@@ -599,15 +582,15 @@ const HomePage: React.FC = () => {
             PROJECTS
           </Typography>
 
-          {/* Featured Project Card */}
+          
           <Box sx={{ mb: 8 }}>
             <FeaturedProjectCard 
               project={FEATURED_PROJECT}
-              onClick={() => {/* No action */}}
+              onClick={() => null}
             />
           </Box>
 
-          {/* 3 Project Cards in a Row */}
+          
           <Box sx={{
             display: 'grid',
             gridTemplateColumns: { 
@@ -634,7 +617,7 @@ const HomePage: React.FC = () => {
                     height: '100%'
                   }}
                 >
-                  {/* Project Image */}
+                  
                   <Box
                     component="img"
                     src={project.imageUrl}
@@ -647,7 +630,7 @@ const HomePage: React.FC = () => {
                     }}
                   />
                   
-                  {/* Card Content */}
+                  
                   <Box sx={{ p: 3, flexGrow: 1 }}>
                     <Typography 
                       variant="h6" 
@@ -668,7 +651,7 @@ const HomePage: React.FC = () => {
             ))}
           </Box>
 
-          {/* View All Projects Button */}
+          
           <Box sx={{ textAlign: 'center' }}>
             <LearnMoreButton
               path="/projects"

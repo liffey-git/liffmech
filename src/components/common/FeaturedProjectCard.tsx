@@ -30,12 +30,14 @@ const FeaturedProjectCard: React.FC<FeaturedProjectCardProps> = ({ project, onCl
           cursor: 'default'
         }}
       >
-        {/* Image Section */}
+        
         <Box
           sx={{
             width: responsive.featuredWidth,
-            height: { xs: '300px', lg: '100%' },
-            position: 'relative'
+            minHeight: { xs: '300px', lg: 'auto' },
+            position: 'relative',
+            display: 'flex',
+            alignSelf: 'stretch'
           }}
         >
           <CardMedia
@@ -44,33 +46,14 @@ const FeaturedProjectCard: React.FC<FeaturedProjectCardProps> = ({ project, onCl
             alt={project.title}
             sx={{
               width: '100%',
-              height: '100%',
+              height: 'auto',
+              flexGrow: 1,
               objectFit: 'cover'
             }}
           />
-          
-          {/* Featured Badge */}
-          <Box
-            sx={{
-              position: 'absolute',
-              top: spacing.md,
-              left: spacing.md,
-              backgroundColor: colors.primary,
-              color: 'white',
-              px: spacing.md,
-              py: spacing.xs,
-              borderRadius: 1,
-              fontSize: '0.75rem',
-              fontWeight: 600,
-              textTransform: 'uppercase',
-              letterSpacing: '0.5px'
-            }}
-          >
-            Featured Project
-          </Box>
         </Box>
 
-        {/* Content Section */}
+        
         <CardContent 
           sx={{ 
             width: responsive.featuredSideWidth,
@@ -81,22 +64,35 @@ const FeaturedProjectCard: React.FC<FeaturedProjectCardProps> = ({ project, onCl
             flexGrow: 1
           }}
         >
-          {/* Title */}
           <Typography 
             variant="h3" 
+            component="h2" 
+            gutterBottom 
+            sx={{ 
+              fontWeight: 600,
+              color: colors.primary,
+              mb: spacing.sm,
+              fontSize: { xs: '1.75rem', lg: '2rem' }
+            }}
+          >
+            Featured Project
+          </Typography>
+
+          
+          <Typography 
+            variant="h6" 
             component="h3" 
             gutterBottom 
             sx={{ 
               fontWeight: 600,
               color: colors.primary,
-              mb: spacing.md,
-              fontSize: { xs: '1.75rem', lg: '2rem' }
+              mb: spacing.md
             }}
           >
             {project.title}
           </Typography>
           
-          {/* Description */}
+          
           <Typography 
             variant="body1" 
             sx={{ 
@@ -109,7 +105,7 @@ const FeaturedProjectCard: React.FC<FeaturedProjectCardProps> = ({ project, onCl
             {project.description}
           </Typography>
           
-          {/* Service Tags */}
+          
           <Box sx={{ mb: spacing.md }}>
             <Typography 
               variant="subtitle2" 
@@ -141,7 +137,7 @@ const FeaturedProjectCard: React.FC<FeaturedProjectCardProps> = ({ project, onCl
             </Box>
           </Box>
           
-          {/* Industry and Client Type */}
+          
           <Box sx={{ display: 'flex', gap: spacing.xl }}>
             <Box>
               <Typography 

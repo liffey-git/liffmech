@@ -1,9 +1,6 @@
-// Design Framework for Liffey Mechanical
-// Based on existing design patterns throughout the application
+
 
-import { SxProps, Theme } from '@mui/material';
-
-// Color Palette
+import { SxProps, Theme } from '@mui/material';
 export const colors = {
   primary: '#1e4388',
   primaryLight: '#2c5aa0',
@@ -18,9 +15,7 @@ export const colors = {
   shadowMedium: 'rgba(0,0,0,0.12)',
   shadowDark: 'rgba(0,0,0,0.15)',
   shadowHeavy: 'rgba(0,0,0,0.3)'
-} as const;
-
-// Typography
+} as const;
 export const typography = {
   weights: {
     normal: 400,
@@ -41,9 +36,7 @@ export const typography = {
     h2: '2.5rem',
     h1: '3rem'
   }
-} as const;
-
-// Spacing (based on Material-UI's 8px base unit)
+} as const;
 export const spacing = {
   xs: 0.5, // 4px
   sm: 1,   // 8px
@@ -52,25 +45,19 @@ export const spacing = {
   xl: 4,   // 32px
   xxl: 6,  // 48px
   xxxl: 8  // 64px
-} as const;
-
-// Border Radius
+} as const;
 export const borderRadius = {
   small: 1,  // 8px
   medium: 2, // 16px
   large: 3   // 24px
-} as const;
-
-// Shadows
+} as const;
 export const shadows = {
   light: '0 2px 8px rgba(0,0,0,0.1)',
   medium: '0 4px 12px rgba(0,0,0,0.1)', 
   elevated: '0 8px 24px rgba(0,0,0,0.12)',
   floating: '0 8px 24px rgba(0,0,0,0.15)',
   modal: '0 24px 48px rgba(0,0,0,0.3)'
-} as const;
-
-// Layout Constants
+} as const;
 export const layout = {
   maxWidth: {
     xs: '100%',
@@ -83,11 +70,8 @@ export const layout = {
     vertical: { xs: 8, md: 14 }, // 64px mobile, 112px desktop
     section: { xs: 10, md: 20 }   // 80px mobile, 160px desktop
   }
-} as const;
-
-// Common Component Styles
-export const componentStyles = {
-  // Page Headers
+} as const;
+export const componentStyles = {
   pageTitle: {
     variant: 'h1' as const,
     component: 'h1' as const,
@@ -96,9 +80,7 @@ export const componentStyles = {
     color: 'primary',
     fontWeight: typography.weights.semiBold,
     sx: { mb: 2 }
-  },
-
-  // Section Headers  
+  },
   sectionTitle: {
     variant: 'h2' as const,
     component: 'h2' as const,
@@ -107,18 +89,14 @@ export const componentStyles = {
     color: 'primary',
     fontWeight: typography.weights.semiBold,
     sx: { mb: 4 }
-  },
-
-  // Subsection Headers
+  },
   subsectionTitle: {
     variant: 'h3' as const,
     component: 'h3' as const,
     gutterBottom: true,
     color: 'primary',
     fontWeight: typography.weights.semiBold
-  },
-
-  // Cards
+  },
   card: {
     borderRadius: borderRadius.medium,
     boxShadow: shadows.medium,
@@ -127,15 +105,11 @@ export const componentStyles = {
       boxShadow: shadows.floating,
       transform: 'translateY(-4px)'
     }
-  } as SxProps<Theme>,
-
-  // Featured Card (larger, more prominent)
+  } as SxProps<Theme>,
   featuredCard: {
     borderRadius: borderRadius.large,
     boxShadow: shadows.elevated
-  } as SxProps<Theme>,
-
-  // Buttons
+  } as SxProps<Theme>,
   primaryButton: {
     px: 4,
     py: 1.5,
@@ -147,9 +121,7 @@ export const componentStyles = {
     '&:hover': {
       bgcolor: colors.primaryLight
     }
-  } as SxProps<Theme>,
-
-  // Chips/Tags
+  } as SxProps<Theme>,
   chip: {
     fontSize: typography.sizes.caption,
     height: '24px',
@@ -159,9 +131,7 @@ export const componentStyles = {
       backgroundColor: colors.primaryLight,
       color: 'white'
     }
-  } as SxProps<Theme>,
-
-  // Image containers
+  } as SxProps<Theme>,
   imageContainer: {
     borderRadius: borderRadius.medium,
     overflow: 'hidden',
@@ -170,9 +140,7 @@ export const componentStyles = {
       height: '100%',
       objectFit: 'cover' as const
     }
-  } as SxProps<Theme>,
-
-  // Section containers
+  } as SxProps<Theme>,
   section: {
     py: layout.containerPadding.vertical,
     backgroundColor: colors.white
@@ -182,11 +150,8 @@ export const componentStyles = {
     py: layout.containerPadding.vertical,
     backgroundColor: colors.lightGray
   } as SxProps<Theme>
-};
-
-// Grid Layouts
-export const gridLayouts = {
-  // Three column grid for cards
+};
+export const gridLayouts = {
   threeColumn: {
     display: 'grid',
     gridTemplateColumns: {
@@ -195,36 +160,27 @@ export const gridLayouts = {
       md: 'repeat(3, 1fr)'
     },
     gap: spacing.lg
-  } as SxProps<Theme>,
-
-  // Two column grid for content
+  } as SxProps<Theme>,
   twoColumn: {
     display: 'flex',
     flexWrap: 'wrap' as const,
     gap: spacing.xl,
     alignItems: 'flex-start'
-  } as SxProps<Theme>,
-
-  // Featured item layout (larger horizontal space)
+  } as SxProps<Theme>,
   featuredLayout: {
     display: 'flex',
     flexDirection: { xs: 'column', lg: 'row' } as 'column' | 'row' | { xs: 'column'; lg: 'row' },
     gap: { xs: spacing.lg, lg: spacing.xl },
     alignItems: { xs: 'center', lg: 'flex-start' }
   } as SxProps<Theme>
-};
-
-// Responsive utilities
-export const responsive = {
-  // Responsive widths for content
+};
+export const responsive = {
   contentWidth: {
     xs: '100%',
     sm: 'calc(50% - 16px)',
     md: 'calc(33.333% - 16px)',
     lg: 'calc(25% - 18px)'
-  },
-
-  // Featured content takes more space
+  },
   featuredWidth: {
     xs: '100%',
     lg: '60%'

@@ -7,7 +7,7 @@ import { Project } from '../types';
 import { FEATURED_PROJECT, PROJECTS_BY_CATEGORY } from '../utils/projectsData';
 
 const ProjectsPage: React.FC = () => {
-  // Scroll to top when component mounts
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -20,7 +20,6 @@ const ProjectsPage: React.FC = () => {
     setSelectedClientTypes([]);
   };
 
-  // Filter logic
   const filteredProjects = useMemo(() => {
     if (selectedServices.length === 0 && selectedClientTypes.length === 0) {
       return PROJECTS_BY_CATEGORY;
@@ -50,14 +49,14 @@ const ProjectsPage: React.FC = () => {
 
   return (
     <Box>
-      {/* Main Content */}
+      
       <Box sx={{ pt: 14, pb: 8, backgroundColor: '#fff' }}>
         <Container maxWidth="lg">
           <Typography variant="h1" component="h1" gutterBottom align="center" sx={{ mb: 2, textTransform: 'uppercase', fontWeight: 700 }} color="primary">
             PROJECTS
           </Typography>
           
-          {/* Introduction */}
+          
           <Box sx={{ 
             display: 'flex', 
             justifyContent: 'center', 
@@ -67,14 +66,15 @@ const ProjectsPage: React.FC = () => {
               variant="body1" 
               align="center" 
               sx={{ 
-                maxWidth: '800px' 
+                maxWidth: '800px',
+                fontSize: { xs: '1rem', lg: '1.125rem' }
               }}
             >
               We call Toronto home, but all of Ontario is our backyard. Liffey has completed projects across the province, of every size and type. We collaborate closely with developers, owners, subcontractors, and site managers to ensure projects are completed on time and on budget.
             </Typography>
           </Box>
           
-          {/* Featured Project */}
+          
           <Box sx={{ mb: 8 }}>
             <Container maxWidth="lg">
               <Box sx={{ 
@@ -83,7 +83,7 @@ const ProjectsPage: React.FC = () => {
               }}>
                 <FeaturedProjectCard 
                   project={FEATURED_PROJECT}
-                  onClick={() => {/* No action */}}
+                   onClick={() => null}
                 />
               </Box>
             </Container>
@@ -91,7 +91,7 @@ const ProjectsPage: React.FC = () => {
         </Container>
       </Box>
 
-      {/* Filters and Projects Section */}
+      
       <Box sx={{ 
         pt: 8,
         pb: 20, 
@@ -101,7 +101,7 @@ const ProjectsPage: React.FC = () => {
         borderBottom: '1px solid rgba(30, 67, 136, 0.12)'
       }}>
         <Container maxWidth="lg">
-          {/* Project Filters */}
+          
           <ProjectFilters
             selectedServices={selectedServices}
             selectedClientTypes={selectedClientTypes}
@@ -110,7 +110,7 @@ const ProjectsPage: React.FC = () => {
             onClearFilters={handleClearFilters}
           />
 
-          {/* Projects Grid */}
+          
           <Box sx={{ 
             display: 'grid',
             gridTemplateColumns: {
@@ -125,13 +125,13 @@ const ProjectsPage: React.FC = () => {
                 <FilterableProjectCard 
                   key={project.id}
                   project={project}
-                  onClick={() => {/* No action */}}
+                   onClick={() => null}
                 />
               ))
             )}
           </Box>
 
-          {/* No Results Message */}
+          
           {Object.keys(filteredProjects).length === 0 && hasActiveFilters && (
             <Box sx={{ textAlign: 'center', py: 8 }}>
               <Typography variant="h5" color="text.secondary" gutterBottom>

@@ -1,4 +1,4 @@
-// Common TypeScript types used across the application
+
 
 export interface Service {
   id: number;

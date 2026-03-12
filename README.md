@@ -2,6 +2,19 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Contact Form Email Setup
+
+The contact form sends directly using EmailJS.
+
+1. Copy `.env.example` to `.env`.
+2. Add your EmailJS values:
+
+- `REACT_APP_EMAILJS_SERVICE_ID`
+- `REACT_APP_EMAILJS_TEMPLATE_ID`
+- `REACT_APP_EMAILJS_PUBLIC_KEY`
+
+3. Restart the dev server after updating `.env`.
+
 ## Available Scripts
 
 In the project directory, you can run:

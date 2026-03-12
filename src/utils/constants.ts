@@ -1,4 +1,4 @@
-// Application constants
+
 import { Service, ServiceCategory } from '../types';
 
 export const SERVICES: Service[] = [

@@ -3,19 +3,19 @@ import { Box, Container, Typography, Paper } from '@mui/material';
 import HeroSection from '../components/common/HeroSection';
 
 const AboutPage: React.FC = () => {
-  // Scroll to top when component mounts
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   return (
     <Box>
-      {/* Hero Section */}
+      
       <HeroSection 
         imageUrl="/images/hero-truck-banner.jpg"
         height="50vh"
       />
-        {/* Introduction and Mission/Vision Section */}      
+              
         <Box sx={{ pt: 14, pb: 14, backgroundColor: '#fff' }}>        
           <Container maxWidth="lg">
           <Typography variant="h1" component="h1" align="center" gutterBottom color="primary" sx={{ textTransform: 'uppercase' }}>
@@ -23,12 +23,12 @@ const AboutPage: React.FC = () => {
           </Typography>
           
           <Box sx={{ maxWidth: 800, mx: 'auto', mb: 8 }}>            
-            <Typography variant="body1">
+            <Typography variant="body1" sx={{ fontSize: { xs: '1rem', lg: '1.125rem' } }}>
               <Box component="span" sx={{ color: 'primary.main', fontWeight: 600 }}>Liffey Mechanical</Box> was founded in 2017 with a clear goal: to provide outstanding mechanical services to the local construction industry. We do so with pride, professionalism, and an unwavering dedication to partnership.
             </Typography>
           </Box>
 
-          {/* Mission and Vision within same section */}
+          
           <Box sx={{ 
             display: 'flex', 
             flexWrap: 'wrap', 
@@ -110,7 +110,7 @@ const AboutPage: React.FC = () => {
           </Box>
         </Container>
       </Box>
-        {/* What We Offer */}          
+                  
       <Box sx={{ 
         py: 14, 
         backgroundColor: 'rgba(30, 67, 136, 0.08)',
@@ -132,7 +132,10 @@ const AboutPage: React.FC = () => {
               width: { 
                 xs: '100%', 
                 md: 'calc(50% - 16px)' 
-              } 
+              },
+              display: 'flex',
+              alignItems: 'center',
+              height: { xs: 'auto', md: '300px' }
             }}>
               <Box 
                 component="img"
@@ -140,7 +143,7 @@ const AboutPage: React.FC = () => {
                 alt="What We Offer"
                 sx={{ 
                   width: '100%', 
-                  height: '400px', 
+                  height: '100%',
                   objectFit: 'cover',
                   borderRadius: 2
                 }}
@@ -150,7 +153,11 @@ const AboutPage: React.FC = () => {
               width: { 
                 xs: '100%', 
                 md: 'calc(50% - 16px)' 
-              } 
+              },
+              height: { xs: 'auto', md: '300px' },
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center'
             }}>
               <Typography variant="body1">
                 We are an expert mechanical contractor, providing clients in the construction industry with the entire range of services they need to complete projects on time and on budget. Based in Toronto, we work across Ontario—addressing the needs of construction partners in communities both small and large.
@@ -162,7 +169,7 @@ const AboutPage: React.FC = () => {
           </Box>
         </Container>
       </Box>
-        {/* Our Approach */}
+        
       <Box sx={{ pt: 14, pb: 15, backgroundColor: '#fff' }}>        
         <Container maxWidth="lg">
           <Typography variant="h3" component="h2" gutterBottom align="center" sx={{ mb: 3, textTransform: 'uppercase' }} color="primary">
@@ -276,7 +283,7 @@ const AboutPage: React.FC = () => {
           </Box>
         </Container>
       </Box>
-        {/* Communication—the Liffey Difference */}
+        
       <Box sx={{ 
         py: 14, 
         backgroundColor: 'rgba(30, 67, 136, 0.08)',
@@ -298,16 +305,20 @@ const AboutPage: React.FC = () => {
               width: { 
                 xs: '100%', 
                 md: 'calc(50% - 16px)' 
-              } 
+              },
+              display: 'flex',
+              alignItems: 'center',
+              height: { xs: 'auto', md: '336px' }
             }}>
               <Box 
                 component="img"
-                src="/images/hero-services-banner.jpg"
+                src="/images/Team/Comms.jpg"
                 alt="Communication"
                 sx={{ 
                   width: '100%', 
-                  height: '400px', 
+                  height: '100%',
                   objectFit: 'cover',
+                  objectPosition: { xs: 'center', md: 'bottom' },
                   borderRadius: 2
                 }}
               />
@@ -316,7 +327,11 @@ const AboutPage: React.FC = () => {
               width: { 
                 xs: '100%', 
                 md: 'calc(50% - 16px)' 
-              }
+              },
+              height: { xs: 'auto', md: '336px' },
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center'
             }}>
             <Typography variant="body1" sx={{ mb: 2 }}>
               Experience has taught us that in a complex business like construction, the unexpected is often the norm. That is why we have made clear, ongoing communication a top priority. After vetting the skills of a potential new hire or prospective subcontractor, we ask one final question: &ldquo;How well do you communicate?&rdquo;
@@ -328,14 +343,14 @@ const AboutPage: React.FC = () => {
           </Box>
         </Container>
       </Box>      
-      {/* Executive Team */}
+      
       <Box sx={{ py: 14, backgroundColor: '#fff' }}>        
         <Container maxWidth="lg">
           <Typography variant="h3" component="h2" gutterBottom align="center" sx={{ mb: 3, textTransform: 'uppercase' }} color="primary">
             EXECUTIVE TEAM
           </Typography>
           
-          {/* Barry Finnerty Row */}
+          
           <Box sx={{ 
             display: 'flex', 
             flexWrap: 'wrap', 
@@ -343,7 +358,7 @@ const AboutPage: React.FC = () => {
             alignItems: 'center',
             mb: 8
           }}>
-            {/* Barry Finnerty */}
+            
             <Box sx={{ 
               width: { 
                 xs: '100%', 
@@ -365,7 +380,7 @@ const AboutPage: React.FC = () => {
               >
                 <Box
                   component="img"
-                  src="/images/IMG_8905.jpg"
+                  src="/images/Team/BarryFinnerty.jpg"
                   alt="Barry Finnerty"
                   sx={{
                     width: '100%',
@@ -376,7 +391,7 @@ const AboutPage: React.FC = () => {
               </Box>
             </Box>
             
-            {/* Text beside Barry */}
+            
             <Box sx={{ 
               width: { 
                 xs: '100%', 
@@ -395,7 +410,7 @@ const AboutPage: React.FC = () => {
             </Box>
           </Box>
 
-          {/* Other Team Members Row */}
+          
           <Box sx={{ 
             display: 'flex', 
             flexWrap: 'wrap', 
@@ -403,7 +418,7 @@ const AboutPage: React.FC = () => {
             mx: 'auto',
             gap: { xs: 4, md: 4 }
           }}>
-              {/* Team Member 2 */}
+              
             <Box sx={{ 
               width: { 
                 xs: '100%', 
@@ -426,8 +441,8 @@ const AboutPage: React.FC = () => {
               >
                 <Box
                   component="img"
-                  src="/images/IMG_8897.jpg"
-                  alt="Team Member Name"
+                  src="/images/Team/PatRice.jpg"
+                  alt="Pat Rice"
                   sx={{
                     width: '100%',
                     height: '100%',
@@ -436,13 +451,13 @@ const AboutPage: React.FC = () => {
                 />
               </Box>
               <Typography variant="h5" component="h3" gutterBottom>
-                Team Member Name
+                Pat Rice
               </Typography>
               <Typography variant="body2" color="text.secondary">
-                Operations Manager
+                HVAC/R Senior Project Manager
               </Typography>
             </Box>
-              {/* Team Member 3 */}
+              
             <Box sx={{ 
               width: { 
                 xs: '100%', 
@@ -465,8 +480,8 @@ const AboutPage: React.FC = () => {
               >
                 <Box
                   component="img"
-                  src="/images/IMG_8888.jpg"
-                  alt="Team Member Name"
+                  src="/images/Team/RavitejaYesereddy.jpg"
+                  alt="Raviteja Yesereddy"
                   sx={{
                     width: '100%',
                     height: '100%',
@@ -475,13 +490,13 @@ const AboutPage: React.FC = () => {
                 />
               </Box>
               <Typography variant="h5" component="h3" gutterBottom>
-                Team Member Name
+                Ravi Yesereddy, B.Eng
               </Typography>
               <Typography variant="body2" color="text.secondary">
-                Project Manager
+                Plumbing Senior Project Manager
               </Typography>
             </Box>
-              {/* Team Member 4 */}
+              
             <Box sx={{ 
               width: { 
                 xs: '100%', 
@@ -504,8 +519,8 @@ const AboutPage: React.FC = () => {
               >
                 <Box
                   component="img"
-                  src="/images/IMG_8274.JPG"
-                  alt="Team Member Name"
+                  src="/images/Team/SeanWatt.jpg"
+                  alt="Sean Watt"
                   sx={{
                     width: '100%',
                     height: '100%',
@@ -514,16 +529,16 @@ const AboutPage: React.FC = () => {
                 />
               </Box>
               <Typography variant="h5" component="h3" gutterBottom>
-                Team Member Name
+                Sean Watt
               </Typography>
               <Typography variant="body2" color="text.secondary">
-                Financial Controller
+                Office Manager
               </Typography>
             </Box>
           </Box>
         </Container>
       </Box>
-        {/* Community Involvement */}
+        
       <Box sx={{ 
         py: 14, 
         backgroundColor: 'rgba(30, 67, 136, 0.08)',
@@ -577,7 +592,7 @@ const AboutPage: React.FC = () => {
             </Box>
           </Box>
 
-          {/* Second Row - Three Images */}
+          
           <Box sx={{ 
             display: 'flex', 
             flexWrap: 'wrap', 

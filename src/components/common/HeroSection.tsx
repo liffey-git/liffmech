@@ -21,20 +21,16 @@ const HeroSection: React.FC<HeroSectionProps> = ({
         backgroundImage: videoUrl ? 'none' : `url(${imageUrl})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-        position: 'relative',
-        // Move up to start from behind the navigation bar
-        marginTop: '-64px',
-        // Add padding to push content down below the navigation bar
+        position: 'relative',
+        marginTop: '-64px',
         paddingTop: '64px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        overflow: 'hidden',
-        // For video: auto height based on content, for image: fixed height
+        overflow: 'hidden',
         ...(videoUrl ? {} : {
           height: `calc(${height} + 64px)`,
-        }),
-        // Add dark tint overlay for better text readability
+        }),
         '&::before': {
           content: '""',
           position: 'absolute',
@@ -44,13 +40,11 @@ const HeroSection: React.FC<HeroSectionProps> = ({
           bottom: 0,
           backgroundColor: 'rgba(0, 0, 0, 0.05)',
           zIndex: 1,
-        },
-        // Ensure children are above the overlay
+        },
         '& > *': {
           position: 'relative',
           zIndex: 2,
-        },
-        // Handle mobile navigation bar height
+        },
         '@media (max-width: 599px)': {
           marginTop: '-56px',
           paddingTop: '56px',

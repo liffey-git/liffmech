@@ -63,7 +63,7 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
         />
       ))}
       
-      {/* Optional: Carousel dots indicator */}
+      
       {images.length > 1 && (
         <Box
           sx={{

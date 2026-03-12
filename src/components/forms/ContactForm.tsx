@@ -9,24 +9,11 @@ import {
   Alert,
   CircularProgress
 } from '@mui/material';
-import emailjs from '@emailjs/browser';
 import { ContactFormData, ContactFormErrors } from '../../types';
 import { useErrorHandler, ValidationError, ApiError } from '../../utils/errorHandling';
+import { canSendDirectEmail, openEFormComposer, sendContactEmail } from '../../utils/emailService';
 
-// Replace these with your actual Email.js credentials when setting up
-const SERVICE_ID = 'YOUR_SERVICE_ID';
-const TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
-const USER_ID = 'YOUR_USER_ID';
-
-// Update EmailParams interface to include index signature for compatibility
-interface EmailParams extends Record<string, unknown> {
-  to_name: string;
-  from_name: string;
-  from_email: string;
-  from_phone?: string;
-  from_company?: string;
-  message: string;
-}
+const RECIPIENT_EMAIL = 'info@liffeymechanical.ca';
 
 const ContactForm: React.FC = () => {
   const { handleError, getUserFriendlyMessage } = useErrorHandler();
@@ -63,13 +50,11 @@ const ContactForm: React.FC = () => {
     const newErrors: ContactFormErrors = {};
     let isValid = true;
 
-    // Name validation
     if (!formData.name.trim()) {
       newErrors.name = 'Name is required';
       isValid = false;
     }
 
-    // Email validation
     if (!formData.email.trim()) {
       newErrors.email = 'Email is required';
       isValid = false;
@@ -78,13 +63,11 @@ const ContactForm: React.FC = () => {
       isValid = false;
     }
 
-    // Phone validation
     if (formData.phone && !/^[0-9+\-() ]{10,15}$/i.test(formData.phone)) {
       newErrors.phone = 'Invalid phone number';
       isValid = false;
     }
 
-    // Message validation
     if (!formData.message.trim()) {
       newErrors.message = 'Message is required';
       isValid = false;
@@ -108,35 +91,35 @@ const ContactForm: React.FC = () => {
       validateForm();
     } catch (error) {
       if (error instanceof ValidationError) {
-        // Validation errors are already set in state, just return
+
         return;
       }
     }
 
-    setIsSubmitting(true);
-
     try {
-      // Prepare email template parameters
-      const templateParams: EmailParams = {
-        to_name: 'Liffey Mechanical',
-        from_name: formData.name,
-        from_email: formData.email,
-        from_phone: formData.phone,
-        from_company: formData.company || 'Not provided',
+      setIsSubmitting(true);
+      const payload = {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        company: formData.company,
         message: formData.message
       };
 
-      // Send email using Email.js
-      await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, USER_ID);
+      if (canSendDirectEmail()) {
+        await sendContactEmail(payload, RECIPIENT_EMAIL);
+      } else {
+        openEFormComposer(payload, RECIPIENT_EMAIL);
+      }
 
-      // Show success message
       setSnackbar({
         open: true,
-        message: 'Thank you! Your message has been sent successfully.',
+        message: canSendDirectEmail()
+          ? 'Thank you! Your message has been sent successfully.'
+          : 'Direct send is not configured, so we opened a prefilled draft. Please press send to complete.',
         severity: 'success'
       });
 
-      // Reset form
       setFormData({
         name: '',
         email: '',
@@ -145,11 +128,30 @@ const ContactForm: React.FC = () => {
         company: ''
       });
     } catch (error) {
-      const apiError = new ApiError(
-        'Failed to send message',
-        'EMAIL_SEND_FAILED',
-        error instanceof Error ? error.message : 'Unknown error'
-      );
+      try {
+        openEFormComposer(
+          {
+            name: formData.name,
+            email: formData.email,
+            phone: formData.phone,
+            company: formData.company,
+            message: formData.message
+          },
+          RECIPIENT_EMAIL
+        );
+
+        setSnackbar({
+          open: true,
+          message:
+            'We could not send automatically, but a prefilled draft has been opened for you to send.',
+          severity: 'success'
+        });
+        return;
+      } catch {
+        void 0;
+      }
+
+      const apiError = new ApiError('Failed to send message', 'EMAIL_SEND_FAILED', error instanceof Error ? error.message : 'Unknown error');
       
       handleError(apiError, 'ContactForm.handleSubmit');
       

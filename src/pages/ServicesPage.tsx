@@ -8,7 +8,6 @@ import BrandMarquee from '../components/common/BrandMarquee';
 import { SERVICE_CATEGORIES } from '../utils/constants';
 import { ServiceCategory } from '../types';
 
-// Client logos
 const CLIENT_LOGOS = [
   '/images/ClientLogos/aw-logo.svg',
   '/images/ClientLogos/ballroom-bowl-logo.png',
@@ -33,12 +32,11 @@ const ServicesPage: React.FC = () => {
   
   const [selectedTab, setSelectedTab] = useState(initialTab);
 
-  // Handle initial scroll position immediately before browser paint
   useLayoutEffect(() => {
     if (tabParam !== null) {
-      // Immediately scroll to prevent flash at top
+
       window.scrollTo(0, 0);
-      // Then find and scroll to service categories
+
       const timer = requestAnimationFrame(() => {
         const serviceCategoriesSection = document.querySelector('[data-section="service-categories"]');
         if (serviceCategoriesSection) {
@@ -51,21 +49,19 @@ const ServicesPage: React.FC = () => {
     }
   }, [tabParam]);
 
-  // Handle initial scroll position based on tab parameter
   useEffect(() => {
     if (tabParam !== null) {
-      // If a tab parameter is provided, scroll to the service categories section immediately
+
       const serviceCategoriesSection = document.querySelector('[data-section="service-categories"]');
       if (serviceCategoriesSection) {
         serviceCategoriesSection.scrollIntoView({ behavior: 'auto', block: 'start' });
       }
     } else {
-      // Otherwise scroll to top
+
       window.scrollTo(0, 0);
     }
   }, [tabParam]); // Added tabParam dependency
 
-  // Update tab when URL parameter changes
   useEffect(() => {
     if (tabParam !== null) {
       const newTab = parseInt(tabParam, 10);
@@ -81,7 +77,7 @@ const ServicesPage: React.FC = () => {
         imageUrl="/images/hero-services-banner.jpg"
         height="50vh"
       />      
-      {/* Services Title and Introduction */}
+      
       <Box sx={{ pt: 14, pb: 14, backgroundColor: '#fff' }}>        
         <Container maxWidth="lg">
           <Typography variant="h1" component="h1" align="center" gutterBottom sx={{ mb: 6, textTransform: 'uppercase' }} color="primary">
@@ -89,27 +85,38 @@ const ServicesPage: React.FC = () => {
           </Typography>
           
           <Box sx={{ 
-            display: 'flex', 
-            flexWrap: 'wrap', 
+            display: 'flex',
+            flexWrap: 'wrap',
             gap: 4,
-            justifyContent: 'center' // Center the content
+            alignItems: 'center'
           }}>
             <Box sx={{ 
               width: { 
                 xs: '100%', 
-                md: 'calc(60% - 16px)' 
-              }            }}>              
-              <Typography variant="body1" paragraph>
+                md: 'calc(50% - 16px)' 
+              },
+              height: { xs: 'auto', md: '300px' },
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center'
+            }}>              
+              <Typography
+                variant="body1"
+                paragraph
+                align="left"
+                sx={{ fontSize: { xs: '1rem', lg: '1.125rem' } }}
+              >
                 We provide a complete range of mechanical services for commercial, institutional, and industrial projects across Ontario. As our clients&apos; sole contractor, we work with you from initial design through to installation and post-project maintenance, with a clear focus on one objective: to ensure that your project is completed on time, on budget, and to specification.
               </Typography>
             </Box>
             <Box sx={{ 
               width: { 
                 xs: '100%', 
-                md: 'calc(40% - 16px)' 
+                md: 'calc(50% - 16px)' 
               },
               display: 'flex',
-              justifyContent: 'center'
+              alignItems: 'center',
+              height: { xs: 'auto', md: '300px' }
             }}>              
             <Box 
                 component="img"
@@ -117,7 +124,8 @@ const ServicesPage: React.FC = () => {
                 alt="Liffey Mechanical Services"
                 sx={{
                   width: '100%',
-                  height: 'auto',
+                  height: { xs: '240px', md: '100%' },
+                  objectFit: 'cover',
                   borderRadius: 2
                 }}
               />
@@ -125,7 +133,7 @@ const ServicesPage: React.FC = () => {
           </Box>
         </Container>
       </Box>      
-      {/* Service Categories - Desktop Tabs View */}
+      
       <Box 
         data-section="service-categories"
         sx={{ 
@@ -167,7 +175,7 @@ const ServicesPage: React.FC = () => {
                 ))}
               </Tabs>
             </Box>            
-            {/* Fixed layout container with proper spacing */}
+            
             <Box sx={{ 
               position: 'relative',
               minHeight: '600px'
@@ -247,7 +255,7 @@ const ServicesPage: React.FC = () => {
           </Box>
         </Container>
       </Box>        
-      {/* Service Categories - Mobile Accordion View */}
+      
       <Box sx={{ 
         display: { xs: 'block', md: 'none' }, 
         pt: 14, 
@@ -331,18 +339,18 @@ const ServicesPage: React.FC = () => {
         </Container>
       </Box>
 
-      {/* Brand Marquee */}
+      
       <BrandMarquee 
         logos={CLIENT_LOGOS}
         height={60}
-        speed={50}
+        speed={150}
         sx={{
           borderTop: '1px solid rgba(30, 67, 136, 0.12)',
           borderBottom: '1px solid rgba(30, 67, 136, 0.12)'
         }}
       />
         
-      {/* Call to Action */}
+      
       <Box sx={{ 
         pt: 20, 
         pb: 20, 

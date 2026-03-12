@@ -20,14 +20,11 @@ const BrandMarquee: React.FC<BrandMarqueeProps> = ({
   useEffect(() => {
     const measureWidth = () => {
       if (firstSetRef.current) {
-        const width = firstSetRef.current.offsetWidth;
-        // Calculate duration based on speed (pixels per second)
+        const width = firstSetRef.current.offsetWidth;
         const duration = width / speed;
         setAnimationDuration(duration);
       }
-    };
-
-    // Wait for images to load
+    };
     const images = firstSetRef.current?.querySelectorAll('img');
     if (images && images.length > 0) {
       let loadedCount = 0;
@@ -45,12 +42,9 @@ const BrandMarquee: React.FC<BrandMarqueeProps> = ({
           img.addEventListener('load', checkAllLoaded);
         }
       });
-    } else {
-      // Fallback if no images
+    } else {
       setTimeout(measureWidth, 100);
-    }
-
-    // Add resize listener to recalculate on viewport changes
+    }
     window.addEventListener('resize', measureWidth);
     
     return () => {
@@ -83,7 +77,7 @@ const BrandMarquee: React.FC<BrandMarqueeProps> = ({
           }
         }}
       >
-        {/* First set - used for measurement */}
+        
         <Box
           ref={firstSetRef}
           sx={{
@@ -108,7 +102,7 @@ const BrandMarquee: React.FC<BrandMarqueeProps> = ({
           ))}
         </Box>
         
-        {/* Second set - duplicate for seamless loop */}
+        
         <Box
           sx={{
             display: 'flex',

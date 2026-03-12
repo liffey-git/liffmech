@@ -51,12 +51,10 @@ const ProjectFilters: React.FC<ProjectFiltersProps> = ({
   };
 
   const hasActiveFilters = selectedServices.length > 0 || selectedClientTypes.length > 0;
-  const totalActiveFilters = selectedServices.length + selectedClientTypes.length;
-
-  // Desktop View
+  const totalActiveFilters = selectedServices.length + selectedClientTypes.length;
   const DesktopFilters = () => (
     <Box sx={{ mb: 6, mt: 4 }}>
-      {/* Filter Header */}
+      
       <Box sx={{ 
         display: 'flex', 
         alignItems: 'center', 
@@ -96,7 +94,7 @@ const ProjectFilters: React.FC<ProjectFiltersProps> = ({
         )}
       </Box>
 
-      {/* Services Section */}
+      
       <Box sx={{ mb: 4 }}>
         <Typography 
           variant="h6" 
@@ -147,7 +145,7 @@ const ProjectFilters: React.FC<ProjectFiltersProps> = ({
         </Box>
       </Box>
 
-      {/* Client Types Section */}
+      
       <Box sx={{ mb: 2, display: 'none' }}>
         <Typography 
           variant="h6" 
@@ -198,30 +196,22 @@ const ProjectFilters: React.FC<ProjectFiltersProps> = ({
         </Box>
       </Box>
     </Box>
-  );
-
-  // Handle combined filter changes for mobile
+  );
   const handleMobileCombinedChange = (event: SelectChangeEvent<string[]>) => {
     const value = event.target.value;
-    const selectedValues = typeof value === 'string' ? value.split(',') : value;
-    
-    // Separate services and client types
+    const selectedValues = typeof value === 'string' ? value.split(',') : value;
     const services = selectedValues.filter(v => SERVICE_TAGS.includes(v as typeof SERVICE_TAGS[number]));
     const clientTypes = selectedValues.filter(v => CLIENT_TYPES.includes(v as typeof CLIENT_TYPES[number]));
     
     onServiceChange(services);
     onClientTypeChange(clientTypes);
-  };
-
-  // Get combined values for mobile dropdown
+  };
   const getCombinedValues = () => {
     return [...selectedServices, ...selectedClientTypes];
-  };
-
-  // Mobile View
+  };
   const MobileFilters = () => (
     <Box sx={{ mb: 4, mt: 4 }}>
-      {/* Filter Header */}
+      
       <Box sx={{ 
         display: 'flex', 
         alignItems: 'center', 
@@ -276,7 +266,7 @@ const ProjectFilters: React.FC<ProjectFiltersProps> = ({
         )}
       </Box>
 
-      {/* Combined Filters Dropdown */}
+      
       <Box sx={{ mb: 2 }}>
         <FormControl fullWidth size="medium">
           <InputLabel>Filter Projects</InputLabel>
@@ -334,7 +324,7 @@ const ProjectFilters: React.FC<ProjectFiltersProps> = ({
               }
             }}
           >
-            {/* Services Section */}
+            
             <MenuItem disabled className="no-bullets">
               <Typography variant="subtitle2" fontWeight={600} color="primary">
                 Services
@@ -346,7 +336,7 @@ const ProjectFilters: React.FC<ProjectFiltersProps> = ({
               </MenuItem>
             ))}
             
-            {/* Client Types Section */}
+            
             <MenuItem disabled className="no-bullets">
               <Typography variant="subtitle2" fontWeight={600} color="primary" sx={{ mt: 1 }}>
                 Client Types

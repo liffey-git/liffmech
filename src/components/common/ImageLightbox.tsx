@@ -34,7 +34,7 @@ const ImageLightbox: React.FC<ImageLightboxProps> = ({ isOpen, onClose, imageUrl
           mx: 'auto'
         }}
       >
-        {/* Close Button */}
+        
         <IconButton
           onClick={onClose}
           sx={{
@@ -54,7 +54,7 @@ const ImageLightbox: React.FC<ImageLightboxProps> = ({ isOpen, onClose, imageUrl
           <CloseIcon />
         </IconButton>
 
-        {/* Image Section */}
+        
         <Box
           component="img"
           src={imageUrl}

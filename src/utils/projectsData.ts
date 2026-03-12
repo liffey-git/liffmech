@@ -1,6 +1,5 @@
 import { Project } from '../types';
 
-// Service tags that match our service categories
 export const SERVICE_TAGS = [
   'HVAC & Refrigeration',
   'Plumbing',
@@ -23,7 +22,7 @@ export const CLIENT_TYPES = [
 export const FEATURED_PROJECT: Project = {
   id: 7,
   title: 'Walmart Distribution Center',
-  description: 'Nulla facilisi morbi tempus iaculis urna id volutpat lacus laoreet non curabitur gravida arcu ac tortor dignissim convallis.',
+  description: 'This recent 107,000 square-foot project in Oakville, Ontario showcased Liffey’s mechanical expertise. Featuring full interior fit-out, new rooftop gas piping, under- and above-ground plumbing, installation of RTUs, and supply of new duct work and HVAC equipment, Walmart\'s new Distribution Centre is a testament to the range of Liffey’s skills and workmanship.',
   location: 'Brampton, Ontario',
   imageUrl: '/images/Hero1.jpg',
   industry: 'Retail',
@@ -38,47 +37,47 @@ export const PROJECTS_BY_CATEGORY: Record<string, Project[]> = {
       title: 'TD Bank',
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.',
       location: 'Downtown Toronto, Ontario',
-      imageUrl: '/images/td-bank-branch.jpg',
+      imageUrl: '/images/Projects/td-bank-branch.jpg',
       industry: 'Banking',
       services: ['HVAC & Refrigeration', 'Mechanical Wiring'],
       clientType: 'Financial'
     },
     {
       id: 3,
-      title: 'BMO Financial',
+      title: 'BMO',
       description: 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris blandit aliquet elit.',
       location: 'Mississauga, Ontario',
-      imageUrl: '/images/bmo-financial-branch.jpg',
+      imageUrl: '/images/Projects/bmo-financial-branch.jpg',
       industry: 'Banking',
       services: ['HVAC & Refrigeration', 'Plumbing', 'Mechanical Wiring'],
       clientType: 'Financial'
     },
     {
       id: 4,
-      title: 'CIBC Corporate Centre',
+      title: 'CIBC',
       description: 'Donec rutrum congue leo eget malesuada. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.',
       location: 'North York, Ontario',
-      imageUrl: '/images/cibc-corporate-centre.jpg',
+      imageUrl: '/images/Projects/cibc-corporate-centre.jpg',
       industry: 'Banking',
       services: ['HVAC & Refrigeration', 'Plumbing', 'Sheet Metal'],
       clientType: 'Financial'
     },
     {
       id: 5,
-      title: 'RBC Branch',
+      title: 'RBC',
       description: 'Sed porttitor lectus nibh. Vivamus suscipit tortor eget felis porttitor volutpat. Cras ultricies ligula sed magna dictum porta.',
       location: 'Etobicoke, Ontario',
-      imageUrl: '/images/rbc-branch-interior.jpg',
+      imageUrl: '/images/Projects/rbc-branch-interior.jpg',
       industry: 'Banking',
       services: ['HVAC & Refrigeration', 'Plumbing'],
       clientType: 'Financial'
     },
     {
       id: 6,
-      title: 'Scotiabank Plaza',
+      title: 'Scotiabank',
       description: 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae. Donec velit neque, auctor sit amet.',
       location: 'Financial District, Toronto',
-      imageUrl: '/images/Projects/Scotiabank.jpeg',
+      imageUrl: '/images/Projects/Scotiabank.jpg',
       industry: 'Banking',
       services: ['HVAC & Refrigeration', 'Mechanical Wiring'],
       clientType: 'Financial'
@@ -99,7 +98,7 @@ export const PROJECTS_BY_CATEGORY: Record<string, Project[]> = {
   'Food Service & Hospitality': [
     {
       id: 8,
-      title: 'A&W Restaurant',
+      title: 'A&W Restaurants',
       description: 'Lorem ipsum dolor sit amet consectetur adipiscing elit ut aliquam purus sit amet luctus venenatis lectus magna fringilla.',
       location: 'Markham, Ontario',
       imageUrl: '/images/aw-restaurant-exterior.jpg',
@@ -142,7 +141,6 @@ export const PROJECTS_BY_CATEGORY: Record<string, Project[]> = {
   ]
 };
 
-// Flattened array of all projects for filtering
 export const ALL_PROJECTS: Project[] = [
   FEATURED_PROJECT,
   ...Object.values(PROJECTS_BY_CATEGORY).flat()

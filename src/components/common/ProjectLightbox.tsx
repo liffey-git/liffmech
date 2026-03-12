@@ -36,7 +36,7 @@ const ProjectLightbox: React.FC<ProjectLightboxProps> = ({ isOpen, onClose, proj
           mx: 'auto'
         }}
       >
-        {/* Close Button */}
+        
         <IconButton
           onClick={onClose}
           sx={{
@@ -56,7 +56,7 @@ const ProjectLightbox: React.FC<ProjectLightboxProps> = ({ isOpen, onClose, proj
           <CloseIcon />
         </IconButton>
 
-        {/* Image Section - Full Width */}
+        
         <Box
           sx={{
             width: '100%',
@@ -76,7 +76,7 @@ const ProjectLightbox: React.FC<ProjectLightboxProps> = ({ isOpen, onClose, proj
           />
         </Box>
 
-        {/* Content Section - Below Image */}
+        
         <Box
           sx={{
             p: { xs: 3, md: 4 },
@@ -87,7 +87,7 @@ const ProjectLightbox: React.FC<ProjectLightboxProps> = ({ isOpen, onClose, proj
             gap: 2
           }}
         >
-          {/* Title */}
+          
           <Typography
             variant="h4"
             component="h2"
@@ -100,7 +100,7 @@ const ProjectLightbox: React.FC<ProjectLightboxProps> = ({ isOpen, onClose, proj
             {project.title}
           </Typography>
 
-          {/* Location */}
+          
           <Typography
             variant="body1"
             sx={{

@@ -44,7 +44,7 @@ const Header: React.FC = () => {
     <AppBar position="fixed" sx={{ zIndex: theme.zIndex.drawer + 1, backgroundColor: '#1e4388' }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          {/* Logo and Brand Name */}
+          
           <Box 
             component={RouterLink}
             to="/"
@@ -80,7 +80,7 @@ const Header: React.FC = () => {
             </Typography>
           </Box>
 
-          {/* Desktop Nav */}
+          
           {!isMobile && (
             <Box sx={{ marginLeft: 'auto', display: 'flex' }}>
               {navItems.map((item) => (
@@ -117,7 +117,7 @@ const Header: React.FC = () => {
             </Box>
           )}
 
-          {/* Mobile Nav */}
+          
           {isMobile && (
             <>
               <IconButton

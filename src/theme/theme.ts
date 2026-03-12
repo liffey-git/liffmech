@@ -1,7 +1,5 @@
-// src/theme/theme.ts
-import { createTheme } from '@mui/material/styles';
 
-// Custom colors based on the Liffey Mechanical website
+import { createTheme } from '@mui/material/styles';
 const theme = createTheme({
   palette: {
     primary: {

@@ -12,16 +12,18 @@ const Footer: React.FC = () => {
         mt: 'auto',
       }}
     >
-      <Container maxWidth="xl">
+      <Container maxWidth="lg">
         <Box sx={{
           display: 'flex',
           flexDirection: { xs: 'column', md: 'row' },
           gap: { xs: 4, md: 8 },
-          alignItems: { xs: 'center', md: 'flex-start' }
+          alignItems: { xs: 'center', md: 'flex-start' },
+          justifyContent: { xs: 'center', md: 'flex-start' },
+          width: '100%'
         }}>
-          {/* Left Column - Logo */}
+          
           <Box sx={{
-            width: { xs: '100%', md: '40%' },
+            width: { xs: '100%', md: 'auto' },
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
@@ -51,38 +53,38 @@ const Footer: React.FC = () => {
             </Typography>
           </Box>
 
-          {/* Right Column - Contact Information */}
+          
           <Box sx={{
-            width: { xs: '100%', md: '60%' },
+            width: { xs: '100%', md: 'auto' },
+            flex: { md: 1 },
             display: 'flex',
             flexDirection: 'column',
-            alignItems: { xs: 'center', md: 'flex-start' }
+            alignItems: { xs: 'center', md: 'center' },
+            justifyContent: { md: 'center' }
           }}>
-            {/* Contact Information Title */}
-            <Typography
-              variant="h4"
-              component="h3"
-              sx={{
-                fontWeight: 600,
-                mb: 4,
-                fontSize: { xs: '1.2rem', md: '1.5rem' },
-                textAlign: { xs: 'center', md: 'left' }
-              }}
-            >
-              Contact Information
-            </Typography>
-
-            {/* Two Office Columns */}
             <Box sx={{
+              width: { xs: '100%', md: 'fit-content' },
               display: 'flex',
-              flexDirection: { xs: 'column', sm: 'row' },
-              gap: { xs: 3, sm: 6 },
-              width: '100%'
+              flexDirection: 'column',
+              alignItems: 'flex-start',
+              textAlign: 'left'
             }}>
-              {/* Ontario Office */}
+              <Typography
+                variant="h4"
+                component="h3"
+                sx={{
+                  fontWeight: 600,
+                  mb: 4,
+                  fontSize: { xs: '1.2rem', md: '1.5rem' },
+                  textAlign: 'left'
+                }}
+              >
+                Contact Information
+              </Typography>
+
               <Box sx={{
-                width: { xs: '100%', sm: '50%' },
-                textAlign: { xs: 'center', md: 'left' }
+                width: '100%',
+                textAlign: 'left'
               }}>
                 <Typography
                   variant="h6"
@@ -95,39 +97,13 @@ const Footer: React.FC = () => {
                   Ontario Office
                 </Typography>
                 <Typography variant="body1" sx={{ mb: 0.5, fontSize: { xs: '1rem', md: '1rem' } }}>
-                  2488 Tree Valley Blvd West
+                  7528-7550 Bath Road
                 </Typography>
                 <Typography variant="body1" sx={{ mb: 0.5, fontSize: { xs: '1rem', md: '1rem' } }}>
-                  City, Ontario
+                  Mississauga, Ontario
                 </Typography>
                 <Typography variant="body1" sx={{ fontSize: { xs: '1rem', md: '1rem' } }}>
-                  Postal Code
-                </Typography>
-              </Box>
-
-              {/* Second Office */}
-              <Box sx={{
-                width: { xs: '100%', sm: '50%' },
-                textAlign: { xs: 'center', md: 'left' }
-              }}>
-                <Typography
-                  variant="h6"
-                  sx={{
-                    fontWeight: 600,
-                    mb: 2,
-                    fontSize: { xs: '1rem', md: '1.1rem' }
-                  }}
-                >
-                  Second Office
-                </Typography>
-                <Typography variant="body1" sx={{ mb: 0.5, fontSize: { xs: '1rem', md: '1rem' } }}>
-                  2412 Happy Pond Street
-                </Typography>
-                <Typography variant="body1" sx={{ mb: 0.5, fontSize: { xs: '1rem', md: '1rem' } }}>
-                  City, Ontario
-                </Typography>
-                <Typography variant="body1" sx={{ fontSize: { xs: '1rem', md: '1rem' } }}>
-                  Postal Code
+                  L4T 1L2
                 </Typography>
               </Box>
             </Box>

@@ -6,7 +6,7 @@ import EmailIcon from '@mui/icons-material/Email';
 import ContactForm from '../components/forms/ContactForm';
 
 const ContactPage: React.FC = () => {
-  // Scroll to top when component mounts
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -15,7 +15,7 @@ const ContactPage: React.FC = () => {
     <Box>
       <Box sx={{ pt: 14, pb: 14 }}>
         <Container maxWidth="lg">
-          {/* Page Header */}          <Box sx={{ mb: 6 }}>
+                    <Box sx={{ mb: 6 }}>
             <Typography variant="h1" component="h1" align="center" gutterBottom color="primary" sx={{ textTransform: 'uppercase' }}>
               CONTACT US
             </Typography>
@@ -29,14 +29,14 @@ const ContactPage: React.FC = () => {
             </Typography>
           </Box>
           
-          {/* Contact Form and Info Section */}
+          
           <Box sx={{ 
             display: 'flex', 
             flexWrap: 'wrap', 
             gap: 4,
             mb: 6
           }}>
-            {/* Contact Information Card */}
+            
             <Box sx={{ 
               width: { 
                 xs: '100%', 
@@ -86,13 +86,13 @@ const ContactPage: React.FC = () => {
                       <Typography variant="h6" gutterBottom>Email</Typography>
                       <Typography variant="body2" sx={{ mb: 1 }}>
                         For general enquiries:
-                        <Link href="mailto:info@liffeymechanical.ca" sx={{ color: 'white', display: 'block', mt: 0.5 }}>
+                        <Link href="mailto:info@liffeymechanical.ca" sx={{ color: 'white', display: 'block', mt: 0.5, fontWeight: 700 }}>
                           info@liffeymechanical.ca
                         </Link>
                       </Typography>
                       <Typography variant="body2">
                         For estimating for projects:
-                        <Link href="mailto:estimating@liffeymechanical.ca" sx={{ color: 'white', display: 'block', mt: 0.5 }}>
+                        <Link href="mailto:estimating@liffeymechanical.ca" sx={{ color: 'white', display: 'block', mt: 0.5, fontWeight: 700 }}>
                           estimating@liffeymechanical.ca
                         </Link>
                       </Typography>
@@ -102,7 +102,7 @@ const ContactPage: React.FC = () => {
               </Paper>
             </Box>
             
-            {/* Contact Form */}
+            
             <Box sx={{ 
               width: { 
                 xs: '100%', 
@@ -113,7 +113,7 @@ const ContactPage: React.FC = () => {
             </Box>
           </Box>
           
-          {/* Careers Information */}
+          
           <Box sx={{ 
             mt: 4, 
             p: 4, 
@@ -138,17 +138,14 @@ const ContactPage: React.FC = () => {
               align="center" 
               sx={{ mb: 2 }}
             >
-              We&apos;re always looking for talented people who would like to join our team. Get in touch with your CV here:
-            </Typography>
-            <Typography 
-              variant="body1" 
-              align="center" 
-              sx={{ fontWeight: 'bold' }}
-            >
-              <Link href="mailto:careers@liffeymechanical.ca">
-                careers@liffeymechanical.ca 
+              Connect with us today and submit your resume to{' '}
+              <Link
+                href="mailto:info@liffeymechanical.ca"
+                sx={{ color: 'primary.main', fontWeight: 700, textDecoration: 'none' }}
+              >
+                info@liffeymechanical.ca
               </Link>
-              (placeholder)
+              .
             </Typography>
           </Box>
         </Container>

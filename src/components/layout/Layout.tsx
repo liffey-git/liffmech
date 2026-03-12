@@ -1,4 +1,4 @@
-// src/components/layout/Layout.tsx
+
 import React from 'react';
 import { Box, Toolbar } from '@mui/material';
 import Header from './Header';
@@ -12,7 +12,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <Header />
-      <Toolbar /> {/* This creates the proper spacing offset for the fixed AppBar */}
+      <Toolbar /> 
       <Box component="main" sx={{ flexGrow: 1 }}>
         {children}
       </Box>
