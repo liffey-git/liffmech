@@ -14,7 +14,7 @@ const HomePage: React.FC = () => {
 
   useEffect(() => {
     let wheelDelta = 0;
-    const SCROLL_THRESHOLD = 100; // Reduced threshold for better sensitivity across devices
+    const SCROLL_THRESHOLD = 60; // Lower threshold to better register touchpad gestures
 
     const handleWheel = (e: WheelEvent) => {
       const servicesSection = servicesSectionRef.current;
@@ -45,15 +45,19 @@ const HomePage: React.FC = () => {
       }
 
       if (shouldCapture) {
-        const direction = e.deltaY > 0 ? 1 : -1;
+        // normalize deltaMode: 0 = pixels, 1 = lines, 2 = pages
+        const rawDelta = e.deltaY;
+        let pixelDelta = rawDelta;
+        if (e.deltaMode === 1) pixelDelta = rawDelta * 16;
+        else if (e.deltaMode === 2) pixelDelta = rawDelta * window.innerHeight;
+
+        const direction = pixelDelta > 0 ? 1 : -1;
         const newIndex = currentServiceIndex + direction;
 
         if (newIndex < 0 || newIndex >= SERVICES.length) {
-
           wheelDelta = 0;
           return;
         }
-
 
         try {
           e.preventDefault();
@@ -62,7 +66,7 @@ const HomePage: React.FC = () => {
           void err;
         }
 
-        const normalizedDelta = Math.sign(e.deltaY) * Math.min(Math.abs(e.deltaY), 50);
+        const normalizedDelta = Math.sign(pixelDelta) * Math.min(Math.abs(pixelDelta), 50);
         wheelDelta += normalizedDelta;
 
         if (Math.abs(wheelDelta) >= SCROLL_THRESHOLD) {
@@ -70,7 +74,6 @@ const HomePage: React.FC = () => {
           wheelDelta = 0;
         }
       } else {
-
         wheelDelta = 0;
       }
     };
@@ -159,14 +162,28 @@ const HomePage: React.FC = () => {
     const wheelOptions = supportsPassive ? { passive: false } : false;
     const touchOptions = supportsPassive ? { passive: false } : false;
 
-    window.addEventListener('wheel', handleWheel, wheelOptions);
-    window.addEventListener('touchstart', handleTouchStart, { passive: true });
-    window.addEventListener('touchmove', handleTouchMove, touchOptions);
+    const targetEl: HTMLElement | Window = servicesSectionRef.current ?? window;
+
+    // wrap handlers so they match EventListener signature
+    const wheelListener: EventListener = (evt: Event) => handleWheel(evt as unknown as WheelEvent);
+    const touchStartListener: EventListener = (evt: Event) => handleTouchStart(evt as unknown as TouchEvent);
+    const touchMoveListener: EventListener = (evt: Event) => handleTouchMove(evt as unknown as TouchEvent);
+
+    targetEl.addEventListener('wheel', wheelListener, wheelOptions as boolean | AddEventListenerOptions);
+    targetEl.addEventListener('touchstart', touchStartListener, { passive: true } as AddEventListenerOptions);
+    targetEl.addEventListener('touchmove', touchMoveListener, touchOptions as boolean | AddEventListenerOptions);
 
     return () => {
-      window.removeEventListener('wheel', handleWheel);
-      window.removeEventListener('touchstart', handleTouchStart);
-      window.removeEventListener('touchmove', handleTouchMove);
+      try {
+        targetEl.removeEventListener('wheel', wheelListener);
+        targetEl.removeEventListener('touchstart', touchStartListener);
+        targetEl.removeEventListener('touchmove', touchMoveListener);
+      } catch (err) {
+        // fallback to window removal
+        window.removeEventListener('wheel', wheelListener);
+        window.removeEventListener('touchstart', touchStartListener);
+        window.removeEventListener('touchmove', touchMoveListener);
+      }
     };
   }, [currentServiceIndex]);
 
@@ -548,7 +565,8 @@ const HomePage: React.FC = () => {
                             path={service.path}
                             variant="dark"
                             showPlayIcon
-                            fontSize='1.25rem'
+                            fontSize={{ xs: '1rem', md: '1.125rem' }}
+                            serviceShadow
                           />
                         </Box>
                       </Box>

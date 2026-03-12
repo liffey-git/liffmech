@@ -94,7 +94,7 @@ const Footer: React.FC = () => {
                     fontSize: { xs: '1rem', md: '1.1rem' }
                   }}
                 >
-                  Ontario Office
+                  Head Office
                 </Typography>
                 <Typography variant="body1" sx={{ mb: 0.5, fontSize: { xs: '1rem', md: '1rem' } }}>
                   7528-7550 Bath Road

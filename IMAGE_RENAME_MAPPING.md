@@ -83,7 +83,7 @@ This document shows all proposed image renames to follow web best practices:
 
 ---
 
-## Category 6: Snow Melt Images
+## Category 6: Snow-Melt Images
 
 **Location:** `public/images/` and `public/images/Snowmelt/`
 

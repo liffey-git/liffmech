@@ -6,7 +6,7 @@ export const SERVICE_TAGS = [
   'Sheet Metal',
   'Hydronic Heating',
   'Mechanical Wiring',
-  'Snow Melt'
+  'Snow-Melt'
 ] as const;
 
 export const CLIENT_TYPES = [

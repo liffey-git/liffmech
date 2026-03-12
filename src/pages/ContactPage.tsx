@@ -62,7 +62,7 @@ const ContactPage: React.FC = () => {
                     <Box>
                       <Typography variant="h6" gutterBottom>Our Location</Typography>
                       <Typography variant="body2">
-                        <strong>Ontario Office:</strong><br />
+                        <strong>Head Office:</strong><br />
                         7528-7550 Bath Road<br />
                         Mississauga, Ontario<br />
                         L4T 1L2

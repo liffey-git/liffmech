@@ -39,7 +39,7 @@ export const SERVICES: Service[] = [
   },
   {
     id: 6,
-    title: 'Snow Melt',
+    title: 'Snow-Melt',
     path: '/services?tab=5',
     imageUrl: '/images/snow-melt-driveway.jpg',
     logoUrl: '/images/icons/service-logo.svg'
@@ -148,10 +148,10 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
   {
     id: 5,
     title: 'Mechanical Wiring',
-    description: 'rom designing new systems to retrofitting existing ones, we add value by integrating electrical services into overall project planning and rollout. We are skilled in developing tailored lighting installations, conducting energy efficiency audits, and providing green energy alternatives. Our expertise covers: ',
+    description: 'From designing new systems to retrofitting existing ones, we add value by integrating electrical services into overall project planning and rollout. We are skilled in developing tailored lighting installations, conducting energy efficiency audits, and providing green energy alternatives. Our expertise covers: ',
     items: [
       'Wiring and controls for HVAC, VRF, boilers and building automation',
-      'Heat tracing and snow melt systems',
+      'Heat tracing and snow-melt systems',
       'Local control wiring',
       'Data centre wiring',
       'System and equipment maintenance'
@@ -167,7 +167,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
   },
     {
     id: 6,
-    title: 'Snow Melt',
+    title: 'Snow-Melt',
     description: 'The Liffey team knows Canadian winters. We have a team of certified technicians with extensive experience in all the weather conditions winter can throw at us, and over the years we have developed excellent relationships with manufacturers. That ensures that we stay abreast of the latest developments in snow-melt systems, allowing us to provide residential, industrial and commercial clients with the optimal solution—from installation to commissioning. Our command of the latest technology ensures that you will enjoy snow-free parking and driveways no matter what winter brings your way.',
     items: [],
     imageUrl: '/images/snow-melt-driveway.jpg',
@@ -184,16 +184,16 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
 export const CONTACT_INFO = {
   offices: {
     ontario: {
-      title: 'Ontario Office',
+      title: 'Head Office',
       street: '2488 Tree Valley Blvd West',
       city: 'City, Ontario',
       postalCode: 'Postal Code'
     },
     second: {
-      title: 'Second Office',
-      street: '2412 Happy Pond Street',
-      city: 'City, Ontario',
-      postalCode: 'Postal Code'
+      title: '',
+      street: '',
+      city: '',
+      postalCode: ''
     }
   }
 };
