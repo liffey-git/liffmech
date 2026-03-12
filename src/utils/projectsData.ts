@@ -123,7 +123,7 @@ export const PROJECTS_BY_CATEGORY: Record<string, Project[]> = {
       title: 'Isabelle\'s Nightclub',
       description: 'Aliquet enim tortor at auctor urna nunc id cursus metus aliquam eleifend mi in nulla posuere sollicitudin aliquam ultrices.',
       location: 'King Street West, Toronto',
-      imageUrl: '/images/isabelles-nightclub.jpg',
+      imageUrl: '/images/Projects/IsabellesNightclub.jpg',
       industry: 'Entertainment',
       services: ['HVAC & Refrigeration', 'Mechanical Wiring'],
       clientType: 'Entertainment'
