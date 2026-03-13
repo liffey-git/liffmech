@@ -77,7 +77,7 @@ export const PROJECTS_BY_CATEGORY: Record<string, Project[]> = {
       title: 'Scotiabank',
       description: 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae. Donec velit neque, auctor sit amet.',
       location: 'Financial District, Toronto',
-      imageUrl: '/images/Projects/Scotiabank.jpg',
+      imageUrl: '/images/Projects/ScotiaBank.jpg',
       industry: 'Banking',
       services: ['HVAC & Refrigeration', 'Mechanical Wiring'],
       clientType: 'Financial'
