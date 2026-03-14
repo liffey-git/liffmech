@@ -178,7 +178,7 @@ const ServicesPage: React.FC = () => {
             
             <Box sx={{ 
               position: 'relative',
-              minHeight: '600px'
+              minHeight: '760px'
             }}>
               {SERVICE_CATEGORIES.map((category: ServiceCategory, index: number) => (
                 <Box
@@ -191,7 +191,7 @@ const ServicesPage: React.FC = () => {
                     top: 0,
                     left: 0,
                     right: 0,
-                    height: '600px',
+                    height: '760px',
                     opacity: selectedTab === index ? 1 : 0,
                     visibility: selectedTab === index ? 'visible' : 'hidden',
                     transition: 'opacity 0.3s ease-in-out, visibility 0.3s ease-in-out'
@@ -242,7 +242,7 @@ const ServicesPage: React.FC = () => {
                         sx={{
                           width: '100%',
                           maxWidth: '600px',
-                          height: '500px',
+                          height: '640px',
                           borderRadius: 3,
                           boxShadow: '0 8px 24px rgba(0,0,0,0.12)'
                         }}

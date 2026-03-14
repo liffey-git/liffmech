@@ -64,7 +64,8 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
       'Semi-hermetic compressors teardowns/rebuilds',
       'Grease ducting',
       'Flue venting',
-      'Industrial ventilation and ductwork'
+      'Industrial ventilation and ductwork',
+      'Process Chillers'
     ],
     imageUrl: '/images/HVAC-R/hvac-refrigeration-main.jpg',
     carouselImages: [
@@ -73,7 +74,8 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
       '/images/HVAC-R/hvac-commercial-unit.jpg',
       '/images/HVAC-R/hvac-system-installation.jpg',
       '/images/HVAC-R/hvac-unit-exterior.jpg',
-      '/images/HVAC-R/hvac-industrial-setup.jpg'
+      '/images/HVAC-R/hvac-industrial-setup.jpg',
+      '/images/HVAC-R/Hvac&refhvacRef_600x600.jpg'
     ]
   },
   {
@@ -97,8 +99,9 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
       '/images/Plumbing/plumbing-fixtures.jpg',
       '/images/Plumbing/plumbing-system.jpg',
       '/images/Plumbing/plumbing-water-lines.jpg',
-      '/images/Plumbing/plumbing-valve-work.jpg',
-      '/images/Plumbing/plumbing-drainage.jpg'
+      '/images/Plumbing/plumbing-drainage.jpg',
+      '/images/Plumbing/Plumbing1_600x600.jpg',
+      '/images/Plumbing/Plumbing2_600x600.jpg'
     ]
   },
   {
