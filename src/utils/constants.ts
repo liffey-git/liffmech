@@ -39,7 +39,7 @@ export const SERVICES: Service[] = [
   },
   {
     id: 6,
-    title: 'Snow-Melt',
+    title: 'Snow Melt',
     path: '/services?tab=5',
     imageUrl: '/images/snow-melt-driveway.jpg',
     logoUrl: '/images/icons/service-logo.svg'
@@ -170,7 +170,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
   },
     {
     id: 6,
-    title: 'Snow-Melt',
+    title: 'Snow Melt',
     description: 'The Liffey team knows Canadian winters. We have a team of certified technicians with extensive experience in all the weather conditions winter can throw at us, and over the years we have developed excellent relationships with manufacturers. That ensures that we stay abreast of the latest developments in snow-melt systems, allowing us to provide residential, industrial and commercial clients with the optimal solution—from installation to commissioning. Our command of the latest technology ensures that you will enjoy snow-free parking and driveways no matter what winter brings your way.',
     items: [],
     imageUrl: '/images/snow-melt-driveway.jpg',

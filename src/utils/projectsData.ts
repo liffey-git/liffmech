@@ -6,7 +6,7 @@ export const SERVICE_TAGS = [
   'Sheet Metal',
   'Hydronic Heating',
   'Mechanical Wiring',
-  'Snow-Melt'
+  'Snow Melt'
 ] as const;
 
 export const CLIENT_TYPES = [
@@ -21,7 +21,7 @@ export const CLIENT_TYPES = [
 
 export const FEATURED_PROJECT: Project = {
   id: 7,
-  title: 'Walmart Distribution Center',
+  title: 'Walmart Distribution Centre',
   description: 'This recent 107,000 square-foot project in Oakville, Ontario showcased Liffey’s mechanical expertise. Featuring full interior fit-out, new rooftop gas piping, under- and above-ground plumbing, installation of RTUs, and supply of new duct work and HVAC equipment, Walmart\'s new Distribution Centre is a testament to the range of Liffey’s skills and workmanship.',
   location: 'Brampton, Ontario',
   imageUrl: '/images/Hero1.jpg',
