@@ -11,8 +11,13 @@ import { Project } from '../types';
 const HomePage: React.FC = () => {
   const [currentServiceIndex, setCurrentServiceIndex] = useState(0);
   const servicesSectionRef = useRef<HTMLDivElement>(null);
+  const mobileServiceRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
+    if (window.innerWidth < 900) {
+      return;
+    }
+
     let wheelDelta = 0;
     const SCROLL_THRESHOLD = 60; // Lower threshold to better register touchpad gestures
 
@@ -188,6 +193,56 @@ const HomePage: React.FC = () => {
   }, [currentServiceIndex]);
 
   useEffect(() => {
+    if (window.innerWidth >= 900) {
+      return;
+    }
+
+    let ticking = false;
+
+    const updateActiveServiceFromViewport = () => {
+      const viewportCenter = window.innerHeight * 0.5;
+      let closestIndex = 0;
+      let closestDistance = Number.POSITIVE_INFINITY;
+
+      mobileServiceRefs.current.forEach((el, index) => {
+        if (!el) {
+          return;
+        }
+
+        const rect = el.getBoundingClientRect();
+        const cardCenter = rect.top + rect.height / 2;
+        const distance = Math.abs(cardCenter - viewportCenter);
+
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestIndex = index;
+        }
+      });
+
+      setCurrentServiceIndex((prevIndex) => (prevIndex === closestIndex ? prevIndex : closestIndex));
+      ticking = false;
+    };
+
+    const handleScrollOrResize = () => {
+      if (ticking) {
+        return;
+      }
+
+      ticking = true;
+      window.requestAnimationFrame(updateActiveServiceFromViewport);
+    };
+
+    updateActiveServiceFromViewport();
+    window.addEventListener('scroll', handleScrollOrResize, { passive: true });
+    window.addEventListener('resize', handleScrollOrResize);
+
+    return () => {
+      window.removeEventListener('scroll', handleScrollOrResize);
+      window.removeEventListener('resize', handleScrollOrResize);
+    };
+  }, []);
+
+  useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
@@ -262,15 +317,187 @@ const HomePage: React.FC = () => {
         data-section="services"
         sx={{
           position: 'relative',
-          height: {
-            xs: '70vh',
-            md: '70vh'
-          },
-          backgroundColor: '#000'
+          backgroundColor: '#000',
+          height: { xs: 'auto', md: '70vh' },
+          minHeight: { xs: '100vh', md: '70vh' },
+          overflow: 'hidden'
         }}
       >
+        <Box
+          sx={{
+            display: { xs: 'block', md: 'none' },
+            position: 'absolute',
+            inset: 0,
+            zIndex: 1,
+            pointerEvents: 'none',
+            overflow: 'hidden'
+          }}
+        >
+          {SERVICES.map((service, index) => (
+            <Box
+              key={`mobile-bg-fade-${service.id}`}
+              sx={{
+                position: 'absolute',
+                inset: 0,
+                backgroundImage: `url(${service.imageUrl})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                opacity: currentServiceIndex === index ? 1 : 0,
+                transition: 'opacity 0.7s ease'
+              }}
+            />
+          ))}
+          <Box
+            sx={{
+              position: 'absolute',
+              inset: 0,
+              backgroundColor: 'rgba(0, 0, 0, 0.45)'
+            }}
+          />
+        </Box>
+
+        <Box
+          sx={{
+            display: { xs: 'block', md: 'none' },
+            position: 'relative',
+            minHeight: '100vh'
+          }}
+        >
+          <Box
+            sx={{
+              position: 'sticky',
+              top: 0,
+              height: '80px',
+              overflow: 'hidden',
+              zIndex: 2,
+              pointerEvents: 'none'
+            }}
+          >
+            <Box
+              sx={{
+                position: 'relative',
+                height: '80px',
+                backgroundColor: 'rgba(30, 67, 136, 0.6)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                zIndex: 2
+              }}
+            >
+              <Typography
+                variant="h3"
+                component="h2"
+                sx={{
+                  color: 'white',
+                  fontWeight: 700,
+                  textTransform: 'uppercase',
+                  fontSize: '2rem',
+                  letterSpacing: '0.05em',
+                  textAlign: 'center'
+                }}
+              >
+                SERVICES
+              </Typography>
+            </Box>
+          </Box>
+
+          <Container
+            maxWidth="sm"
+            sx={{
+              position: 'relative',
+              zIndex: 3,
+              pt: 0,
+              pb: '225px'
+            }}
+          >
+            <Box sx={{ height: '225px' }} />
+            {SERVICES.map((service, index) => (
+              <Box
+                key={`mobile-card-${service.id}`}
+                ref={(el: HTMLDivElement | null) => {
+                  mobileServiceRefs.current[index] = el;
+                }}
+                data-service-index={index}
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  minHeight: '225px',
+                  mb: index < SERVICES.length - 1 ? '225px' : 0
+                }}
+              >
+                <Box
+                  sx={{
+                    width: '100%',
+                    maxWidth: '320px',
+                    height: '225px',
+                    position: 'relative'
+                  }}
+                >
+                  <Box
+                    component="img"
+                    src={service.logoUrl}
+                    alt={service.title}
+                    sx={{
+                      height: '225px',
+                      width: 'auto',
+                      position: 'absolute',
+                      zIndex: -1,
+                      top: 0,
+                      left: 0,
+                      opacity: 0.65
+                    }}
+                  />
+
+                  <Typography
+                    variant="h3"
+                    component="h3"
+                    sx={{
+                      position: 'absolute',
+                      top: '15%',
+                      left: '20%',
+                      fontWeight: 700,
+                      width: '250px',
+                      height: '125px',
+                      fontSize: '2.5rem',
+                      textAlign: 'left',
+                      textShadow: '2px 2px 4px rgba(0,0,0,0.5)',
+                      lineHeight: 1.2,
+                      display: 'flex',
+                      alignItems: 'center',
+                      color: 'white'
+                    }}
+                  >
+                    {service.title}
+                  </Typography>
+
+                  <Box
+                    component={RouterLink}
+                    to={service.path}
+                    sx={{
+                      textDecoration: 'none',
+                      color: 'inherit',
+                      position: 'absolute',
+                      bottom: '15%',
+                      right: '10%'
+                    }}
+                  >
+                    <LearnMoreButton
+                      path={service.path}
+                      variant="dark"
+                      showPlayIcon
+                      fontSize={{ xs: '1rem', md: '1.125rem' }}
+                      serviceShadow
+                    />
+                  </Box>
+                </Box>
+              </Box>
+            ))}
+          </Container>
+        </Box>
         
         <Box sx={{
+          display: { xs: 'none', md: 'block' },
           position: 'relative',
           height: '100%',
           overflow: 'hidden'
