@@ -27,7 +27,7 @@ export const SERVICES: Service[] = [
     id: 4,
     title: 'Hydronic Heating',
     path: '/services?tab=3',
-    imageUrl: '/images/hydronic/HydronicHeating1.jpeg',
+    imageUrl: '/images/Hydronic/HydronicHeating1.jpeg',
     logoUrl: '/images/icons/service-logo.svg'
   },
   {
