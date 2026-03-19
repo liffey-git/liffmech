@@ -19,7 +19,8 @@ const Footer: React.FC = () => {
           gap: { xs: 4, md: 8 },
           alignItems: { xs: 'center', md: 'flex-start' },
           justifyContent: { xs: 'center', md: 'flex-start' },
-          width: '100%'
+          width: { xs: '100%', md: 'fit-content', lg: '100%' },
+          mx: { xs: 0, md: 'auto', lg: 0 }
         }}>
           
           <Box sx={{
@@ -56,7 +57,7 @@ const Footer: React.FC = () => {
           
           <Box sx={{
             width: { xs: '100%', md: 'auto' },
-            flex: { md: 1 },
+            flex: { md: '0 0 auto', lg: 1 },
             display: 'flex',
             flexDirection: 'column',
             alignItems: { xs: 'center', md: 'center' },
@@ -66,8 +67,8 @@ const Footer: React.FC = () => {
               width: { xs: '100%', md: 'fit-content' },
               display: 'flex',
               flexDirection: 'column',
-              alignItems: 'flex-start',
-              textAlign: 'left'
+              alignItems: { xs: 'center', md: 'flex-start' },
+              textAlign: { xs: 'center', md: 'left' }
             }}>
               <Typography
                 variant="h4"
@@ -76,7 +77,7 @@ const Footer: React.FC = () => {
                   fontWeight: 600,
                   mb: 4,
                   fontSize: { xs: '1.2rem', md: '1.5rem' },
-                  textAlign: 'left'
+                  textAlign: { xs: 'center', md: 'left' }
                 }}
               >
                 Contact Information
@@ -84,7 +85,7 @@ const Footer: React.FC = () => {
 
               <Box sx={{
                 width: '100%',
-                textAlign: 'left'
+                textAlign: { xs: 'center', md: 'left' }
               }}>
                 <Typography
                   variant="h6"
