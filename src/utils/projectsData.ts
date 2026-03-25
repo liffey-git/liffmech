@@ -57,7 +57,7 @@ export const PROJECTS_BY_CATEGORY: Record<string, Project[]> = {
       title: 'CIBC',
       description: 'Donec rutrum congue leo eget malesuada. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.',
       location: 'North York, Ontario',
-      imageUrl: '/images/Projects/cibc-corporate-centre.jpg',
+      imageUrl: '/images/Projects/CIBC.jpg',
       industry: 'Banking',
       services: ['HVAC & Refrigeration', 'Plumbing', 'Sheet Metal'],
       clientType: 'Financial'
