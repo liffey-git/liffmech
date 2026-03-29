@@ -1,71 +1,30 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, SxProps, Theme, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
+
+const LOGO_SLOT_WIDTH = 180; 
+const LOGO_GAP = 80; 
+const REPEAT_COUNT = 5; 
+const ANIMATION_DURATION = 120; 
 
 interface BrandMarqueeProps {
   logos: string[];
   height?: number;
-  speed?: number; // pixels per second
+  speed?: number;
   sx?: SxProps<Theme>;
 }
 
 const BrandMarquee: React.FC<BrandMarqueeProps> = ({ 
   logos, 
   height = 80,
-  speed = 50,
   sx = {}
 }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
-  const [animationDuration, setAnimationDuration] = useState(0);
   const [mobileIndex, setMobileIndex] = useState(0);
   const [mobileTransitionEnabled, setMobileTransitionEnabled] = useState(true);
-  const firstSetRef = useRef<HTMLDivElement>(null);
 
   const mobileSlides = logos.length > 0 ? [...logos, logos[0]] : [];
-
-  useEffect(() => {
-    if (isMobile) {
-      return;
-    }
-
-    const measureWidth = () => {
-      if (firstSetRef.current) {
-        const width = firstSetRef.current.offsetWidth;
-
-        const duration = width / speed;
-        setAnimationDuration(duration);
-      }
-    };
-
-    const images = firstSetRef.current?.querySelectorAll('img');
-    if (images && images.length > 0) {
-      let loadedCount = 0;
-      const checkAllLoaded = () => {
-        loadedCount++;
-        if (loadedCount === images.length) {
-          measureWidth();
-        }
-      };
-
-      images.forEach(img => {
-        if (img.complete) {
-          checkAllLoaded();
-        } else {
-          img.addEventListener('load', checkAllLoaded);
-        }
-      });
-    } else {
-
-      setTimeout(measureWidth, 100);
-    }
-
-    window.addEventListener('resize', measureWidth);
-    
-    return () => {
-      window.removeEventListener('resize', measureWidth);
-    };
-  }, [isMobile, logos, speed]);
 
   useEffect(() => {
     if (!isMobile || logos.length <= 1) {
@@ -164,12 +123,16 @@ const BrandMarquee: React.FC<BrandMarqueeProps> = ({
       </Box>
     );
   }
+  const setStride = logos.length * (LOGO_SLOT_WIDTH + LOGO_GAP);
+  const translateDistance = REPEAT_COUNT * setStride;
+  const totalSets = REPEAT_COUNT + 1;
 
   return (
     <Box
       sx={{
         overflow: 'hidden',
-        width: '100%',
+        width: '100vw',
+        marginLeft: 'calc(-50vw + 50%)',
         py: 4,
         backgroundColor: '#fff',
         ...sx
@@ -178,66 +141,52 @@ const BrandMarquee: React.FC<BrandMarqueeProps> = ({
       <Box
         sx={{
           display: 'flex',
-          gap: 10,
-          animation: animationDuration ? `scroll ${animationDuration}s linear infinite` : 'none',
-          '@keyframes scroll': {
-            '0%': {
-              transform: 'translateX(0)'
-            },
-            '100%': {
-              transform: 'translateX(-50%)'
-            }
+          gap: `${LOGO_GAP}px`,
+          width: 'fit-content',
+          animation: `marqueeScroll ${ANIMATION_DURATION}s linear infinite`,
+          '@keyframes marqueeScroll': {
+            '0%': { transform: 'translateX(0)' },
+            '100%': { transform: `translateX(-${translateDistance}px)` }
           }
         }}
       >
-        
-        <Box
-          ref={firstSetRef}
-          sx={{
-            display: 'flex',
-            gap: 10,
-            flexShrink: 0
-          }}
-        >
-          {logos.map((logo, index) => (
-            <Box
-              key={`first-${logo}-${index}`}
-              component="img"
-              src={logo}
-              alt={`Client logo ${index + 1}`}
-              sx={{
-                height: `${height}px`,
-                width: 'auto',
-                objectFit: 'contain',
-                flexShrink: 0
-              }}
-            />
-          ))}
-        </Box>
-        
-        
-        <Box
-          sx={{
-            display: 'flex',
-            gap: 10,
-            flexShrink: 0
-          }}
-        >
-          {logos.map((logo, index) => (
-            <Box
-              key={`second-${logo}-${index}`}
-              component="img"
-              src={logo}
-              alt={`Client logo ${index + 1}`}
-              sx={{
-                height: `${height}px`,
-                width: 'auto',
-                objectFit: 'contain',
-                flexShrink: 0
-              }}
-            />
-          ))}
-        </Box>
+        {Array.from({ length: totalSets }, (_, setIndex) => (
+          <Box
+            key={`set-${setIndex}`}
+            sx={{
+              display: 'flex',
+              gap: `${LOGO_GAP}px`,
+              flexShrink: 0
+            }}
+          >
+            {logos.map((logo, logoIndex) => (
+              <Box
+                key={`${setIndex}-${logoIndex}`}
+                sx={{
+                  width: `${LOGO_SLOT_WIDTH}px`,
+                  height: `${height}px`,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexShrink: 0
+                }}
+              >
+                <Box
+                  component="img"
+                  src={logo}
+                  alt={`Client logo ${logoIndex + 1}`}
+                  sx={{
+                    maxHeight: `${height}px`,
+                    maxWidth: `${LOGO_SLOT_WIDTH}px`,
+                    width: 'auto',
+                    height: 'auto',
+                    objectFit: 'contain'
+                  }}
+                />
+              </Box>
+            ))}
+          </Box>
+        ))}
       </Box>
     </Box>
   );
