@@ -50,7 +50,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
   {
     id: 1,
     title: 'HVAC and Refrigeration',
-    description: 'Liffey offers comprehensive HVAC and refrigeration services, from conception and design to construction and installation. We test and calibrate our systems to ensure the highest level of quality control, and we also service systems that we install for their entire lifespans. We provide:',
+    description: 'Liffey offers comprehensive HVAC and refrigeration services, from conception and design to construction and installation. We test and calibrate our systems to ensure the highest level of quality control, and we also service systems that we install for their entire lifespans.',
     items: [
       'VRF system installations ',
       'Makeup air unit installs',
@@ -151,7 +151,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
   {
     id: 5,
     title: 'Mechanical Wiring',
-    description: 'From designing new systems to retrofitting existing ones, we add value by integrating electrical services into overall project planning and rollout. We are skilled in developing tailored lighting installations, conducting energy efficiency audits, and providing green energy alternatives. Our expertise covers: ',
+    description: 'From designing new systems to retrofitting existing ones, we add value by integrating electrical services into overall project planning and rollout. We are skilled in developing tailored lighting installations, conducting energy efficiency audits, and providing green energy alternatives.',
     items: [
       'Wiring and controls for HVAC, VRF, boilers and building automation',
       'Heat tracing and snow-melt systems',
